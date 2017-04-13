@@ -21,10 +21,6 @@
     <% end %>
   </div>
 
-
-
-
-
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
@@ -34,25 +30,19 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
-
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-
   <div class="field">
-    <%= f.label :birth %><br />
-    <%= f.text_field :birth %>
+    <%= f.label :avatar %><br />
+    <%= f.text_field :avatar %>
   </div>
 
   <div class="field">
     <%= f.label :gender %><br />
     <%= f.text_field :gender %>
   </div>
-
-
-
-
 
   <div class="actions">
     <%= f.submit "Update" %>
