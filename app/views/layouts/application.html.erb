@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Final</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-  <% if user_signed_in? %>
-  <h3>Hello <%= current_user.email %></h3>
-  <%= link_to "Logout", destroy_user_session_path,method: :delete %>
-  <% else %>
-  <%= link_to "Log in", new_user_session_path %>
-  <%= link_to "Register", new_user_registration_path %>
-  <% end %>
-    <%= yield %>
-  </body>
+<html lang="en">
+<head>
+  <title>AwesomeVn</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+  <script src="http://mynameismatthieu.com/WOW/dist/wow.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <%= javascript_include_tag "application", "data-turbolinks-track": "true" %>
+</head>
+<div class="navbar navbar-default navbar-static-top animated fadeInDownBig"
+     data-wow-delay="0.1s" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+      </button>
+      <%= link_to "AwesomeVn", root_path , id: "brand", class: "navbar-brand animated faded",
+                  "data-wow-delay": "0.3s", method: :get %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <% if user_signed_in? %>
+          <%= render "layouts/menu_user" %>
+      <% else %>
+          <%= render "layouts/menu_guest" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<body>
+<%= yield %>
+</body>
 </html>
