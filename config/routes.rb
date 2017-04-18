@@ -3,7 +3,8 @@
   root 'static_pages#home'
 
   get 'static_pages/help'
-
+  root 'foods#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :foods
+  resources :users, only: :show
 end
