@@ -2,7 +2,7 @@
   <div id="top2">
     <% @foods.each do |food| %>
       <%= image_tag food.file %>
-      <%= food.name %>
+      <%= link_to food.name, food_path(food) %>
       <%= food.description %>
       <%= food.address %>
       <%= food.price %>

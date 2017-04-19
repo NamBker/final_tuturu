@@ -9,7 +9,15 @@
     <%= @food.favorite %>
     <%= @food.tag %>
     <%= @food.review %>
-    <%=  link_to 'Edit', edit_food_path(@food) %> |
-    <%= link_to 'Back', foods_path %>
+    <% if current_user == Food.find(params[:id]).user %>
+      <%=  link_to 'Edit', edit_food_path(@food) %> |
+      <%= link_to 'Back', foods_path %>
+    <% else %>
+      <% if user_signed_in? %>
+        comment
+      <% else %>
+        Loggin or Register to comment %>
+      <% end %>
+    <% end %>
   </div>
 </div>

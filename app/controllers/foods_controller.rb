@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_filter :require_permission, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -58,4 +59,10 @@ class FoodsController < ApplicationController
     def food_params
       params.require(:food).permit :name, :address, :price, :description, :favorite, :tag, :review, :file
     end
+
+  def require_permission
+    if current_user != Food.find(params[:id]).user
+      redirect_to root_path
+    end
+  end
 end
