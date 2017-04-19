@@ -1,2 +1,12 @@
 <br><br><br>
 <p style="color: white"> <%= @user.name %></p>
+<%= image_tag @user.avatar %>
+<% @user.foods.each do |food| %>
+<%= food.name %><br>
+<%= image_tag food.file %>
+<% end %>
+<style>
+  body {
+    color: white;
+  }
+</style>

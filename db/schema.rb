@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20170418143448) do
 
   create_table "foods", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "address"
     t.integer  "price"
@@ -20,8 +21,10 @@ ActiveRecord::Schema.define(version: 20170418143448) do
     t.integer  "favorite"
     t.integer  "tag"
     t.integer  "review"
+    t.string   "file"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
