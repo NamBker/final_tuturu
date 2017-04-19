@@ -1,11 +1,14 @@
--@foods.each do |food|
-=image_tag food.image.url(:medium)
-=food.name
-=food.description
-=food.address
-=food.price
-=food.favorite
-=food.tag
-=food.review
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+<section id="top" class="parallax-section section">
+  <div id="top2">
+    <% @foods.each do |food| %>
+      <%= image_tag food.file %>
+      <%= food.name %>
+      <%= food.description %>
+      <%= food.address %>
+      <%= food.price %>
+      <%= food.favorite %>
+      <%= food.tag %>
+      <%= food.review %>
+    <% end %>
+  </div>
+</section>

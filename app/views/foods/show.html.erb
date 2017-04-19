@@ -1,3 +1,15 @@
-
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+<div class= "section">
+  <div class= "col-sm-8 col-sm-offset-2 col-xs-12">
+    <br><br><br><br><br>
+    <%= image_tag @food.file %>
+    <%= @food.name %>
+    <%= @food.description %>
+    <%= @food.address %>
+    <%= @food.price %>
+    <%= @food.favorite %>
+    <%= @food.tag %>
+    <%= @food.review %>
+    <%=  link_to 'Edit', edit_food_path(@food) %> |
+    <%= link_to 'Back', foods_path %>
+  </div>
+</div>

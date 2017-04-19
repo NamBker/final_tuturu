@@ -1,15 +1,15 @@
 <ul class="nav navbar-nav navbar-right animated fadeInDown wow" data-wow-delay="0.1s">
-  <li><%= link_to "Upload", "#", class: "smoothScroll animated fadeInLeft wow",
-                  "data-wow-delay": "0.1s", method: :get %></li>
+  <li><%= link_to "Upload", new_food_path, class: "smoothScroll animated fadeInLeft wow",
+    "data-wow-delay": "0.15s", method: :get %></li>
   <li class="dpdwn">
-    <%= link_to t("admin.profile"), "#",
-                class: "smoothScroll animated fadeInLeft wow",
-                "data-wow-delay": "0.3s", method: :get %>
+    <%= link_to "Profile", user_path(current_user),
+      class: "smoothScroll animated fadeInLeft wow",
+      "data-wow-delay": "0.2s", method: :get %>
     <ul class="nav">
-      <li><%= link_to t("admin.setting"), edit_user_registration_path, class: "smoothScroll animated fadeIn wow",
-                      "data-wow-delay": "0.3s", method: :get %></li>
-      <li><%= link_to t("admin.logout"), destroy_user_session_path, class: "smoothScroll animated fadeIn wow",
-                      "data-wow-delay": "0.35s", method: :delete %></li>
+      <li><%= link_to "Setting", edit_user_registration_path, class: "smoothScroll animated fadeIn wow",
+        "data-wow-delay": "0.2s", method: :get %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, class: "smoothScroll animated fadeIn wow",
+        "data-wow-delay": "0.25s", method: :delete %></li>
     </ul>
   </li>
 </ul>
