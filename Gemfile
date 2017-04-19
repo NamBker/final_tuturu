@@ -28,6 +28,7 @@ gem "bootstrap-kaminari-views"
 gem "social-share-button"
 gem "will_paginate"
 gem "owlcarousel-rails"
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem "byebug", platform: :mri
