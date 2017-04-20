@@ -9,28 +9,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <%= javascript_include_tag "application", "data-turbolinks-track": "true" %>
 </head>
-<div class="navbar navbar-default navbar-static-top animated fadeInDownBig"
-     data-wow-delay="0.1s" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon icon-bar"></span>
-        <span class="icon icon-bar"></span>
-        <span class="icon icon-bar"></span>
-      </button>
-      <%= link_to "AwesomeVn", root_path , id: "brand", class: "navbar-brand animated faded",
-                  "data-wow-delay": "0.3s", method: :get %>
-    </div>
-    <div class="collapse navbar-collapse">
-      <% if user_signed_in? %>
-          <%= render "layouts/menu_user" %>
-      <% else %>
-          <%= render "layouts/menu_guest" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+
 <body>
+
+<%= render "layouts/head" %>
 <%= yield %>
 </body>
 </html>
