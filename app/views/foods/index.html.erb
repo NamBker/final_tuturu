@@ -1,14 +1,62 @@
-<section id="top" class="parallax-section section">
-  <div id="top2">
-    <% @foods.each do |food| %>
-      <%= image_tag food.file %>
-      <%= link_to food.name, food_path(food) %>
-      <%= food.description %>
-      <%= food.address %>
-      <%= food.price %>
-      <%= food.favorite %>
-      <%= food.tag %>
-      <%= food.review %>
-    <% end %>
-  </div>
-</section>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="section">
+  <section class="parallax-section">
+    <div id="top2">
+      <br><br><br><br>
+      <% @foods.each do |food| %>
+        <div class="item col-sm-4">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+              <%= image_tag food.file %>
+            <% end %>
+            <div class="overlay">
+              <div class="favourite2">
+                <% if user_signed_in? %>
+                  <% if current_user.voted_up_on? food %>
+                    <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= link_to user_session_path do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </div>
+                <span class="description"><%= link_to food.name, food_path(food) %></span>
+                <span class="downloads">
+                  <i class="fa fa-download" aria-hidden="true"> downloads</i>
+                </span>
+                <span class="favourite-count">
+                  <i class="fa fa-heart"></i>
+                  <% if food.score > 1 %><b><%= food.score %></b> likes
+                  <% elsif food.score == 1 %><b><%= food.score %></b> like
+                  <% else %>
+                  <% end %><br>
+                </span>
+                <span class="date">
+                  <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <br>
+    </div>
+  </section>
+</div>
+<script>
+  $(function(){
+    $(".container2").hover(function(){
+          $(this).find(".overlay").fadeIn();
+        }
+        ,function(){
+          $(this).find(".overlay").fadeOut();
+        }
+    );
+  });
+</script>

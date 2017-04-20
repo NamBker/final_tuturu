@@ -92,16 +92,30 @@ $.fn.backgroundCycle = function (e) {
   setInterval(cycleToNextImage, t.duration);
 }
 
+// var slideshow = function() {
+//   $('#top').backgroundCycle({
+//     imageUrls: [
+//       "http://cyneats.com/wp-content/uploads/2015/03/IMG_5687.jpg",
+//       "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/3.jpg",
+//       "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/1.jpg",
+//       "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/2.jpg",
+//     ],
+//     fadeSpeed: 800,
+//     duration: 8000,
+//     backgroundSize: SCALING_MODE_COVER
+//   });
+// };
+
 var slideshow = function() {
   $('#top').backgroundCycle({
     imageUrls: [
-      "https://drive.google.com/uc?id=0B9VYzD5V43juYzlHRjZSVnM4eFU",
-      "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/3.jpg",
-      "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/1.jpg",
-      "https://demo.arrowthemes.com/joomla/gaucho/images/demo/indigo/slider/2.jpg",
+      "http://cyneats.com/wp-content/uploads/2015/03/IMG_5687.jpg",
+      "http://cdn.newsapi.com.au/image/v1/0cdd4a9c789cb01fd54b027153c57e9b?width=1024",
+      "http://229hkg2lw84tezus91ay33k2.wpengine.netdna-cdn.com/wp-content/uploads/2014/06/Phone-Taking-Photo-Of-Food.jpg",
+      "https://static-ssl.businessinsider.com/image/56d9dd8c6e97c623008bb9cb-960-720/the-tovala-will-communicate-with-the-phone-and-find-the-recipe-for-the-food.jpg",
     ],
     fadeSpeed: 1200,
-    duration: 8000,
+    duration: 2500,
     backgroundSize: SCALING_MODE_COVER
   });
 };

@@ -1,23 +1,83 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class= "section">
-  <div class= "col-sm-8 col-sm-offset-2 col-xs-12">
+  <div class= "col-sm-8 col-sm-offset-2 col-xs-12 view">
     <br><br><br><br><br>
-    <%= image_tag @food.file %>
-    <%= @food.name %>
-    <%= @food.description %>
-    <%= @food.address %>
-    <%= @food.price %>
-    <%= @food.favorite %>
-    <%= @food.tag %>
-    <%= @food.review %>
-    <% if current_user == Food.find(params[:id]).user %>
-      <%=  link_to 'Edit', edit_food_path(@food) %> |
-      <%= link_to 'Back', foods_path %>
+    <%= image_tag @food.file %><br>
+    Name: <%= @food.name %><br>
+    Description: <%= @food.description %><br>
+    Address: <%= @food.address %><br>
+    Price: <%= @food.price %><br>
+    Tag: <%= @food.tag %><br>
+    Review: <%= @food.review %><br>
+    <% if @food.score > 1 %><b><%= @food.score %></b> likes
+    <% elsif @food.score == 1 %><b><%= @food.score %></b> like
     <% else %>
-      <% if user_signed_in? %>
-        comment
+    <% end %><br><br>
+    <% if user_signed_in? %>
+      <% if current_user.id == @food.user.id %>
+        <%=  link_to "Edit", edit_food_path(@food) %>
+        <%= link_to "Delete", food_path(@food),
+          method: :delete, data: { confirm: "Are you sure?" } %>
       <% else %>
-        Loggin or Register to comment %>
+        Comment:
+      <% end %>
+    <% else %>
+      Login or
+      <%= link_to "Register", new_user_registration_path %> or
+      <%= link_to "Login", user_session_path %>
+      to comment.
+    <% end %>
+    <br>
+    <% if @food.comments %>
+      <% @food.comments.each do |comment| %>
+        <b><%= comment.user.username %>:</b>
+        <%= comment.content %>
+        <% if comment.user == current_user %>
+          <%= link_to "Delete", food_comment_path(@food, comment),
+            method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        <br>
       <% end %>
     <% end %>
+    <section class="_jveic _dsvln">
+      <% if user_signed_in? %>
+        <% if current_user.voted_up_on? @food %>
+          <%= link_to dislike_food_path(@food), method: :put, class:"_ebwb5 _1tv0k" do %>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          <% end %>
+        <% else %>
+          <%= link_to like_food_path(@food), method: :put, class:"_ebwb5 _1tv0k" do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+        <%= form_for [@food, @food.comments.build], class:"_k3t69" do |f| %>
+          <%= f.text_field :content, placeholder: 'Add a comment...', class:"_7uiwk _qy55y"  %>
+        <% end %>
+      <% end %>
+    </section>
+    <br>
   </div>
 </div>
+<style>
+  body {
+    background: white;
+  }
+  img {
+    width: 500px;
+    height: auto;
+  }
+  .view a {
+    width: 20%;
+    color: cornflowerblue;
+  }
+  i {
+    color: red;
+    font-size: 20px !important;
+    padding-top: 10px;
+  }
+  form {
+    width: 96%;
+    margin-top: 10px;
+    float: right;
+  }
+</style>

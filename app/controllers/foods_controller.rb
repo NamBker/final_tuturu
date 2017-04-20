@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
-  before_filter :require_permission, except: [:index, :show]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote]
+  before_filter :require_permission, only: [:edit, :update]
+  before_action :set_food, except: [:new, :create, :index]
 
   def index
     @search = Food.ransack params[:q]
@@ -10,6 +10,8 @@ class FoodsController < ApplicationController
   end
 
   def show
+    # @like = (current_user.voted_for? @food) && (@food.liked_by current_user)
+    # p @like
   end
 
   def new
@@ -31,12 +33,12 @@ class FoodsController < ApplicationController
   end
 
   def update
-      if @food.update_attributes food_params
-        flash[:success] = "Update success"
-        redirect_to food_path @food
-      else
-        render :edit
-      end
+    if @food.update_attributes food_params
+      flash[:success] = "Update success"
+      redirect_to food_path @food
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -51,13 +53,26 @@ class FoodsController < ApplicationController
     end
   end
 
+  def upvote
+    p current_user.id
+    # @food = Food.find_by id: params[:id]
+    @food.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    # @food = Food.find_by id: params[:id]
+    @food.downvote_by current_user
+    redirect_to :back
+  end
+  
   private
     def set_food
       @food = Food.find_by id: params[:id]
     end
 
     def food_params
-      params.require(:food).permit :name, :address, :price, :description, :favorite, :tag, :review, :file
+      params.require(:food).permit :name, :address, :price, :description, :tag, :review, :file
     end
 
   def require_permission
