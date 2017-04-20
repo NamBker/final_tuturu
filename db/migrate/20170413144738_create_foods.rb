@@ -5,9 +5,9 @@ class CreateFoods < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :address
       t.integer :price
-      t.string :description
+      t.text :description
       t.string :tag
-      t.string :review
+      t.text :review
       t.string :file
 
       t.timestamps

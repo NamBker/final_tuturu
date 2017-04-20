@@ -141,7 +141,7 @@ fieldset {
 }
 
 .formholder {
-  background: rgba(9, 94, 115, 0.7);
+  background: rgba(9, 94, 115, 0.5);
   border-radius: 5px;
   padding-top: 5px;
   h2 {
@@ -652,6 +652,12 @@ $primary: #2196F3;
   background-size: cover;
 }
 
+.edit-food {
+  background: url(http://blog.asurion.com/wp-content/uploads/2016/11/iStock_83585783_MEDIUM.jpg) top center;
+  background-size: cover;
+  height: 100vh;
+}
+
 @keyframes spinner {
   0% { transform: rotateZ(0deg); }
   100% { transform: rotateZ(359deg); }
@@ -994,4 +1000,25 @@ footer {
   width: 100%;
   height: 300px;
   left: 0;
+}
+
+.upload {
+  label {
+    font-size: 24px !important;
+    font-family: Serif;
+    font-variant: small-caps;
+    color: $yellow !important;
+    padding: 2px;
+  }
+  [type=submit] {
+    background: green !important;
+    width: 100% !important;
+  }
+  [type=submit]:hover {
+    background: greenyellow !important;
+  }
+  .has-error {
+    font-size: 18px;
+    font-weight: 700;
+  }
 }

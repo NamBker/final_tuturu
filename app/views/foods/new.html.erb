@@ -1,9 +1,16 @@
-<div class="login-bg section">
-  <div class="col-sm-8 col-sm-offset-2 col-xs-12">
-<h1>New Food</h1>
-
-<%= render 'form', food: @food %>
-
-<%= link_to 'Back', foods_path %>
-  </div>
+<div class="section">
+  <section id="top" class="parallax-section">
+    <div id="top2">
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+        <br><br>
+        <div class="formholder upload col-sm-12 ">
+          <h2>Let's introduct your food!</h2>
+          <div class="randompad">
+            <%= render 'form', food: @food %>
+          </div>
+        </div>
+      </div>
+      <%= link_to 'Back', foods_path %>
+    </div>
+  </section>
 </div>

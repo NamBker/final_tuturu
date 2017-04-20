@@ -1,5 +1,4 @@
-<div class="form-control">
-<%= simple_form_for @food, multipart: true do |f| %>
+<%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :address %>
@@ -7,6 +6,8 @@
   <%= f.input :tag %>
   <%= f.input :review %>
   <%= f.input :file %>
-  <%= f.button :submit %>
+  <div class="actions text-center col-sm-12">
+    <div class="col-sm-6"><%= f.button :submit %></div>
+    <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
+  </div><br><br>
 <% end %>
-</div>
