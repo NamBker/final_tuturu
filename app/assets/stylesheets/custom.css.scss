@@ -313,6 +313,7 @@ a:hover {
   color: rgb(255, 255, 255);
   //background: rgba(181, 167, 152, 0.82);
   z-index: 2;
+  overflow-y: auto;
 }
 
 .navbar {
@@ -609,7 +610,6 @@ img.inactived {
   color: $black;
   min-height: 80vh;
   overflow-y: auto;
-  min-height: 100vh;
 
   h1 {
     font-size: 30px;
@@ -859,4 +859,139 @@ footer {
 
 .btn-reg:hover {
   background: greenyellow !important;
+}
+
+.overlay {
+  display: block;
+  background: grey;
+  color: white;
+  height: 91%;
+  left: 10%;
+  position: absolute;
+  top: 5%;
+  transition: background .5s ease;
+  width: 80%;
+}
+
+.slide {
+  position: relative;
+}
+.slide:hover .overlay {
+  background: rgba(0, 0, 0, .6);
+  display: block;
+}
+
+._dsvln {
+  margin-top: 13px;
+}
+._jveic {
+  min-height: 68px;
+}
+._jveic {
+  align-items: center;
+  border-top: 1px solid #efefef;
+  flex-direction: row;
+  justify-content: center;
+}
+._ixow7, ._jveic {
+  flex-shrink: 0;
+}
+._ebwb5 {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-left: -9px;
+  margin-right: 3px;
+}
+._1tv0k {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+._k3t69 {
+  color: #999;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+._7uiwk {
+  background: 0 0;
+  border: none;
+  color: #262626;
+  font-size: 15px;
+  line-height: 18px;
+  outline: none;
+  width: 100%;
+}
+._qy55y {
+  -webkit-appearance: none;
+}
+._soakw {
+  display: block;
+  overflow: hidden;
+  text-indent: 110%;
+  white-space: nowrap;
+}
+
+.favourite2 i {
+  position: absolute;
+  font-size: 40px;
+  color: red;
+  margin-left: 80%;
+  margin-top: 10%;
+}
+.description {
+  position: absolute;
+  font-size: 24px;
+  left: 5%;
+  top: 80%;
+  font-weight: 700;
+  a {
+    color: yellow !important;
+  }
+}
+.downloads {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  left: 5%;
+  top: 90%;
+}
+.favourite-count {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  left: 35%;
+  top: 90%;
+}
+.date {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  left: 70%;
+  top: 90%;
+}
+.container2 {
+  position: relative;
+  margin: 0 10px;
+  width: 100%;
+  height: 300px;
+}
+
+.overlay {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  color: #FFF;
+  background: rgba(2, 1, 6, 0.61);
+  transition: background 0.5s ease;
+}
+
+.item img {
+  /*position: relative;*/
+  width: 100%;
+  height: 300px;
+  left: 0;
 }

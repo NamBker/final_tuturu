@@ -5,8 +5,10 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable,
     authentication_keys: [:login]
   attr_accessor :login
+  acts_as_voter
 
-  has_many :foods
+  has_many :foods, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
