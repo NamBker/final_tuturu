@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170420082435) do
     t.string   "name"
     t.string   "address"
     t.integer  "price"
-    t.string   "description"
+    t.text     "description"
     t.string   "tag"
-    t.string   "review"
+    t.text     "review"
     t.string   "file"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

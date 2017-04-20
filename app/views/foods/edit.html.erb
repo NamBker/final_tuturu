@@ -1,6 +1,16 @@
-<h1>Editing Food</h1>
-
-<%= render 'form', food: @food %>
-
-<%= link_to 'Show', @food %> |
-<%= link_to 'Back', foods_path %>
+<div class="section">
+  <section class="edit-food">
+    <div id="top2">
+      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+        <br><br>
+        <div class="formholder upload col-sm-12 ">
+          <h2>Edit your food!</h2>
+          <div class="randompad">
+            <%= render 'form', food: @food %>
+          </div>
+        </div>
+      </div>
+      <%= link_to 'Back', foods_path %>
+    </div>
+  </section>
+</div>

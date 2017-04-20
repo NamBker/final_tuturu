@@ -16,7 +16,7 @@
     <% if user_signed_in? %>
       <% if current_user.id == @food.user.id %>
         <%=  link_to "Edit", edit_food_path(@food) %>
-        <%= link_to "Delete", food_comment_path(@food),
+        <%= link_to "Delete", food_path(@food),
           method: :delete, data: { confirm: "Are you sure?" } %>
       <% else %>
         Comment:
