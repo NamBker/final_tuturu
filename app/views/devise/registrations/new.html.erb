@@ -1,7 +1,7 @@
 <div class="section">
   <section id="top" class="parallax-section">
     <div id="top2">
-      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+      <div class="col-sm-6 col-sm-offset-3 col-xs-12">
         <br><br>
         <div class="formholder">
           <h2>Welcome to AwesomeVN</h2>
@@ -24,12 +24,12 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                <%= f.password_field :password,minlength: 6, autocomplete: "off", class: "form-control" %>
               </div>
 
               <div class="field">
                 <%= f.label :password_confirmation, class:"form-label" %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                <%= f.password_field :password_confirmation,minlength: 6, autocomplete: "off", class: "form-control" %>
               </div>
 
               <br>
