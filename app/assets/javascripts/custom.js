@@ -181,7 +181,7 @@ $(document).ready(function() {
     constrainInput: true,
     showOtherMonths: true,
     autoSize: true,
-    dateFormat: 'yyyy/mm/dd',
+    dateFormat: 'yy/mm/dd',
     firstDay: 1,
     changeYear: true,
     changeMonth: true,
