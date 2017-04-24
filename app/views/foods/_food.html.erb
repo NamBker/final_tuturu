@@ -1,0 +1,54 @@
+<%= search_form_for @search, remote: true, method: :get do |f| %>
+  <div class="input-group input-group-lg col-sm-12">
+    <%= f.text_field :name_cont, class: "pj-form-field w180",
+      placeholder: "Search", id: "searchinput" %>
+    <span id="searchclear" class="form-control-clear glyphicon
+      glyphicon-remove form-control-feedback">
+  </span>
+    <%= f.submit "Search", class: "btn btn-primary" %>
+  </div>
+
+  <div id="pagination" class="apple-pagination">
+    <%= paginate @foods, remote: true %>
+  </div>
+  <% @foods.each do |food| %>
+    <div class="item2 col-sm-4">
+      <div class="container2">
+        <%= link_to food_path(food) do %>
+            <%= image_tag food.file %>
+        <% end %>
+        <div class="overlay">
+          <div class="favourite2">
+            <% if user_signed_in? %>
+                <% if current_user.voted_up_on? food %>
+                    <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%= link_to user_session_path do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+          </div>
+          <span class="description"><%= link_to food.name, food_path(food) %></span>
+          <span class="downloads"><i class="fa fa-download"> downloads</i></span>
+          <span class="favourite-count">
+                <i class="fa fa-heart"></i>
+            <% if food.score > 1 %><b><%= food.score %></b> likes
+                <% elsif food.score == 1 %><b><%= food.score %></b> like
+                <% else %> like
+                <% end %><br>
+              </span>
+          <span class="date">
+                <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+              </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

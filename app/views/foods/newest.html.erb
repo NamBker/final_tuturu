@@ -1,0 +1,10 @@
+<div class="section">
+  <br><br><br>
+  <div id="pagination" class="apple-pagination">
+    <%= paginate @foods, remote: true %>
+  </div>
+  <div id="foods">
+    <%= render "food" %>
+  </div>
+  <br>
+</div>

@@ -1,9 +1,10 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class= "section">
   <div class= "col-sm-8 col-sm-offset-2 col-xs-12 view">
-    <br><br><br><br><br>
+    <br>
+    <%= image_tag @food.user.avatar, class:"avatar" %>
+    <%= link_to "#{@food.user.username}", @food.user %><br>
+    <strong><%= @food.name %></strong> at <%= @food.created_at.in_time_zone("Hanoi") %><br>
     <%= image_tag @food.file %><br>
-    Name: <%= @food.name %><br>
     Description: <%= @food.description %><br>
     Address: <%= @food.address %><br>
     Price: <%= @food.price %><br>
@@ -12,22 +13,22 @@
     <% if @food.score > 1 %><b><%= @food.score %></b> likes
     <% elsif @food.score == 1 %><b><%= @food.score %></b> like
     <% else %>
-    <% end %><br><br>
+    <% end %><br>
     <% if user_signed_in? %>
       <% if current_user.id == @food.user.id %>
         <%=  link_to "Edit", edit_food_path(@food) %>
         <%= link_to "Delete", food_path(@food),
           method: :delete, data: { confirm: "Are you sure?" } %>
       <% else %>
-        Comment:
       <% end %>
     <% else %>
       Login or
       <%= link_to "Register", new_user_registration_path %> or
       <%= link_to "Login", user_session_path %>
       to comment.
-    <% end %>
-    <br>
+    <% end %><br>
+    
+    <strong>Comment:</strong><br>
     <% if @food.comments %>
       <% @food.comments.each do |comment| %>
         <b><%= comment.user.username %>:</b>
@@ -38,7 +39,7 @@
         <% end %>
         <br>
       <% end %>
-    <% end %>
+    <% end %><br>
     <section class="_jveic _dsvln">
       <% if user_signed_in? %>
         <% if current_user.voted_up_on? @food %>
@@ -50,7 +51,7 @@
             <i class="fa fa-heart-o" aria-hidden="true"></i>
           <% end %>
         <% end %>
-        <%= form_for [@food, @food.comments.build], class:"_k3t69" do |f| %>
+        <%= form_for [@food, @comment], class:"_k3t69" do |f| %>
           <%= f.text_field :content, placeholder: 'Add a comment...', class:"_7uiwk _qy55y"  %>
         <% end %>
       <% end %>
@@ -60,7 +61,14 @@
 </div>
 <style>
   body {
+    background: #36465D;
+    color: white !important;
+    font-size: 18px;
+  }
+  .view {
     background: white;
+    margin-bottom: 20px;
+    margin-top: 80px;
   }
   img {
     width: 500px;
@@ -79,5 +87,15 @@
     width: 96%;
     margin-top: 10px;
     float: right;
+  }
+  .avatar {
+    background-color: #fafafa;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    height: 35px;
+    width: 35px;
   }
 </style>

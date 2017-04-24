@@ -1,17 +1,16 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked]
   before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
 
   def index
-    @search = Food.ransack params[:q]
-    @search.sorts = %w(created_at asc) if @search.sorts.empty?
-    @foods = @search.result.page(params[:page]).per_page Settings.limit
+    # @search = Food.ransack params[:q]
+    # @search.sorts = %w(created_at asc) if @search.sorts.empty?
+    # @foods = @search.result.page(params[:page]).per_page(3)
   end
 
   def show
-    # @like = (current_user.voted_for? @food) && (@food.liked_by current_user)
-    # p @like
+    @comment = Comment.new
   end
 
   def new
@@ -54,16 +53,25 @@ class FoodsController < ApplicationController
   end
 
   def upvote
-    p current_user.id
-    # @food = Food.find_by id: params[:id]
     @food.upvote_by current_user
     redirect_to :back
   end
 
   def downvote
-    # @food = Food.find_by id: params[:id]
     @food.downvote_by current_user
     redirect_to :back
+  end
+
+  def newest
+    @search = Food.ransack params[:q]
+    @search.sorts = %w(created_at\ desc) if @search.sorts.empty?
+    @foods = @search.result.page(params[:page]).per_page(3)
+  end
+
+  def liked
+    @search = Food.ransack params[:q]
+    @search.sorts = %w(cached_votes_up\ desc) if @search.sorts.empty?
+    @foods = @search.result.page(params[:page]).per_page(3)
   end
   
   private

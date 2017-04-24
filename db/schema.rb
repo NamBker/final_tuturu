@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420082435) do
+ActiveRecord::Schema.define(version: 20170423144355) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20170420082435) do
     t.string   "tag"
     t.text     "review"
     t.string   "file"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "cached_votes_up", default: 0
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
