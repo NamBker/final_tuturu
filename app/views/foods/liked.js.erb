@@ -1,0 +1,2 @@
+$('#foods').html('<%= j render "food" %>');
+$('#pagination').html('<%= j paginate(@foods, remote: true).to_s %>');

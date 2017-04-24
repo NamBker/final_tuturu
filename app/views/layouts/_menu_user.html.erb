@@ -1,15 +1,211 @@
-<ul class="nav navbar-nav navbar-right animated fadeInDown wow" data-wow-delay="0.1s">
-  <li><%= link_to "Upload", new_food_path, class: "smoothScroll animated fadeInLeft wow",
-    "data-wow-delay": "0.15s", method: :get %></li>
+<ul class="nav navbar-nav navbar-right" data-wow-delay="0.1s">
+  <li><%= link_to "Upload", new_food_path %></li>
   <li class="dpdwn">
-    <%= link_to "Profile", user_path(current_user),
-      class: "smoothScroll animated fadeInLeft wow",
-      "data-wow-delay": "0.2s", method: :get %>
+    <%= link_to user_path(current_user), method: :get do %>
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+    <% end %>
     <ul class="nav">
-      <li><%= link_to "Setting", edit_user_registration_path, class: "smoothScroll animated fadeIn wow",
-        "data-wow-delay": "0.2s", method: :get %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, class: "smoothScroll animated fadeIn wow",
-        "data-wow-delay": "0.25s", method: :delete %></li>
+      <li class="popover_menu_item popover_menu_item_blog popover_menu_item_blog--uncloseable popover_menu_item_blog--open">
+        <div class="blog-list-item blog-list-item--on-light">
+          <%= link_to user_path(current_user), class:"blog-list-item-anchor" do %>
+            <span class="blog-list-item-avatar">
+              <%= image_tag current_user.avatar, class:"blog-list-item-avatar-image", alt:"avatar" %>
+            </span>
+            <span class="blog-list-item-info">
+              <span class="blog-list-item-info-name">
+                <%= current_user.name %>
+              </span><br>
+              <span class="blog-list-item-info-title"><%= current_user.username %></span>
+            </span>
+          <% end %>
+        </div>
+        <hr>
+        <div class="blog-sub-nav-item">
+          <%= link_to user_path(current_user), class:"blog-sub-nav-item-link" do %>
+            <div class="blog-sub-nav-item-label">Photo</div>
+            <div class="blog-sub-nav-item-data">
+              <%= current_user.foods.count %>
+            </div>
+          <% end %>
+        </div>
+        <div class="blog-sub-nav-item">
+          <a href="#" class="blog-sub-nav-item-link">
+            <div class="blog-sub-nav-item-label">Followers</div>
+            <div class="blog-sub-nav-item-data">0</div>
+          </a>
+        </div>
+        <div class="blog-sub-nav-item">
+          <a href="#" class="blog-sub-nav-item-link">
+            <div class="blog-sub-nav-item-label">Likes</div>
+            <div class="blog-sub-nav-item-data sparkline">
+              <%= current_user.foods.sum(:cached_votes_up) %>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li>
+        <%= link_to edit_user_registration_path, method: :get do %>
+          <i class="fa fa-cog" aria-hidden="true"></i> Settings
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out
+        <% end %>
+      </li>
     </ul>
   </li>
 </ul>
+<style>
+  hr {
+    margin: 0;
+  }
+  ul > li:last-child ul{
+    right: 4px;
+    left: auto;
+  }
+  .popover_menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .popover_menu_item_blog {
+    background: #fff;
+    padding: 0;
+    border-top: 1px solid rgba(68,68,68,.1);
+    width: 100%;
+  }
+  .popover_menu_item_blog:first-child {
+    border-top: none;
+  }
+  .popover_menu_item {
+    position: absolute;
+    /*padding: 0;*/
+    display: block;
+    border-bottom: 1px solid #e7e7e7;
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,.6);
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: 0;
+    /*box-shadow: none;*/
+  }
+  .popover_menu_item:last-child {
+    border-bottom-color: #000;
+  }
+  .popover_menu_item:first-child {
+    box-shadow: none;
+  }
+  .popover_menu_item_blog_details {
+    padding-top: 5px !important;
+  }
+  .blog-list-item, .blog-list-item .blog-list-item-anchor {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    min-height: 57px;
+    box-sizing: border-box;
+  }
+  .blog-list-item {
+    -ms-flex-align: center;
+    font-size: 13px;
+    padding-right: 10px;
+  }
+  .blog-list-item:hover {
+    background: #E6EFF7;
+  }
+  .blog-list-item .blog-list-item-anchor {
+    padding-left: 10px;
+    height: 57px;
+    box-flex: 1;
+    flex: 1;
+  }
+  .blog-list-item, .blog-list-item .blog-list-item-anchor {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    min-height: 57px;
+    box-sizing: border-box;
+  }
+  .blog-list-item .blog-list-item-avatar {
+    position: relative;
+    margin-right: 10px;
+    height: 37px;
+    width: 37px;
+    display: inline-block;
+  }
+  .blog-list-item .blog-list-item-avatar-image {
+    border-radius: 3px;
+    width: 100%;
+    height: auto;
+  }
+  .blog-list-item .blog-list-item-info {
+    box-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 17px;
+    max-width: 135px;
+    display: block;
+  }
+  .blog-list-item .blog-list-item-info .blog-list-item-info-name {
+    font-weight: 700;
+  }
+  .blog-list-item .blog-list-item-info .blog-list-item-info-name,
+  .blog-list-item .blog-list-item-info .blog-list-item-info-title {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .blog-list-item .blog-list-item-info .blog-list-item-info-title {
+    color: #8f8f8f;
+    font-size: 13px;
+  }
+  /*.blog-list-item-button {*/
+    /*display: none;*/
+  /*}*/
+  /*.blog-list-item .blog-list-item-button {*/
+    /*width: 38px;*/
+    /*opacity: 0;*/
+    /*font-size: 24px;*/
+    /*padding: 10px;*/
+    /*color: #a9a9a9;*/
+    /*box-sizing: border-box;*/
+  /*}*/
+  .popover_menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .blog-sub-nav-item {
+    padding: 4px 0;
+  }
+  .blog-sub-nav-item:hover {
+    background: #E6EFF7;
+    color: #3e5266;
+  }
+  .blog-sub-nav-item .blog-sub-nav-item-link {
+    display: block;
+    line-height: inherit;
+    padding: 0;
+    height: 19px;
+  }
+  .blog-sub-nav-item {
+    padding: 5px;
+  }
+  .blog-sub-nav-item .blog-sub-nav-item-label {
+    display: inline-block;
+    float: left;
+    /*padding: 5px;*/
+  }
+  .blog-sub-nav-item .blog-sub-nav-item-data {
+    color: #8f8f8f;
+    display: inline-block;
+    float: right;
+  }
+</style>

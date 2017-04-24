@@ -3,7 +3,7 @@ class Food < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :name, presence: true
-  validates :price, numericality: {greater_than: 0}
+  # validates :price, numericality: {greater_than: 0}
 
   mount_uploader :file, AvatarUploader
   acts_as_votable
