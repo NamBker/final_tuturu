@@ -1320,7 +1320,7 @@ footer {
 }
 
 .w180 {
-  width: 63%;
+  width: 80%;
 }
 
 #tag_cloud {
@@ -1519,4 +1519,22 @@ footer {
 }
 .horizon {
   margin: 0;
+}
+
+.search {
+  padding-top: 8px;
+}
+.form-control-feedback {
+  right: 3px;
+  top: 8px;
+  text-align: left;
+  width: 26%;
+  color: grey;
+}
+
+.form-control-clear {
+  cursor: pointer;
+  display: inline-block;
+  pointer-events: auto;
+  z-index: 10;
 }
