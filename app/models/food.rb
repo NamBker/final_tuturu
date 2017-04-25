@@ -7,6 +7,7 @@ class Food < ApplicationRecord
 
   mount_uploader :file, AvatarUploader
   acts_as_votable
+  acts_as_taggable
 
   def score
     self.get_upvotes.size

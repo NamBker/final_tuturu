@@ -1,12 +1,10 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked, :tag]
   before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   def index
-    # @search = Food.ransack params[:q]
-    # @search.sorts = %w(created_at asc) if @search.sorts.empty?
-    # @foods = @search.result.page(params[:page]).per_page(3)
   end
 
   def show
@@ -73,6 +71,14 @@ class FoodsController < ApplicationController
     @search.sorts = %w(cached_votes_up\ desc) if @search.sorts.empty?
     @foods = @search.result.page(params[:page]).per_page(3)
   end
+
+  def tag
+    if params[:tag]
+      @foods = Food.tagged_with(params[:tag])
+    else
+      @foods = Food.all
+    end
+  end
   
   private
     def set_food
@@ -80,7 +86,7 @@ class FoodsController < ApplicationController
     end
 
     def food_params
-      params.require(:food).permit :name, :address, :price, :description, :tag, :review, :file
+      params.require(:food).permit :name, :address, :price, :description, :review, :file, :tag_list
     end
 
   def require_permission

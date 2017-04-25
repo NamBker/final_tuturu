@@ -8,7 +8,7 @@
     Description: <%= @food.description %><br>
     Address: <%= @food.address %><br>
     Price: <%= @food.price %><br>
-    Tag: <%= @food.tag %><br>
+    Tags: <%= raw @food.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><br>
     Review: <%= @food.review %><br>
     <% if @food.score > 1 %><b><%= @food.score %></b> likes
     <% elsif @food.score == 1 %><b><%= @food.score %></b> like
@@ -63,39 +63,14 @@
   body {
     background: #36465D;
     color: white !important;
-    font-size: 18px;
-  }
-  .view {
-    background: white;
-    margin-bottom: 20px;
-    margin-top: 80px;
-  }
-  img {
-    width: 500px;
-    height: auto;
-  }
-  .view a {
-    width: 20%;
-    color: cornflowerblue;
-  }
-  i {
-    color: red;
-    font-size: 20px !important;
-    padding-top: 10px;
   }
   form {
     width: 96%;
     margin-top: 10px;
     float: right;
   }
-  .avatar {
-    background-color: #fafafa;
-    border-radius: 50%;
-    box-sizing: border-box;
-    display: block;
-    overflow: hidden;
-    position: relative;
-    height: 35px;
-    width: 35px;
+  img {
+    width: 500px;
+    height: auto;
   }
 </style>

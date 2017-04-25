@@ -9,8 +9,13 @@
     </div>
   </section>
 </div>
-
-<div class="section" style="margin-top: -40px">
+<br>
+<div id="tag_cloud">
+  <% tag_cloud Food.tag_counts, %w{s m l} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div><br><br>
+<div class="section" style="margin-top: -54px">
   <br><br>
   <h2 class="home-list-title trailers">
     <span class="star"></span>

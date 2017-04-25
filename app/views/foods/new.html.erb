@@ -6,7 +6,23 @@
         <div class="formholder upload col-sm-12 ">
           <h1>Let's introduct your food!</h1>
           <div class="randompad">
-            <%= render 'form', food: @food %>
+            <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
+              <div class="upload-preview">
+                <img />
+              </div>
+              <%= f.input :file, class:"file" %>
+              <%= f.input :name %>
+              <%= f.input :description %>
+              <%= f.input :address %>
+              <%= f.input :price, min: 1 %>
+              <%= f.input :tag_list, :url => autocomplete_tag_name_foods_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}} %>
+              <p style="font-size: 12px">* Tags separated by commas</p>
+              <%= f.input :review %>
+              <div class="actions text-center col-sm-12">
+                <div class="col-sm-6"><%= f.button :submit %></div>
+                <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
+              </div><br><br>
+            <% end %>
           </div>
         </div>
       </div>
