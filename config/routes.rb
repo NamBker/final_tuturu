@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: :registrations }
   get "foods/newest" => "foods#newest", as: :foods_newest
   get "foods/liked" => "foods#liked", as: :foods_liked
-  resources :users, only: :show
+  resources :users, only: [:index, :show]
   resources :foods do
     member do
       put "like", to: "foods#upvote"
