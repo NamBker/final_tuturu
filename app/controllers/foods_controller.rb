@@ -6,7 +6,7 @@ class FoodsController < ApplicationController
 
   def index
     @search = Food.ransack params[:q]
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def show
@@ -65,21 +65,22 @@ class FoodsController < ApplicationController
   def newest
     @search = Food.ransack params[:q]
     @search.sorts = %w(created_at\ desc) if @search.sorts.empty?
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def liked
     @search = Food.ransack params[:q]
     @search.sorts = %w(cached_votes_up\ desc) if @search.sorts.empty?
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def tag
-    if params[:tag]
-      @foods = Food.tagged_with(params[:tag])
+    @foods = if params[:tag]
+      Food.tagged_with(params[:tag])
     else
-      @foods = Food.all
+      Food
     end
+    .page(params[:page]).per_page Settings.limit
   end
 
   private

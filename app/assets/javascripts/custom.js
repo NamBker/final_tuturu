@@ -323,8 +323,8 @@ $(document).on('turbolinks:load', function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 3,
-    itemsDesktop: [1119,3],
+    items: 4,
+    itemsDesktop: [1119, 4],
     itemsDesktopSmall: [979, 3],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
@@ -340,9 +340,9 @@ $(document).on('turbolinks:load', function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 3,
-    itemsDesktop: [1119,3],
-    itemsDesktopSmall: [979, 2],
+    items: 4,
+    itemsDesktop: [1119,4],
+    itemsDesktopSmall: [979, 3],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
   });
