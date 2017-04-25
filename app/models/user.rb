@@ -6,6 +6,7 @@ class User < ApplicationRecord
     authentication_keys: [:login]
   attr_accessor :login
   acts_as_voter
+  acts_as_tagger
 
   has_many :foods, dependent: :destroy
   has_many :comments, dependent: :destroy

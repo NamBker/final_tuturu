@@ -1,14 +1,16 @@
-<div class="col-xs-12 text-center">
+<div class="col-xs-12 text-center user-show">
   <br><br><br>
   <% if @user.avatar.present? %>
-  <%= image_tag @user.avatar, class:"img2" %>
+  <%= image_tag @user.avatar, class:"user-ava" %>
   <% end %>
-  <p style="color: white"><%= @user.username %></p>
-  <p style="color: white"><%= @user.name %></p>
-  <p style="color: white"><%= @user.birth %></p>
-  <p style="color: white">
-    <% if @user.gender %>Female
-    <% else %>Male
+  <p><%= @user.username %></p>
+  <p><%= @user.name %></p>
+  <p><%= @user.birth %></p>
+  <p>
+    <% if @user.gender.present? %>
+      <% if @user.gender %>Female
+      <% else %>Male
+      <% end %>
     <% end %>
   </p>
   <h2> <%= @user.username %>'s photo </h2>
@@ -25,21 +27,3 @@
   <% end %>
   <br><br>
 </div>
-<style>
-  body {
-    background: #36465D;
-    color: white;
-    font-size: 18px;
-  }
-  img {
-    height: auto;
-    width: 500px
-  }
-  .img2 {
-    width: 200px;
-    height: 200px;
-  }
-  a {
-    color: yellow;
-  }
-</style>

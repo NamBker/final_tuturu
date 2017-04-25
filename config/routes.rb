@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get "foods/newest" => "foods#newest", as: :foods_newest
   get "foods/liked" => "foods#liked", as: :foods_liked
   resources :users, only: [:index, :show]
+  get "tags/:tag", to: "foods#tag", as: :tag
   resources :foods do
+    get :autocomplete_tag_name, :on => :collection
     member do
       put "like", to: "foods#upvote"
       put "dislike", to: "foods#downvote"
