@@ -1,10 +1,12 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked, :tag]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked]
   before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   def index
+    @search = Food.ransack params[:q]
+    @foods = @search.result.page(params[:page]).per_page(3)
   end
 
   def show
@@ -79,7 +81,7 @@ class FoodsController < ApplicationController
       @foods = Food.all
     end
   end
-  
+
   private
     def set_food
       @food = Food.find_by id: params[:id]

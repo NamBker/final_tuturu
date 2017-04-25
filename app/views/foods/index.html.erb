@@ -9,139 +9,145 @@
     </div>
   </section>
 </div>
-<br>
+<br><% if params[:q] %>
+  <div class="section">
+    <h2>Search Results</h2>
+    <%= render "food" %>
+  </div>
+<% else %>
 <div id="tag_cloud">
   <% tag_cloud Food.tag_counts, %w{s m l} do |tag, css_class| %>
       <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
 </div><br><br>
-<div class="section" style="margin-top: -54px">
-  <br><br>
-  <h2 class="home-list-title trailers">
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star last"></span>
-    <span class="uk-text-center">Newest images</span>
-    <span class="star first"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-  </h2>
-  <br>
-  <div class="carousel">
-    <% Food.order("created_at desc").limit(10).each do |food| %>
-      <div class="item">
-        <div class="container2">
-          <%= link_to food_path(food) do %>
-            <%= image_tag food.file %>
-          <% end %>
-          <div class="overlay">
-            <div class="favourite2">
-              <% if user_signed_in? %>
-                <% if current_user.voted_up_on? food %>
-                  <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                    <i class="fa fa-heart" aria-hidden="true"></i>
+
+  <div class="section" style="margin-top: -54px">
+    <br><br>
+    <h2 class="home-list-title trailers">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star last"></span>
+      <span class="uk-text-center">Newest images</span>
+      <span class="star first"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </h2>
+    <br>
+    <div class="carousel">
+      <% Food.order("created_at desc").limit(10).each do |food| %>
+        <div class="item">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+              <%= image_tag food.file %>
+            <% end %>
+            <div class="overlay">
+              <div class="favourite2">
+                <% if user_signed_in? %>
+                  <% if current_user.voted_up_on? food %>
+                    <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
                   <% end %>
                 <% else %>
-                  <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                  <%= link_to user_session_path do %>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                   <% end %>
                 <% end %>
-              <% else %>
-                <%= link_to user_session_path do %>
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <% end %>
-              <% end %>
+              </div>
+                <span class="description"><%= link_to food.name, food_path(food) %></span>
+                <span class="downloads"><i class="fa fa-download"> downloads</i></span>
+                <span class="favourite-count">
+                  <i class="fa fa-heart"></i>
+                  <% if food.score > 1 %><b><%= food.score %></b> likes
+                  <% elsif food.score == 1 %><b><%= food.score %></b> like
+                  <% else %> like
+                  <% end %><br>
+                </span>
+                <span class="date">
+                  <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                </span>
             </div>
-              <span class="description"><%= link_to food.name, food_path(food) %></span>
-              <span class="downloads"><i class="fa fa-download"> downloads</i></span>
-              <span class="favourite-count">
-                <i class="fa fa-heart"></i>
-                <% if food.score > 1 %><b><%= food.score %></b> likes
-                <% elsif food.score == 1 %><b><%= food.score %></b> like
-                <% else %> like
-                <% end %><br>
-              </span>
-              <span class="date">
-                <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-              </span>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-  <br>
-  <div class="text-center">
-    <%= link_to "View more", foods_newest_path, class:"home-film-list-view-more" %>
-  </div>
-</div>
-
-<div class="tm-block-top-a uk-block uk-block-default">
-  <h2 class="home-list-title trailers">
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star last"></span>
-    <span class="uk-text-center">Most liked images</span>
-    <span class="star first"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-  </h2><br>
-  <div class="carousel2">
-    <% Food.order(:cached_votes_up).limit(10).each do |food| %>
-      <div class="item">
-        <div class="container2">
-          <%= link_to food_path(food) do %>
-              <%= image_tag food.file %>
-          <% end %>
-          <div class="overlay">
-            <div class="favourite2">
-              <% if user_signed_in? %>
-                  <% if current_user.voted_up_on? food %>
-                      <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                          <i class="fa fa-heart" aria-hidden="true"></i>
-                      <% end %>
-                  <% else %>
-                      <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                          <i class="fa fa-heart-o" aria-hidden="true"></i>
-                      <% end %>
-                  <% end %>
-              <% else %>
-                  <%= link_to user_session_path do %>
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  <% end %>
-              <% end %>
-            </div>
-            <span class="description"><%= link_to food.name, food_path(food) %></span>
-            <span class="downloads">
-            <i class="fa fa-download" aria-hidden="true"> downloads</i>
-          </span>
-            <span class="favourite-count">
-            <i class="fa fa-heart"></i>
-              <% if food.score > 1 %><b><%= food.score %></b> likes
-            <% elsif food.score == 1 %><b><%= food.score %></b> like
-            <% else %> like
-            <% end %><br>
-          </span>
-            <span class="date">
-            <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-          </span>
-          </div>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <br>
+    <div class="text-center">
+      <%= link_to "View more", foods_newest_path, class:"home-film-list-view-more" %>
+    </div>
   </div>
-  <div class="text-center" style="padding-bottom: 30px;">
-    <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
+  <div class="tm-block-top-a uk-block uk-block-default">
+    <h2 class="home-list-title trailers">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star last"></span>
+      <span class="uk-text-center">Most liked images</span>
+      <span class="star first"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </h2><br>
+    <div class="carousel2">
+      <% Food.order(cached_votes_up: :desc).limit(10).each do |food| %>
+        <div class="item">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+                <%= image_tag food.file %>
+            <% end %>
+            <div class="overlay">
+              <div class="favourite2">
+                <% if user_signed_in? %>
+                    <% if current_user.voted_up_on? food %>
+                        <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        <% end %>
+                    <% else %>
+                        <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <% end %>
+                    <% end %>
+                <% else %>
+                    <%= link_to user_session_path do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                <% end %>
+              </div>
+              <span class="description"><%= link_to food.name, food_path(food) %></span>
+              <span class="downloads">
+              <i class="fa fa-download" aria-hidden="true"> downloads</i>
+            </span>
+              <span class="favourite-count">
+              <i class="fa fa-heart"></i>
+                <% if food.score > 1 %><b><%= food.score %></b> likes
+              <% elsif food.score == 1 %><b><%= food.score %></b> like
+              <% else %> like
+              <% end %><br>
+            </span>
+              <span class="date">
+              <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+            </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <br>
+    </div>
+    <div class="text-center" style="padding-bottom: 30px;">
+      <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
+    </div>
   </div>
-</div>
+<% end %>
 <style type="text/css">
    h1 {
     color: white !important;
