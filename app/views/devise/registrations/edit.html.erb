@@ -13,6 +13,7 @@
             <%= f.text_field :name, class: "form-control" %>
 
             <%= f.label :username, class:"form-label" %><br />
+            <span style="font-size: 0.8vm">* Username 6->12 character</span>
             <%= f.text_field :username, class: "form-control" %>
 
             <%= f.label :date_of_birth, class:"form-label" %><br />
@@ -28,6 +29,8 @@
             </div>
             <% if @user.avatar.present? %>
               <%= image_tag current_user.avatar %>
+            <% else %>
+              <img src="http://i.imgur.com/qBkFZxB.jpg" %>
             <% end %>
             <%= f.file_field :avatar, class:"file" %><br>
             <script>

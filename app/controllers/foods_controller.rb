@@ -1,8 +1,9 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked, :tag]
-  before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
-  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
+  before_filter :require_permission, only: [:edit, :update]
+  before_filter :log_impression, only: [:show]
+  autocomplete :tag, :name, class_name: 'ActsAsTaggableOn::Tag'
 
   def index
     @search = Food.ransack params[:q]
@@ -42,7 +43,7 @@ class FoodsController < ApplicationController
 
   def destroy
     if @food.destroy
-      flash[:success] = "Deleted complete."
+      flash[:alert] = "Deleted complete."
     else
       flash[:danger] = "Something wrong"
     end
@@ -96,5 +97,10 @@ class FoodsController < ApplicationController
     if current_user != Food.find(params[:id]).user
       redirect_to root_path
     end
+  end
+
+  def log_impression
+    @food = Food.find_by id: params[:id]
+    @food.impressions.create(ip_address: request.remote_ip)
   end
 end
