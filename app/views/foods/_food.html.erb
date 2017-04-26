@@ -2,10 +2,10 @@
   <%= paginate @foods, remote: true %>
 </div>
 <% @foods.each do |food| %>
-  <div class="item2 col-sm-3">
+  <div class="item2 col-sm-3 item3">
     <div class="container2">
       <%= link_to food_path(food) do %>
-          <%= image_tag food.file %>
+        <%= image_tag food.file %>
       <% end %>
       <div class="overlay">
         <div class="popover-wrapper2">
@@ -34,7 +34,7 @@
           <div class="popover-content">
             <ul class="social-networks">
               <%= social_share_button_tag food.name, desc: food.description,
-                                          via: "AwesomeVn", image: food.file %>
+                via: "AwesomeVn", image: food.file %>
             </ul>
           </div>
         </div>
@@ -62,17 +62,30 @@
         <div class="profile-card">
           <div class="pc-image">
             <%= image_tag food.user.avatar,
-                          style: "background-image:url(/dist/images/placeholder.png);background-size:cover;",
-                          class: "img", alt:"img", title:food.user.username %>
+              style: "background-image:url(/dist/images/placeholder.png);background-size:cover;",
+              class: "img", alt:"img", title:food.user.username %>
           </div>
           <div class="pc-content">
-            <h4 class="pc-name">
-              <%= link_to food.user.username, user_path(food.user) %>
+            <h4 class="col-sm-12 pc-name">
+              <span style="color: gray;font-size: 12px">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
             </h4>
-          </div>
+            <div class="col-sm-12 cook-details">
+              <div class="col-sm-4 cook-details__followers followers-count cook1">
+                <li class="icon--cook-card-follower" title="Followers"></li>
+                <li></li>
+              </div>
+              <div class="col-sm-4 cook cook-details__favorites favorites-count">
+                <li class="icon--cook-card-favorite" title="Likes"></li>
+                <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+              </div>
+              <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
+                <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera" aria-hidden="true"></i></li>
+                <li><%= food.user.foods.count %></li>
+              </div>
+            </div>
+          </div><br>
         </div>
       </div>
     </div>
   </div>
 <% end %>
-

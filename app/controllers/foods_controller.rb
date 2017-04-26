@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked, :tag]
   before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
