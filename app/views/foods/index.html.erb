@@ -1,3 +1,4 @@
+<body class="user-site">
 <div class="section">
   <section id="top" class="parallax-section">
     <div id="top2">
@@ -9,194 +10,236 @@
     </div>
   </section>
 </div>
-
-<div class="section" style="margin-top: -40px">
-  <br><br>
-  <h2 class="home-list-title trailers">
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star last"></span>
-    <span class="uk-text-center">Newest images</span>
-    <span class="star first"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-  </h2>
-  <br>
-  <div class="carousel">
-    <% Food.order("created_at desc").limit(10).each do |food| %>
-      <div class="item">
-        <div class="container2">
-          <%= link_to food_path(food) do %>
-            <%= image_tag food.file %>
-          <% end %>
-          <div class="overlay">
-            <div class="favourite2">
-              <% if user_signed_in? %>
-                <% if current_user.voted_up_on? food %>
-                  <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  <% end %>
-                <% end %>
-              <% else %>
-                <%= link_to user_session_path do %>
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <% end %>
-              <% end %>
-            </div>
-              <span class="description"><%= link_to food.name, food_path(food) %></span>
-              <span class="downloads"><i class="fa fa-download"> downloads</i></span>
-              <span class="favourite-count">
-                <i class="fa fa-heart"></i>
-                <% if food.score > 1 %><b><%= food.score %></b> likes
-                <% elsif food.score == 1 %><b><%= food.score %></b> like
-                <% else %> like
-                <% end %><br>
-              </span>
-              <span class="date">
-                <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-              </span>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<br><% if params[:q] %>
+  <div class="section">
+    <h2>Search Results</h2>
+    <%= render "food" %>
   </div>
-  <br>
-  <div class="text-center">
-    <%= link_to "View more", foods_newest_path, class:"home-film-list-view-more" %>
-  </div>
-</div>
-
-<div class="tm-block-top-a uk-block uk-block-default">
-  <h2 class="home-list-title trailers">
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star last"></span>
-    <span class="uk-text-center">Most liked images</span>
-    <span class="star first"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-  </h2><br>
-  <div class="carousel2">
-    <% Food.order(:cached_votes_up).limit(10).each do |food| %>
-      <div class="item">
-        <div class="container2">
-          <%= link_to food_path(food) do %>
-              <%= image_tag food.file %>
-          <% end %>
-          <div class="overlay">
-            <div class="favourite2">
-              <% if user_signed_in? %>
-                  <% if current_user.voted_up_on? food %>
-                      <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                          <i class="fa fa-heart" aria-hidden="true"></i>
-                      <% end %>
-                  <% else %>
-                      <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                          <i class="fa fa-heart-o" aria-hidden="true"></i>
-                      <% end %>
-                  <% end %>
-              <% else %>
-                  <%= link_to user_session_path do %>
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  <% end %>
-              <% end %>
-            </div>
-            <span class="description"><%= link_to food.name, food_path(food) %></span>
-            <span class="downloads">
-            <i class="fa fa-download" aria-hidden="true"> downloads</i>
-          </span>
-            <span class="favourite-count">
-            <i class="fa fa-heart"></i>
-              <% if food.score > 1 %><b><%= food.score %></b> likes
-            <% elsif food.score == 1 %><b><%= food.score %></b> like
-            <% else %> like
-            <% end %><br>
-          </span>
-            <span class="date">
-            <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-          </span>
-          </div>
-        </div>
-      </div>
+<% else %>
+  <div id="tag_cloud">
+    <% tag_cloud Food.tag_counts, %w{s m l} do |tag, css_class| %>
+        <%= link_to tag.name, tag_path(tag.name), class: css_class %>
     <% end %>
+  </div><br><br>
+
+  <div class="section section2">
+    <br><br>
+    <h2 class="home-list-title trailers">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star last"></span>
+      <span class="uk-text-center">Newest images</span>
+      <span class="star first"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </h2>
     <br>
+    <div class="carousel">
+      <% Food.order("created_at desc").limit(10).each do |food| %>
+        <div class="item">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+              <%= image_tag food.file %>
+            <% end %>
+            <div class="overlay">
+              <div class="popover-wrapper2">
+                <button class="popover-btn popover-btn2 nostyle">
+                  <% if user_signed_in? %>
+                    <% if current_user.voted_up_on? food %>
+                      <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to user_session_path do %>
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </button>
+              </div>
+              <div class="popover-wrapper">
+                <button class="popover-btn nostyle">
+                  <i class="fa fa-share-alt fa-lg"></i>
+                </button>
+                <div class="popover-content">
+                  <ul class="social-networks">
+                    <%= social_share_button_tag food.name, desc: food.description,
+                      via: "AwesomeVn", image: food.file %>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xs-12 info-food">
+                <span class="col-xs-3"> <i class="fa fa-download"></i></span>
+                <span class="col-xs-9 text-right">
+                  <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="block-content">
+            <%= link_to food_path(food), title: food.name do %>
+              <h4 class="block-name"><%= food.name %></h4>
+            <% end %>
+            <h6 class="block-address" title="address">
+              Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
+            </h6>
+            <div class="block-meta">
+              <div class="block-counts">
+                <i class="lz fa fa-heart"></i><%= food.score %>
+              </div>
+            </div>
+            <div class="block-activity">
+              <div class="profile-card">
+                <div class="pc-image">
+                  <%= image_tag food.user.avatar,
+                    style: "background-image:url(/dist/images/placeholder.png);background-size:cover;",
+                    class: "img", alt:"img", title:food.user.username %>
+                </div>
+                <div class="pc-content">
+                  <h4 class="col-sm-12 pc-name">
+                    <span style="color: gray;font-size: 12px">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
+                  </h4>
+                  <div class="col-sm-12 cook-details">
+                    <div class="col-sm-4 cook-details__followers followers-count cook1">
+                      <li class="icon--cook-card-follower" title="Followers"></li>
+                      <li></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__favorites favorites-count">
+                        <li class="icon--cook-card-favorite" title="Likes"></li>
+                        <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
+                        <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera" aria-hidden="true"></i></li>
+                        <li><%= food.user.foods.count %></li>
+                    </div>
+                  </div>
+                </div><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <div class="text-center">
+      <%= link_to "View more", foods_newest_path, class:"home-film-list-view-more" %>
+    </div>
   </div>
-  <div class="text-center" style="padding-bottom: 30px;">
-    <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
+  <div class="tm-block-top-a uk-block uk-block-default">
+    <h2 class="home-list-title trailers">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star last"></span>
+      <span class="uk-text-center">Most liked images</span>
+      <span class="star first"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </h2><br>
+    <div class="carousel2">
+      <% Food.order(cached_votes_up: :desc).limit(10).each do |food| %>
+        <div class="item">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+              <%= image_tag food.file %>
+            <% end %>
+            <div class="overlay">
+              <div class="popover-wrapper2">
+                <button class="popover-btn popover-btn2 nostyle">
+                  <% if user_signed_in? %>
+                    <% if current_user.voted_up_on? food %>
+                      <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to user_session_path do %>
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </button>
+              </div>
+              <div class="popover-wrapper">
+                <button class="popover-btn nostyle">
+                  <i class="fa fa-share-alt"></i>
+                </button>
+                <div class="popover-content">
+                  <ul class="social-networks">
+                    <%= social_share_button_tag food.name, desc: food.description,
+                      via: "AwesomeVn", image: food.file %>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xs-12 info-food">
+                <span class="col-xs-3"> <i class="fa fa-download"></i></span>
+                <span class="col-xs-9 text-right">
+                  <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="block-content">
+            <%= link_to food_path(food), title: food.name do %>
+                <h4 class="block-name"><%= food.name %></h4>
+            <% end %>
+            <h6 class="block-address" title="address">
+              Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
+            </h6>
+            <div class="block-meta">
+              <div class="block-counts">
+                <i class="lz fa fa-heart"></i><%= food.score %>
+              </div>
+            </div>
+            <div class="block-activity">
+              <div class="profile-card">
+                <div class="pc-image">
+                  <%= image_tag food.user.avatar,
+                                style: "background-image:url(/dist/images/placeholder.png);background-size:cover;",
+                                class: "img", alt:"img", title:food.user.username %>
+                </div>
+                <div class="pc-content">
+                  <h4 class="col-sm-12 pc-name">
+                    <span style="color: gray;font-size: 12px">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
+                  </h4>
+                  <div class="col-sm-12 cook-details">
+                    <div class="col-sm-4 cook-details__followers followers-count cook1">
+                      <li class="icon--cook-card-follower" title="Followers"></li>
+                      <li></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__favorites favorites-count">
+                      <li class="icon--cook-card-favorite" title="Likes"></li>
+                      <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
+                      <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera"></i></li>
+                      <li><%= food.user.foods.count %></li>
+                    </div>
+                  </div>
+                </div><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div><br>
+    <div class="text-center" style="padding-bottom: 30px;">
+      <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
+    </div>
   </div>
-</div>
-<style type="text/css">
-   h1 {
-    color: white !important;
-    font-size: 54px !important;
-    font-weight: 700 !important;
-    line-height: 48px !important;
-    margin-top: 25% !important;
-    padding: 0 0 0 50px !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-  }
-
-  h5 {
-    color: white;
-    font-family: 'Khand';
-    font-size: 30px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    margin: 0 0 15px;
-    padding: 10px 0 0 50px;
-    text-transform: uppercase;
-  }
-    h2, .uk-h2 {
-    font-size: 32px;
-    line-height: 36px;
-  }
-  h2, h3, h4, h6 {
-    font-family: 'Khand';
-    font-weight: 400;
-    color: #533834;
-    text-transform: none;
-  }
-   h2, h3, h4, h6 {
-    text-rendering: auto;
-  }
-  .owl-theme .owl-controls .owl-buttons div {
-    background: transparent;
-  }
-  .owl-theme .owl-controls .owl-buttons div img {
-    position: absolute;
-    top: 45%;
-    width: 60px;
-    }
-  .carousel .owl-buttons div.owl-prev {
-    float: left;
-    margin-top: -330px;
-    margin-left: -50px;
-  }
-  .carousel .owl-buttons div.owl-next {
-    float: right;
-    margin-top: -330px;
-    right: -90px !important;
-  }
-  .carousel2 .owl-buttons div.owl-next {
-    float: right;
-    margin-top: -330px;
-    right: -90px !important;
-  }
-  .carousel2 .owl-buttons div.owl-prev {
-    float: left;
-    margin-top: -330px;
-    margin-left: -50px;
-  }
-</style>
+<% end %>
+</body>

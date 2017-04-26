@@ -4,6 +4,7 @@
     <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
     <% if @user.avatar.present? %>
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail",:align=> "left" %>
+
     <% end %>
     <div class="fb-profile-text">
       <div class="info-user">
@@ -57,8 +58,6 @@
 <% end %>
 </div>
 
-
-
 <style>
   body {
     background: #fff;
@@ -100,4 +99,3 @@
     outline: none;
 }
 </style>
-

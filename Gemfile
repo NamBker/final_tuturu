@@ -15,7 +15,7 @@ gem "jquery-rails"
 gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "paperclip"
-gem 'carrierwave', '~> 1.0'
+gem "carrierwave", "~> 1.0"
 gem "simple_form"
 gem "bootstrap-sass", "3.3.6"
 gem "devise"
@@ -28,7 +28,13 @@ gem "bootstrap-kaminari-views"
 gem "social-share-button"
 gem "will_paginate"
 gem "owlcarousel-rails"
-gem 'acts_as_votable', '~> 0.10.0'
+gem "acts_as_votable", "~> 0.10.0"
+gem "acts-as-taggable-on"
+gem "rails-jquery-autocomplete"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "omniauth-instagram"
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -42,3 +48,6 @@ group :development do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+source "https://rails-assets.org" do
+  gem "rails-assets-chosen"
+end
