@@ -1,10 +1,17 @@
 <div class= "section">
   <div class= "col-sm-8 col-sm-offset-2 col-xs-12 view">
     <br>
-    <%= image_tag @food.user.avatar, class:"avatar" %>
+    <% flash.each do |key, value| %>
+      <div class="flash-message <%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
+    <%= image_tag @food.user.avatar, class:"avatar",
+      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
     <%= link_to "#{@food.user.username}", @food.user %><br>
     <strong><%= @food.name %></strong> at <%= @food.created_at.in_time_zone("Hanoi") %><br>
-    <%= image_tag @food.file %><br><br>
+    <%= image_tag @food.file, style:"margin-bottom: 10px",
+      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
     <%= social_share_button_tag @food.name, desc: "#{@food.description}", via: "AwesomeVn",
       image: @food.file %>
     Description: <%= @food.description %><br>

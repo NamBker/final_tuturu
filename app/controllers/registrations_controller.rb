@@ -3,4 +3,15 @@ class RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     user_path(resource)
   end
+    def create
+    user = User.find(params[:followed_id])
+    current_user.follow(user)
+    redirect_to user
+  end
+
+  def destroy
+    user = Relationship.find(params[:id]).followed
+    current_user.unfollow(user)
+    redirect_to user
+  end
 end

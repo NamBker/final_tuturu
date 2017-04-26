@@ -128,7 +128,7 @@ $(document).on('click', '#searchclear', function(){
 });
 
 $(document).ready(setTimeout(function(){
-  $('.alert, .success, .error, .notice, .info').fadeOut(3000);
+  $('.alert, .success, .error, .notice, .info').fadeOut(1000);
 }, 4000));
 
 $(document).on('turbolinks:load', function(){

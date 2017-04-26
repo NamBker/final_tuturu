@@ -44,21 +44,15 @@
     </div>
     <div class="panel-footer text-center">
       <% if @user == current_user %>
+
       <%= link_to "Edit", edit_food_path(food) %>
       <%= link_to "Delete", food_path(food),
-      method: :delete, data: { confirm: "Are you sure?" } %>
-      <% else %>
+        method: :delete, data: { confirm: "Are you sure?" } %>
+    <% else %>
       <%= link_to "View", food_path(food) %>
-      <% end %>
-      <a href="#download"><span class="glyphicon glyphicon-download"></span></a>
-      <a href="#facebook"><span class="fa fa-facebook"></span></a>
-      <a href="#twitter"><span class="fa fa-twitter"></span></a>
-      <a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>
-
-    </div>
-  </div>
-</div>
-<% end %>
+    <% end %>
+  <% end %>
+  <br><br>
 </div>
 
 <style>
