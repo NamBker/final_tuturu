@@ -281,9 +281,10 @@ a:hover {
 }
 
 #brand {
-  font-family: Ubuntu;
-  font-style: italic;
-  font-weight: bolder;
+  font-family: 'Righteous';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
 }
 
 #top {
@@ -930,47 +931,19 @@ footer {
   white-space: nowrap;
 }
 
-.favourite2 i {
-  position: absolute;
-  font-size: 40px;
-  color: red;
-  margin-left: 80%;
-  margin-top: 10%;
-}
 .description {
   position: absolute;
   font-size: 24px;
-  left: 5%;
-  top: 80%;
+  left: 3%;
+  top: 73%;
   font-weight: 700;
   a {
     color: yellow !important;
   }
 }
-.downloads {
-  position: absolute;
-  font-size: 16px;
-  color: white;
-  left: 5%;
-  top: 90%;
-}
-.favourite-count {
-  position: absolute;
-  font-size: 16px;
-  color: white;
-  left: 35%;
-  top: 90%;
-}
-.date {
-  position: absolute;
-  font-size: 16px;
-  color: white;
-  left: 70%;
-  top: 90%;
-}
+
 .container2 {
   position: relative;
-  margin: 0 10px;
   width: 100%;
   height: 300px;
 }
@@ -1094,6 +1067,7 @@ footer {
 }
 
 .uk-block {
+  background: #f4f4f4;
   box-sizing: border-box;
   margin-top: -150px;
   position: relative;
@@ -1537,4 +1511,289 @@ footer {
   display: inline-block;
   pointer-events: auto;
   z-index: 10;
+}
+
+.popover-wrapper {
+  position: absolute;
+  top: 28%;
+  right: 11%;
+  z-index: 10;
+}
+.popover-wrapper2 {
+  position: absolute;
+  top: 14%;
+  right: 11%;
+  z-index: 10;
+}
+.popover-btn {
+  background: white;
+  border: 1px solid white;
+  border-radius: 3px;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 24px;
+  width: 32px;
+}
+.popover-btn i {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 25%;
+  color: black;
+  font-size: 1.6em;
+}
+
+.popover-btn2 i {
+  position: absolute;
+  transform: translateY(-40%);
+  right: 15%;
+  color: red !important;
+  font-size: 1.6em;
+}
+.popover-wrapper:hover .popover-content {
+  display: block;
+}
+.popover-content {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  display: none;
+  padding: 0;
+}
+.social-networks {
+  width: 200px;
+  box-shadow: 0 0 100px #666;
+}
+.social-networks {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-networks a {
+  overflow: hidden;
+  display: block;
+  width: 32px !important;
+  height: 32px !important;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.social-networks .social-share-button .ssb-icon {
+  background-size: 32px 32px !important;
+}
+
+.info-food {
+  top: 85%;
+  position: absolute;
+  color: white;
+  font-size: 2.5vh;
+}
+
+.block-content {
+  padding: 10px 12px 6px;
+  position: relative;
+  width: 100%;
+}
+.block-content h4.block-name {
+  font-family: 'Nunito';
+  font-size: 24px;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.block-content .block-address {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0;
+  color: #9b9b9b;
+  display: inline-block;
+  a {
+    color: green;
+    display: inline-block;
+  }
+}
+.block-content>.block-activity {
+  padding-top: 5px;
+  border-top: 1px solid #e4e4e4;
+}
+.profile-card {
+  background: #fff;
+  height: 50px;
+  position: relative;
+}
+.profile-card .pc-image {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.profile-card .pc-image>img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.img {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  max-width: 100%;
+}
+.profile-card .pc-content {
+  margin-left: 35px;
+}
+.pc-name {
+  font-size: 16px;
+  border: 0;
+  margin: 5px 0 0 13px;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.block-meta {
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  display: inline-block;
+  align-items: flex-start;
+  font-size: 18px;
+  margin-top: 0;
+}
+.block-counts i {
+  margin-right: 3px;
+}
+.block-meta .block-counts {
+  vertical-align: top;
+}
+.lz {
+  line-height: inherit;
+  color: red;
+}
+.item {
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.07);
+  border-radius: 5px;
+  border-bottom: 1px solid #d7d7d7;
+  margin-left: 10px;
+}
+.item2 {
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.07);
+  border-radius: 5px;
+  border-bottom: 1px solid #d7d7d7;
+  margin-left: 10px;
+  padding: 0;
+  width: 23%;
+}
+.item3 {
+  margin-top: 20px;
+}
+.user-site {
+  background: #f4f4f4;
+  h1 {
+    color: white !important;
+    font-size: 54px !important;
+    font-weight: 700 !important;
+    line-height: 48px !important;
+    margin-top: 25% !important;
+    padding: 0 0 0 50px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+  }
+
+  h5 {
+    color: white;
+    font-family: 'Khand';
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin: 0 0 15px;
+    padding: 10px 0 0 50px;
+    text-transform: uppercase;
+  }
+  h2, .uk-h2 {
+    font-family: 'Khand';
+    font-size: 32px;
+    line-height: 36px;
+  }
+  h2, h3, h6 {
+    font-weight: 400;
+    text-transform: none;
+    text-rendering: auto;
+  }
+  .owl-theme .owl-controls .owl-buttons div {
+    background: transparent;
+  }
+  .owl-theme .owl-controls .owl-buttons div img {
+    position: absolute;
+    top: 45%;
+    width: 60px;
+  }
+  .carousel .owl-buttons div.owl-prev {
+    float: left;
+    margin-top: -330px;
+    margin-left: -50px;
+  }
+  .carousel .owl-buttons div.owl-next {
+    float: right;
+    margin-top: -330px;
+    right: -90px !important;
+  }
+  .carousel2 .owl-buttons div.owl-next {
+    float: right;
+    margin-top: -330px;
+    right: -90px !important;
+  }
+  .carousel2 .owl-buttons div.owl-prev {
+    float: left;
+    margin-top: -330px;
+    margin-left: -50px;
+  }
+}
+
+.section2 {
+  min-height: 120vh;
+  margin-top: -54px;
+}
+
+.cook-details {
+  margin-left: -10px;
+  width: 110%;
+}
+.cook li, .cook1 li {
+  margin-right: 0px;
+  display: inline-block;
+  font-size: 14px;
+}
+.icon--cook-card-follower {
+  background: url(http://images.media-allrecipes.com/ar-images/sprites/cook_card_icons_040815.svg) -8px -334px no-repeat;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+.icon--cook-card-favorite {
+  background: url(http://images.media-allrecipes.com/ar-images/sprites/cook_card_icons_040815.svg) -6px -94px no-repeat;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-left: 0;
+}
+.icon--cook-card-made {
+  margin-top: 9px;
+}
+.cook {
+  margin-left: -20px;
+  margin-right: -5px;
+  width: 42%;
+}
+.cook1 {
+  margin-left: -10px;
+  width: 42%;
 }

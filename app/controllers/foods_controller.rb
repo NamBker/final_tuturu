@@ -1,12 +1,12 @@
 class FoodsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked]
+  before_action :authenticate_user!, except: [:index, :show, :upvote, :downvote, :newest, :liked, :tag]
   before_filter :require_permission, only: [:edit, :update]
   before_action :set_food, except: [:new, :create, :index]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   def index
     @search = Food.ransack params[:q]
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def show
@@ -65,21 +65,22 @@ class FoodsController < ApplicationController
   def newest
     @search = Food.ransack params[:q]
     @search.sorts = %w(created_at\ desc) if @search.sorts.empty?
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def liked
     @search = Food.ransack params[:q]
     @search.sorts = %w(cached_votes_up\ desc) if @search.sorts.empty?
-    @foods = @search.result.page(params[:page]).per_page(3)
+    @foods = @search.result.page(params[:page]).per_page Settings.limit
   end
 
   def tag
-    if params[:tag]
-      @foods = Food.tagged_with(params[:tag])
+    @foods = if params[:tag]
+      Food.tagged_with(params[:tag])
     else
-      @foods = Food.all
+      Food
     end
+    .page(params[:page]).per_page Settings.limit
   end
 
   private

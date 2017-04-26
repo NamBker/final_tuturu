@@ -4,7 +4,9 @@
     <%= image_tag @food.user.avatar, class:"avatar" %>
     <%= link_to "#{@food.user.username}", @food.user %><br>
     <strong><%= @food.name %></strong> at <%= @food.created_at.in_time_zone("Hanoi") %><br>
-    <%= image_tag @food.file %><br>
+    <%= image_tag @food.file %><br><br>
+    <%= social_share_button_tag @food.name, desc: "#{@food.description}", via: "AwesomeVn",
+      image: @food.file %>
     Description: <%= @food.description %><br>
     Address: <%= @food.address %><br>
     Price: <%= @food.price %><br>
