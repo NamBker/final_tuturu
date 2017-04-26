@@ -1535,7 +1535,7 @@ footer {
 
 .popover-btn2 i {
   position: absolute;
-  transform: translateY(5%);
+  margin-top: 8%;
   right: 15%;
   color: red !important;
   font-size: 1.6em;
@@ -1810,4 +1810,10 @@ footer {
 .old-img {
   width: 30vw;
   height: auto;
+}
+.navbar-nav > li > a {
+  font-size: 1.2vw !important;
+}
+.social-share-button a {
+  display: inline;
 }
