@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container" style="margin-bottom: 20px; padding-top: 80px">
   <div class="row panel">
     <div class="col-md-4 bg_blur ">
@@ -42,11 +43,34 @@
       <%= link_to food.name, food_path(food) %>
       <%= image_tag food.file %>
       <% if @user == current_user %>
+=======
+<div class="col-xs-12 text-center user-show">
+  <br><br><br>
+  <% if @user.avatar.present? %>
+  <%= image_tag @user.avatar, class:"user-ava" %>
+  <% end %>
+  <p><%= @user.username %></p>
+  <p><%= @user.name %></p>
+  <p><%= @user.birth %></p>
+  <p>
+    <% if @user.gender.present? %>
+      <% if @user.gender %>Female
+      <% else %>Male
+      <% end %>
+    <% end %>
+  </p>
+  <h2> <%= @user.username %>'s photo </h2>
+  <% @user.foods.each do |food| %>
+    <br><%= link_to food.name, food_path(food) %><br>
+    <%= image_tag food.file %><br>
+    <% if @user == current_user %>
+>>>>>>> c8d5814b9d5e188f78771455911471059bb5b835
       <%= link_to "Edit", edit_food_path(food) %>
       <%= link_to "Delete", food_path(food),
       method: :delete, data: { confirm: "Are you sure?" } %>
       <% else %>
       <%= link_to "View", food_path(food) %>
+<<<<<<< HEAD
       <% end %>
       <% end %>
     </div>
@@ -55,3 +79,9 @@
 
 
 
+=======
+    <% end %>
+  <% end %>
+  <br><br>
+</div>
+>>>>>>> c8d5814b9d5e188f78771455911471059bb5b835

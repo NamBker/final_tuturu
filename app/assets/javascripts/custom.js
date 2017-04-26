@@ -128,7 +128,7 @@ $(document).on('click', '#searchclear', function(){
 });
 
 $(document).ready(setTimeout(function(){
-  $('.alert, .danger, .success, .error, .notice, .info').fadeOut(3000);
+  $('.alert, .success, .error, .notice, .info').fadeOut(3000);
 }, 4000));
 
 $(document).on('turbolinks:load', function(){
@@ -315,7 +315,7 @@ $(document).on('click', '#btn-submit-order',function(e){
 });
 $(document).on('turbolinks:load', function(){
   $('.carousel').owlCarousel({
-    autoPlay: 3000,
+    // autoPlay: 3000,
     stopOnHover: true,
     touchDrag: true,
     rewindNav: true,
@@ -323,8 +323,8 @@ $(document).on('turbolinks:load', function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 3,
-    itemsDesktop: [1119,3],
+    items: 4,
+    itemsDesktop: [1119, 4],
     itemsDesktopSmall: [979, 3],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
@@ -340,10 +340,25 @@ $(document).on('turbolinks:load', function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 3,
-    itemsDesktop: [1119,3],
-    itemsDesktopSmall: [979, 2],
+    items: 4,
+    itemsDesktop: [1119,4],
+    itemsDesktopSmall: [979, 3],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
   });
 })
+
+$(document).on('turbolinks:load',function(){
+  var preview = $(".upload-preview img");
+
+  $(".file").change(function(event){
+    var input = $(event.currentTarget);
+    var file = input[0].files[0];
+    var reader = new FileReader();
+    reader.onload = function(e){
+      image_base64 = e.target.result;
+      preview.attr("src", image_base64);
+    };
+    reader.readAsDataURL(file);
+  });
+});
