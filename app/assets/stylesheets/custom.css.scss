@@ -136,7 +136,7 @@ fieldset {
   margin-bottom: 120px;
   h1 {
     text-transform: uppercase;
-    font-size: 40px !important;
+    font-size: 3.1vw !important;
     font-weight: 600;
     text-align: center;
     margin-bottom: 30px;
@@ -444,16 +444,6 @@ img.inactived {
   position: relative;
 }
 
-.form-control {
-  background: $white;
-  border: 2px solid $geyser;
-  border-radius: 4px;
-  color: $dove-gray;
-  height: 50px;
-  padding: 5px 7px 5px 15px;
-  width: 100%;
-}
-
 .log-btn {
   background: $golden;
   border: 1px solid $golden-dark;
@@ -625,8 +615,7 @@ img.inactived {
   height: 50px;
   padding: 5px 7px 5px 15px;
   width: 100%;
-  font-size: 18px;
-  background: $white;
+  font-size: 1.3vw;
 }
 
 .delete {
@@ -945,7 +934,7 @@ footer {
 .container2 {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: auto;
 }
 
 .overlay {
@@ -1259,7 +1248,7 @@ footer {
   display: inline-block;
   color: black;
   text-decoration: underline;
-  font-size: 18px;
+  font-size: 1.6vw;
 }
 .home-list-title {
   margin: 0;
@@ -1298,11 +1287,10 @@ footer {
 }
 
 #tag_cloud {
-  width: 400px;
-  line-height: 1.6em;
-  .s { font-size: 0.8em; }
-  .m { font-size: 1.2em; }
-  .l { font-size: 1.8em; }
+  line-height: 1.8em;
+  .s { font-size: 1.2em; }
+  .m { font-size: 1.6em; }
+  .l { font-size: 2.2em; }
   a {
     color: cornflowerblue;
   }
@@ -1353,8 +1341,8 @@ footer {
   width: 500px
 }
 .user-ava {
-  width: 200px;
-  height: 200px;
+  width: 200px !important;
+  height: 200px !important;
 }
 .user-show a {
   color: yellow;
@@ -1533,6 +1521,9 @@ footer {
   height: 32px;
   line-height: 24px;
   width: 32px;
+  &:hover {
+    filter: brightness(80%);
+  }
 }
 .popover-btn i {
   position: absolute;
@@ -1544,7 +1535,7 @@ footer {
 
 .popover-btn2 i {
   position: absolute;
-  transform: translateY(-40%);
+  transform: translateY(5%);
   right: 15%;
   color: red !important;
   font-size: 1.6em;
@@ -1564,6 +1555,7 @@ footer {
   box-shadow: 0 0 100px #666;
 }
 .social-networks {
+  background: transparent;
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -1580,15 +1572,29 @@ footer {
   cursor: pointer;
 }
 
-.social-networks .social-share-button .ssb-icon {
-  background-size: 32px 32px !important;
+.social-share-button {
+  .ssb-icon {
+    background-size: 32px 32px !important;
+    &:hover {
+      filter: brightness(200%);
+    }
+  }
+  a {
+    overflow: hidden;
+    display: block;
+    width: 32px !important;
+    height: 32px !important;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+  }
 }
 
 .info-food {
   top: 85%;
   position: absolute;
   color: white;
-  font-size: 2.5vh;
+  font-size: 1.2vw;
 }
 
 .block-content {
@@ -1598,13 +1604,13 @@ footer {
 }
 .block-content h4.block-name {
   font-family: 'Nunito';
-  font-size: 24px;
+  font-size: 1.8vw;
   font-weight: bolder;
   margin: 0;
 }
 
 .block-content .block-address {
-  font-size: 14px;
+  font-size: 1vw;
   font-weight: 400;
   padding: 0;
   color: #9b9b9b;
@@ -1648,7 +1654,7 @@ footer {
   margin-left: 35px;
 }
 .pc-name {
-  font-size: 16px;
+  font-size: 1.2vw;
   border: 0;
   margin: 5px 0 0 13px;
   padding: 0;
@@ -1671,6 +1677,7 @@ footer {
   margin-right: 3px;
 }
 .block-meta .block-counts {
+  font-size: 2vw;
   vertical-align: top;
 }
 .lz {
@@ -1700,7 +1707,7 @@ footer {
   background: #f4f4f4;
   h1 {
     color: white !important;
-    font-size: 54px !important;
+    font-size: 4vw !important;
     font-weight: 700 !important;
     line-height: 48px !important;
     margin-top: 25% !important;
@@ -1711,7 +1718,7 @@ footer {
   h5 {
     color: white;
     font-family: 'Khand';
-    font-size: 30px;
+    font-size: 2.2vw;
     font-weight: 500;
     letter-spacing: 3px;
     margin: 0 0 15px;
@@ -1720,7 +1727,7 @@ footer {
   }
   h2, .uk-h2 {
     font-family: 'Khand';
-    font-size: 32px;
+    font-size: 2.6vw;
     line-height: 36px;
   }
   h2, h3, h6 {
@@ -1759,7 +1766,7 @@ footer {
 }
 
 .section2 {
-  min-height: 120vh;
+  min-height: 800px;
   margin-top: -54px;
 }
 
@@ -1768,32 +1775,39 @@ footer {
   width: 110%;
 }
 .cook li, .cook1 li {
-  margin-right: 0px;
+  margin-right: 0;
   display: inline-block;
-  font-size: 14px;
+  font-size: 1.2vw !important;
 }
 .icon--cook-card-follower {
-  background: url(http://images.media-allrecipes.com/ar-images/sprites/cook_card_icons_040815.svg) -8px -334px no-repeat;
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  margin-top: 9px;
 }
 .icon--cook-card-favorite {
-  background: url(http://images.media-allrecipes.com/ar-images/sprites/cook_card_icons_040815.svg) -6px -94px no-repeat;
   display: inline-block;
-  width: 25px;
-  height: 25px;
-  margin-left: 0;
+  margin-top: 9px;
 }
 .icon--cook-card-made {
   margin-top: 9px;
 }
 .cook {
-  margin-left: -20px;
-  margin-right: -5px;
+  margin-left: -12%;
   width: 42%;
 }
 .cook1 {
-  margin-left: -10px;
+  margin-left: -8px;
   width: 42%;
+}
+.flash-message {
+  border-radius: 4px;
+  display: block;
+  left: 0;
+  margin: auto;
+  padding: 20px 15px 20px 15px;
+  right: 0;
+  top: 50%;
+}
+.old-img {
+  width: 30vw;
+  height: auto;
 }

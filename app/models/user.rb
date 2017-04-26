@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :username, presence: true, uniqueness: {case_sensitive: false}
+  validates_length_of :username, minimum: 6, maximum: 12
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   mount_uploader :avatar, AvatarUploader

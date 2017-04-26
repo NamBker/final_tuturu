@@ -5,7 +5,8 @@
   <div class="item2 col-sm-3 item3">
     <div class="container2">
       <%= link_to food_path(food) do %>
-        <%= image_tag food.file %>
+        <%= image_tag food.file,
+          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
       <% end %>
       <div class="overlay">
         <div class="popover-wrapper2">
@@ -39,7 +40,9 @@
           </div>
         </div>
         <div class="col-xs-12 info-food">
-          <span class="col-xs-3"> <i class="fa fa-download"></i></span>
+          <span class="col-xs-3">
+            <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
+          </span>
           <span class="col-xs-9 text-right">
             <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
           </span>
@@ -61,21 +64,24 @@
       <div class="block-activity">
         <div class="profile-card">
           <div class="pc-image">
-            <%= image_tag food.user.avatar,
-              style: "background-image:url(/dist/images/placeholder.png);background-size:cover;",
-              class: "img", alt:"img", title:food.user.username %>
+            <%= image_tag food.user.avatar, class: "img", title:food.user.username,
+              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
           </div>
           <div class="pc-content">
             <h4 class="col-sm-12 pc-name">
-              <span style="color: gray;font-size: 12px">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
+              <span style="color: gray;font-size: 0.9vw">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
             </h4>
             <div class="col-sm-12 cook-details">
               <div class="col-sm-4 cook-details__followers followers-count cook1">
-                <li class="icon--cook-card-follower" title="Followers"></li>
+                <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
+                  <i class="fa fa-users"></i>
+                </li>
                 <li></li>
               </div>
               <div class="col-sm-4 cook cook-details__favorites favorites-count">
-                <li class="icon--cook-card-favorite" title="Likes"></li>
+                <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
+                  <i class="fa fa-heart"></i>
+                </li>
                 <li><%= food.user.foods.sum(:cached_votes_up) %></li>
               </div>
               <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">

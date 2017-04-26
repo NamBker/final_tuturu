@@ -1,4 +1,5 @@
 <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
+  <%= image_tag @food.file, class: "old-img" %>
   <div class="upload-preview">
     <img />
   </div>

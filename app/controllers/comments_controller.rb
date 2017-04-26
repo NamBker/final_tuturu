@@ -6,10 +6,8 @@ class CommentsController < ApplicationController
     @comment = @food.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = "You commented the hell out of that food!"
       redirect_to :back
     else
-      flash[:alert] = "Check the comment form, something went horribly wrong."
       render food_path(@food)
     end
     respond_to do |format|
@@ -21,7 +19,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @food.comments.find_by id: params[:id]
     @comment.destroy
-    flash[:success] = "Comment deleted :("
     redirect_to food_path(@food)
   end
 
