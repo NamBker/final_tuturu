@@ -4,34 +4,37 @@
     <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
     <% if @user.avatar.present? %>
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail",:align=> "left" %>
+    <% else %>
+    <%= link_to image_tag("avatar.jpg",class:"img2 fb-image-profile thumbnail",:align=> "left" ) %>
 
     <% end %>
     <div class="fb-profile-text">
       <div class="info-user">
         <h1><%= @user.username %></h1>
-      <p>Girls just wanna go fun.</p>
+        <p>Girls just wanna go fun.</p>
       </div>
-      <div class="info-user" style="padding-top: 20px;">
-      
-        <button class="button-follow" type="submit">Follow</button>
-      </div>
-      
-  </div>
-</div> 
+      <div class="info-user" style="padding-top: 10px;">
 
-<div class="container" style="margin-top:100px;">
+        <button class="button-follow" type="submit" style="margin-bottom: 20px;">Follow</button>
+        <%= render 'shared/stats' %>
+      </div>
+      </div>
+  </div>   
+</div>
+
+<div class="container" style="margin-top:80px;">
 
   <div class="row form-group">
    <% @user.foods.each do |food| %>
    <div class="col-xs-12 col-md-6">
     <div class="panel panel-default">
       <div class="panel-image">
-      <%= link_to(food_path(food),:class => "zoom") do %>
-         <%= image_tag food.file, class: "panel-image-preview" %>
-         <span class="overlay">
+        <%= link_to(food_path(food),:class => "zoom") do %>
+        <%= image_tag food.file, class: "panel-image-preview" %>
+        <span class="overlay">
          <i class="glyphicon glyphicon-fullscreen"></i>
-           <%=  food.name %>
-         </span>
+         <%=  food.name %>
+       </span>
        <% end %>
      </div>
      <input type="checkbox" id="toggle-1" class="panel-image-toggle">
@@ -91,11 +94,11 @@
     transition: all 0.2s ease;
     height: 40px;
     width: 80px;
-}
+  }
 
-.button-follow:focus{
+  .button-follow:focus{
     background-color: #64b2f8;
     border: 1px solid #64b2f8;
     outline: none;
-}
+  }
 </style>

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170425034634) do
-=======
-ActiveRecord::Schema.define(version: 20170424165208) do
->>>>>>> c8d5814b9d5e188f78771455911471059bb5b835
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -40,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170424165208) do
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
-<<<<<<< HEAD
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -49,7 +44,8 @@ ActiveRecord::Schema.define(version: 20170424165208) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
-=======
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -73,7 +69,6 @@ ActiveRecord::Schema.define(version: 20170424165208) do
     t.string  "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
->>>>>>> c8d5814b9d5e188f78771455911471059bb5b835
   end
 
   create_table "users", force: :cascade do |t|
