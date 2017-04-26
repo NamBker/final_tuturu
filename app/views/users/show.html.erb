@@ -1,29 +1,29 @@
 <div class="col-xs-12 text-center user-show">
   <br><br><br>
   <%= image_tag @user.avatar, class:"user-ava",
-                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
   <p><%= @user.username %></p>
   <p><%= @user.name %></p>
   <p><%= @user.birth %></p>
   <p>
     <% if @user.gender.present? %>
-        <% if @user.gender %>Female
-        <% else %>Male
-        <% end %>
+      <% if @user.gender %>Female
+      <% else %>Male
+      <% end %>
     <% end %>
   </p>
   <h2> <%= @user.username %>'s photo </h2>
   <% @user.foods.each do |food| %>
-      <br><%= link_to food.name, food_path(food) %><br>
-      <%= image_tag food.file,
-                    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
-      <% if @user == current_user %>
-          <%= link_to "Edit", edit_food_path(food) %>
-          <%= link_to "Delete", food_path(food),
-                      method: :delete, data: { confirm: "Are you sure?" } %>
-      <% else %>
-          <%= link_to "View", food_path(food) %>
-      <% end %>
+    <br><%= link_to food.name, food_path(food) %><br>
+    <%= image_tag food.file,
+      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
+    <% if @user == current_user %>
+      <%= link_to "Edit", edit_food_path(food) %>
+      <%= link_to "Delete", food_path(food),
+        method: :delete, data: { confirm: "Are you sure?" } %>
+    <% else %>
+      <%= link_to "View", food_path(food) %>
+    <% end %>
   <% end %>
   <br><br>
 </div>
