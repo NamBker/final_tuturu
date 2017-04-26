@@ -98,3 +98,143 @@ a {
     border-top: 1px solid #e7ebee;
     padding: 12px 8px;
 }
+/*// user-show css*/
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}
+
+/*follow*/
+.follow-button {
+  text-transform: uppercase;
+  border-color: #4090db;
+  color: #4090db;
+  margin-left: 20px;
+  &:visited, &:focus, &:hover {
+    border-color: #2D6396;
+    color: #2D6396;
+  }
+}
+
+.unfollow-button {
+  text-transform: uppercase;
+  border-color: #66bd2b;
+  background-color: #66bd2b;
+  color: white;
+  margin-left: 20px;
+  &:visited, &:focus, &:hover {
+    border-color: #47821F;
+    background-color: #47821F;
+    color: white;
+  }
+}
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.panel-image {
+    position: relative;   
+}
+.panel-image img.panel-image-preview {
+    width: 100%;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.panel label {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.panel-heading ~ .panel-image img.panel-image-preview {
+    border-radius: 0px;
+}
+
+.panel-body {
+   overflow: hidden;
+}
+
+.panel-image ~ input[type=checkbox] {
+    position:absolute;
+    top:- 30px;
+    z-index: -1;   
+}
+
+.panel-image ~ input[type=checkbox] ~ .panel-body {
+    height: 0px;
+    padding: 0px;
+}
+
+.panel-image ~ input[type=checkbox]:checked ~ .panel-body {
+    height: auto;
+    padding: 15px;
+}
+
+.panel-image ~ .panel-footer a {
+    padding: 0px 10px;
+    font-size: 1.3em;
+    color: rgb(100, 100, 100);
+}
+
+
+@import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+
+
+
+.panel { position: relative; overflow: hidden; display: block; border-radius: 0 !important;  }
+.panel-default { border-color: #ebedef !important; }
+.panel .panel-image { position: relative; padding: 0 !important; overflow: hidden; height: auto; }
+.panel .panel-image a { overflow: hidden; }
+.panel .panel-image a img { display: block; margin: 0; width: 100%; height: auto; 
+    transition: all 0.5s; 
+    -moz-transition: all 0.5s; 
+    -webkit-transition: all 0.5s; 
+    -o-transition: all 0.5s; 
+}
+.panel .panel-image a.zoom:hover img { transform: scale(1.3); -ms-transform: scale(1.3); -webkit-transform: scale(1.3); -o-transform: scale(1.3); -moz-transform: scale(1.3); }
+.panel .panel-image a.zoom span.overlay { position: absolute; top: 0; left: 0; visibility: hidden; height: 100%; width: 100%; background-color: #000; opacity: 0; 
+    transition: opacity .25s ease-out;
+    -moz-transition: opacity .25s ease-out;
+    -webkit-transition: opacity .25s ease-out;
+    -o-transition: opacity .25s ease-out;
+}     
+.panel .panel-image a.zoom:hover span.overlay { display: block; visibility: visible; opacity: 0.55; -moz-opacity: 0.55; -webkit-opacity: 0.55; filter: alpha(opacity=65); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)"; }  
+.panel .panel-image a.zoom:hover span.overlay i { position: absolute; top: 45%; left: 0%; width: 100%; font-size: 2.25em; color: #fff !important; text-align: center;
+    opacity: 1;
+    -moz-opacity: 1;
+    -webkit-opacity: 1;
+    filter: alpha(opacity=1);    
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+}
+
+.info-user{
+    float: left;
+    margin-top: 10px;
+    margin-bottom:50px;
+    width: 400px;
+}
