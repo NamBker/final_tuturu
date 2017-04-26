@@ -1,38 +1,57 @@
-<div class="container userss">
-  <% provide(:title, @user.name) %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section>
-        <h1>
-          <%= gravatar_for @user %>
-          <%= @user.name %>
-        </h1>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-        <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-          <%= user.username %>
-          <%= link_to gravatar_for(user, size: 30), user %>
-          <% end %>
+<div class="container" style="margin-bottom: 20px; padding-top: 80px">
+  <div class="row panel">
+    <div class="col-md-4 bg_blur ">
+      <a href="#" class="follow_btn hidden-xs">Follow</a>
+    </div>
+    <div class="col-md-8  col-xs-12">
+      <%= gravatar_for2 @user %> 
+      <div class="header">
+        <h1> <%= @user.name %></h1>
+        <h4>Web Developer</h4>
+        <span>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+          "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</span>
+          <section class="stats">
+            <%= render 'shared/stats' %>
+            <% if @users.any? %>
+            <div class="user_avatars">
+              <% @users.each do |user| %>
+              <%= user.username %>
+              <%= link_to gravatar_for(user, size: 30), user %>
+              <% end %>
+            </div>
+            <% end %>
+          </section>
         </div>
-        <% end %>
-      </section>
-    </aside>
-    <div class="col-md-8">
-     <% @user.foods.each do |food| %>
-     <br><%= link_to food.name, food_path(food) %><br>
-     <%= image_tag food.file %><br>
-     <% if @user == current_user %>
-     <%= link_to "Edit", edit_food_path(food) %>
-     <%= link_to "Delete", food_path(food),
-     method: :delete, data: { confirm: "Are you sure?" } %>
-     <% else %>
-     <%= link_to "View", food_path(food) %>
-     <% end %>
-     <% end %>
-   </div>
- </div>
+      </div>
+    </div>   
+    
+    <div class="row nav">    
+      <div class="col-md-4"></div>
+      <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
+        <div class="col-md-4 col-xs-4 well"><i class="fa fa-weixin fa-lg"></i> 16</div>
+        <div class="col-md-4 col-xs-4 well">Following 14</div>
+        <div class="col-md-4 col-xs-4 well">Followers 26</div>
+      </div>
+    </div>
 
-</div>
+    <div class="row">
+     <% @user.foods.each do |food| %>
+     
+     <h4>
+      <strong><%= link_to food.name, food_path(food) %></strong></h4>
+      <%= link_to food.name, food_path(food) %>
+      <%= image_tag food.file %>
+      <% if @user == current_user %>
+      <%= link_to "Edit", edit_food_path(food) %>
+      <%= link_to "Delete", food_path(food),
+      method: :delete, data: { confirm: "Are you sure?" } %>
+      <% else %>
+      <%= link_to "View", food_path(food) %>
+      <% end %>
+      <% end %>
+    </div>
+
+  </div>
+
+
+
