@@ -1,0 +1,2 @@
+$('#comments_<%= @food.id %>').append("<%=j render 'comments/comment', post: @food, comment: @comment %>");
+$('#comment-<%= @comment.id %>').remove();

@@ -6,66 +6,7 @@
         <%= value %>
       </div>
     <% end %>
-    <%= image_tag @food.user.avatar, class:"avatar",
-      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
-    <%= link_to "#{@food.user.username}", @food.user %><br>
-    <strong><%= @food.name %></strong> at <%= @food.created_at.in_time_zone("Hanoi") %><br>
-    <%= image_tag @food.file, style:"margin-bottom: 10px",
-      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
-    <%= social_share_button_tag @food.name, desc: @food.description, via: "AwesomeVn",
-      image: @food.file %>
-    Description: <%= @food.description %><br>
-    Address: <%= @food.address %><br>
-    Price: <%= @food.price %><br>
-    Tags: <%= raw @food.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><br>
-    Review: <%= @food.review %><br>
-    <% if @food.score > 1 %><b><%= @food.score %></b> likes
-    <% elsif @food.score == 1 %><b><%= @food.score %></b> like
-    <% else %>
-    <% end %><br>
-    <% if user_signed_in? %>
-      <% if current_user.id == @food.user.id %>
-        <%=  link_to "Edit", edit_food_path(@food) %>
-        <%= link_to "Delete", food_path(@food),
-          method: :delete, data: { confirm: "Are you sure?" } %>
-      <% else %>
-      <% end %>
-    <% else %>
-      Login or
-      <%= link_to "Register", new_user_registration_path %> or
-      <%= link_to "Login", user_session_path %>
-      to comment.
-    <% end %><br>
-    
-    <strong>Comment:</strong><br>
-    <% if @food.comments %>
-      <% @food.comments.each do |comment| %>
-        <b><%= comment.user.username %>:</b>
-        <%= comment.content %>
-        <% if comment.user == current_user %>
-          <%= link_to "Delete", food_comment_path(@food, comment),
-            method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
-        <br>
-      <% end %>
-    <% end %><br>
-    <section class="_jveic _dsvln">
-      <% if user_signed_in? %>
-        <% if current_user.voted_up_on? @food %>
-          <%= link_to dislike_food_path(@food), method: :put, class:"_ebwb5 _1tv0k" do %>
-            <i class="fa fa-heart" aria-hidden="true"></i>
-          <% end %>
-        <% else %>
-          <%= link_to like_food_path(@food), method: :put, class:"_ebwb5 _1tv0k" do %>
-            <i class="fa fa-heart-o" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-        <%= form_for [@food, @comment], class:"_k3t69" do |f| %>
-          <%= f.text_field :content, placeholder: 'Add a comment...', class:"_7uiwk _qy55y"  %>
-        <% end %>
-      <% end %>
-    </section>
-    <br>
+    <%= render @food %>
   </div>
 </div>
 <style>
@@ -74,8 +15,8 @@
     color: white !important;
   }
   form {
-    width: 96%;
-    margin-top: 10px;
+    width: 94%;
+    margin-top: 18px;
     float: right;
   }
   img {

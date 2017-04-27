@@ -108,9 +108,12 @@ $.fn.backgroundCycle = function (e) {
 var slideshow = function() {
   $('#top').backgroundCycle({
     imageUrls: [
-      "http://cdn.newsapi.com.au/image/v1/0cdd4a9c789cb01fd54b027153c57e9b?width=1024",
-      "http://229hkg2lw84tezus91ay33k2.wpengine.netdna-cdn.com/wp-content/uploads/2014/06/Phone-Taking-Photo-Of-Food.jpg",
-      "https://static-ssl.businessinsider.com/image/56d9dd8c6e97c623008bb9cb-960-720/the-tovala-will-communicate-with-the-phone-and-find-the-recipe-for-the-food.jpg",
+      "https://drive.google.com/uc?id=0B9VYzD5V43juM052S3RlZU1OY2c",
+      "http://i.imgur.com/wB1w726.jpg",
+      "http://i.imgur.com/ySkkJN0.jpg",
+      "http://i.imgur.com/VrlU4g4.jpg",
+      "http://i.imgur.com/JfHLglv.jpg",
+      "http://i.imgur.com/ESfVKAj.jpg"
     ],
     fadeSpeed: 1200,
     duration: 2500,
