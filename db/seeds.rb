@@ -1,23 +1,23 @@
 
 puts "Create 5 User of TEAM"
-User.create!(username: "admin",
+User.create!(username: "admin111",
              email: "admin@gmail.com",
              password:              "admin1",
              password_confirmation: "admin1")
-User.create!(username:  "nam",
+User.create!(username:  "namnguyen",
              email: "nam@gmail.com",
              password:              "123456",
              password_confirmation: "123456")
-User.create!(username:  "hien",
+User.create!(username:  "hiennguyen",
              email: "hien@gmail.com",
              password:              "123456",
              password_confirmation: "123456")
-User.create!(username:  "duc",
+User.create!(username:  "ducnguyen",
              email: "duc@gmail.com",
              password:              "123456",
              password_confirmation: "123456")
 
-User.create!(username:  "long",
+User.create!(username:  "longtran",
              email: "long@gmail.com",
              password:              "123456",
              password_confirmation: "123456")

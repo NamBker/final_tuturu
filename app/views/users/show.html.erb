@@ -6,7 +6,6 @@
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail",:align=> "left" %>
     <% else %>
     <%= link_to image_tag("avatar.jpg",class:"img2 fb-image-profile thumbnail",:align=> "left" ) %>
-
     <% end %>
     <div class="fb-profile-text">
       <div class="info-user">
@@ -54,14 +53,12 @@
   <% end %>
   </div>
 </div>
-
 <style>
   body {
     background: #fff;
     color: #000;
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
-
   }
   img {
     height: auto;
@@ -89,7 +86,6 @@
     height: 40px;
     width: 80px;
   }
-
   .button-follow:focus{
     background-color: #64b2f8;
     border: 1px solid #64b2f8;
