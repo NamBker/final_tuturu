@@ -49,6 +49,7 @@ group :development do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+ gem 'gravatar_image_tag'
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"
 end

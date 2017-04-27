@@ -89,6 +89,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    gravatar_image_tag (1.2.0)
     hashie (3.5.5)
     i18n (0.8.1)
     impressionist (1.5.2)
@@ -273,6 +274,7 @@ DEPENDENCIES
   config
   devise
   faker
+  gravatar_image_tag
   impressionist
   jbuilder (~> 2.5)
   jquery-rails
@@ -303,4 +305,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.14.6
+   1.14.4

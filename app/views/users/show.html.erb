@@ -2,59 +2,73 @@
   <div class="fb-profile">
     <img align="left" class="fb-image-lg" src="http://i.imgur.com/kfhjpXw.jpg" alt="Profile image example"/>
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail", align: "left",
-      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
+    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
     <div class="fb-profile-text">
       <div class="info-user">
         <h1><%= @user.username %></h1>
         <p>Girls just wanna go fun.</p>
       </div>
-      <div class="info-user" style="padding-top: 20px;">
-        <button class="button-follow" type="submit">Follow</button>
+      <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
+       <%= render 'shared/stats' %>
+        <% if @user.id == current_user.id%>
+          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-default" %>
+          <% else %>
+          <% if current_user != @user %>
+            <div id="follow_form">
+              <% if current_user.following?(@user) %>
+              <%= render 'unfollow' %>
+              <% else %>
+              <%= render 'follow' %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+       
       </div>
     </div>
   </div>
-  <div class="container" style="margin-top:100px;">
-    <div class="row form-group">
-      <% @user.foods.each do |food| %>
-        <div class="col-xs-12 col-md-6">
-          <div class="panel panel-default">
-            <div class="panel-image">
-              <%= link_to(food_path(food),:class => "zoom") do %>
-                <%= image_tag food.file, class: "panel-image-preview" %>
-                <span class="overlay">
-                  <i class="glyphicon glyphicon-fullscreen"></i>
-                  <%= food.name %>
-                </span>
-              <% end %>
-            </div>
-            <input type="checkbox" id="toggle-1" class="panel-image-toggle">
-            <div class="panel-body">
-              <h4><%= link_to food.name, food_path(food) %></h4>
-              <p> <%= link_to "View", food_path(food) %></p>
-            </div>
-            <div class="panel-footer text-center">
-              <% if @user == current_user %>
-                <%= link_to "Edit", edit_food_path(food) %>
-                <%= link_to "Delete", food_path(food),
-                  method: :delete, data: { confirm: "Are you sure?" } %>
-              <% else %>
-              <% end %>
-              <!--<a href="#download"><span class="glyphicon glyphicon-download"></span></a>-->
-              <!--<a href="#facebook"><span class="fa fa-facebook"></span></a>-->
-              <!--<a href="#twitter"><span class="fa fa-twitter"></span></a>-->
-              <!--<a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>-->
-              <div class="social-share-button" data-title="sushi" data-img="/uploads/food/file/1/sushi-trung-ca-hoi.JPG" data-url="" data-desc="brtnyumi" data-via="AwesomeVn">
-                <a rel="nofollow " data-site="twitter" class="fa fa-twitter" onclick="return SocialShareButton.share(this);" title="Share to Twitter" href="#"></a>
-                <a rel="nofollow " data-site="facebook" class="fa fa-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#"></a>
-                <a rel="nofollow " data-site="google_plus" class="fa fa-google-plus" onclick="return SocialShareButton.share(this);" title="Share to Google+" href="#"></a>
-                <a rel="nofollow " data-site="tumblr" class="fa fa-tumblr" onclick="return SocialShareButton.share(this);" title="Share to Tumblr" href="#"></a>
-                <a rel="nofollow " data-site="pinterest" class="fa fa-pinterest" onclick="return SocialShareButton.share(this);" title="Share to Pinterest" href="#"></a>
-              </div>
-            </div>
+</div>
+<div class="container" style="margin-top:100px;">
+  <div class="row form-group">
+    <% @user.foods.each do |food| %>
+    <div class="col-xs-12 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-image">
+          <%= link_to(food_path(food),:class => "zoom") do %>
+          <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+          <span class="overlay">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+            <%= food.name %>
+          </span>
+          <% end %>
+        </div>
+        <input type="checkbox" id="toggle-1" class="panel-image-toggle">
+        <div class="panel-body">
+          <h4><%= link_to food.name, food_path(food) %></h4>
+          <p> <%= link_to "View", food_path(food) %></p>
+        </div>
+        <div class="panel-footer text-center">
+          <% if @user == current_user %>
+          <%= link_to "Edit", edit_food_path(food) %>
+          <%= link_to "Delete", food_path(food),
+          method: :delete, data: { confirm: "Are you sure?" } %>
+          <% else %>
+          <% end %>
+          <!--<a href="#download"><span class="glyphicon glyphicon-download"></span></a>-->
+          <!--<a href="#facebook"><span class="fa fa-facebook"></span></a>-->
+          <!--<a href="#twitter"><span class="fa fa-twitter"></span></a>-->
+          <!--<a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>-->
+          <div class="social-share-button" data-title="sushi" data-img="/uploads/food/file/1/sushi-trung-ca-hoi.JPG" data-url="" data-desc="brtnyumi" data-via="AwesomeVn">
+            <a rel="nofollow " data-site="twitter" class="fa fa-twitter" onclick="return SocialShareButton.share(this);" title="Share to Twitter" href="#"></a>
+            <a rel="nofollow " data-site="facebook" class="fa fa-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#"></a>
+            <a rel="nofollow " data-site="google_plus" class="fa fa-google-plus" onclick="return SocialShareButton.share(this);" title="Share to Google+" href="#"></a>
+            <a rel="nofollow " data-site="tumblr" class="fa fa-tumblr" onclick="return SocialShareButton.share(this);" title="Share to Tumblr" href="#"></a>
+            <a rel="nofollow " data-site="pinterest" class="fa fa-pinterest" onclick="return SocialShareButton.share(this);" title="Share to Pinterest" href="#"></a>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
+    <% end %>
   </div>
 </div>
 <style>
