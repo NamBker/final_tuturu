@@ -8,7 +8,7 @@
         <h1><%= @user.username %></h1>
         <p>Girls just wanna go fun.</p>
       </div>
-      <div class="info-user" style="padding-top: 20px;">
+      <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
        <%= render 'shared/stats' %>
         <% if @user.id == current_user.id%>
           <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-default" %>
@@ -35,7 +35,7 @@
       <div class="panel panel-default">
         <div class="panel-image">
           <%= link_to(food_path(food),:class => "zoom") do %>
-          <%= image_tag food.file, class: "panel-image-preview" %>
+          <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
           <span class="overlay">
             <i class="glyphicon glyphicon-fullscreen"></i>
             <%= food.name %>
