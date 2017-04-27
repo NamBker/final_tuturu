@@ -115,30 +115,31 @@ a {
 
 @media (max-width:768px)
 {
-    
-.fb-profile-text>h1{
-    font-weight: 700;
-    font-size:16px;
-}
 
-.fb-image-profile
-{
-    margin: -45px 10px 0px 25px;
-    z-index: 9;
-    width: 20%; 
-}
+    .fb-profile-text>h1{
+        font-weight: 700;
+        font-size:16px;
+    }
+
+    .fb-image-profile
+    {
+        margin: -45px 10px 0px 25px;
+        z-index: 9;
+        width: 20%; 
+    }
 }
 
 /*follow*/
 .follow-button {
   text-transform: uppercase;
   border-color: #4090db;
-  color: #4090db;
+  color: #fff;
   margin-left: 20px;
+  height: 40px;
   &:visited, &:focus, &:hover {
     border-color: #2D6396;
-    color: #2D6396;
-  }
+    color: #fff;
+}
 }
 
 .unfollow-button {
@@ -147,11 +148,12 @@ a {
   background-color: #66bd2b;
   color: white;
   margin-left: 20px;
+  height: 40px;
   &:visited, &:focus, &:hover {
     border-color: #47821F;
     background-color: #47821F;
     color: white;
-  }
+}
 }
 @import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 .panel-image {
@@ -210,13 +212,28 @@ a {
 .panel-default { border-color: #ebedef !important; }
 .panel .panel-image { position: relative; padding: 0 !important; overflow: hidden; height: auto; }
 .panel .panel-image a { overflow: hidden; }
-.panel .panel-image a img { display: block; margin: 0; width: 100%; height: auto; 
-    transition: all 0.5s; 
-    -moz-transition: all 0.5s; 
-    -webkit-transition: all 0.5s; 
-    -o-transition: all 0.5s; 
+.panel .panel-image a img { display: block; margin: 0; 
+/*    width: 100%; 
+height: auto; */
+transition: all 0.5s; 
+-moz-transition: all 0.5s; 
+-webkit-transition: all 0.5s; 
+-o-transition: all 0.5s; 
+
+width: 600px;
+height: 400px;
+background-image: none;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+
 }
-.panel .panel-image a.zoom:hover img { transform: scale(1.3); -ms-transform: scale(1.3); -webkit-transform: scale(1.3); -o-transform: scale(1.3); -moz-transform: scale(1.3); }
+.panel .panel-image a.zoom:hover img { transform: scale(1.3); -ms-transform: scale(1.3); -webkit-transform: scale(1.3); -o-transform: scale(1.3); -moz-transform: scale(1.3); 
+background-image: none;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+}
 .panel .panel-image a.zoom span.overlay { position: absolute; top: 0; left: 0; visibility: hidden; height: 100%; width: 100%; background-color: #000; opacity: 0; 
     transition: opacity .25s ease-out;
     -moz-transition: opacity .25s ease-out;
@@ -237,4 +254,22 @@ a {
     margin-top: 10px;
     margin-bottom:50px;
     width: 400px;
+}
+
+.btn.active {                
+    display: none;      
+}
+
+.btn span:nth-of-type(1)  {             
+    display: none;
+}
+.btn span:last-child  {             
+    display: block;     
+}
+
+.btn.active  span:nth-of-type(1)  {             
+    display: block;     
+}
+.btn.active span:last-child  {              
+    display: none;          
 }
