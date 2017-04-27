@@ -1,18 +1,37 @@
+<div class="container">
+  <div class="fb-profile">
+    <img align="left" class="fb-image-lg" src="http://i.imgur.com/kfhjpXw.jpg" alt="Profile image example"/>
+    <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail", align: "left",
+    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
+    <div class="fb-profile-text">
+      <div class="info-user">
+        <h1><%= @user.username %></h1>
+        <p>Girls just wanna go fun.</p>
+      </div>
+      <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
+       <%= render 'shared/stats' %>
+       foods:</b> <%= @user.foods.count %>
+        <% if @user.id == current_user.id%>
+          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-default" %>
+          <% else %>
+          <% if current_user != @user %>
+            <div id="follow_form" style="margin-top: 20px;">
+              <% if current_user.following?(@user) %>
+              <%= render 'unfollow' %>
+              <% else %>
+              <%= render 'follow' %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+       
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container userss">                 
 <% provide(:title, @title) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= gravatar_for @user %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>foods:</b> <%= @user.foods.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-      
-    </section>
-  </aside>
   <div class="col-md-8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
