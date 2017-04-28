@@ -1,19 +1,21 @@
 <div class="section">
   <section class="login-bg">
     <div id="top2">
-      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-xs-12">
         <br><br>
-        <div class="formholder">
+        <div class="formholder edit-user">
           <h1>Edit <%= resource_name.to_s.humanize %></h1>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
 
           <div class="randompad">
             <%= f.label :name, class:"form-label" %><br />
-            <%= f.text_field :name, class: "form-control" %>
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
 
-            <%= f.label :username, class:"form-label" %><br />
-            <span style="font-size: 0.8vm">* Username 6->12 character</span>
+            <%= f.label :username, class:"form-label" %>
+            <p style="display: inline-block;font-style: italic">
+              (6 to 12 characters)
+            </p><br />
             <%= f.text_field :username, class: "form-control" %>
 
             <%= f.label :date_of_birth, class:"form-label" %><br />
@@ -24,18 +26,21 @@
             <%= f.radio_button :gender, "false" %>Male<br><br>
 
             <%= f.label :change_avatar, class:"form-label" %>
-            <div class="upload-preview">
+            <div class="upload-preview" style="display: none">
               <img />
             </div>
-            <% if @user.avatar.present? %>
-              <%= image_tag current_user.avatar %>
-            <% else %>
-              <img src="http://i.imgur.com/qBkFZxB.jpg" %>
-            <% end %>
+            <div id="old-avatar">
+              <% if @user.avatar.present? %>
+                <%= image_tag current_user.avatar %>
+              <% else %>
+                <img src="http://i.imgur.com/qBkFZxB.jpg"%>
+              <% end %>
+            </div>
             <%= f.file_field :avatar, class:"file" %><br>
             <script>
               var preview = $(".upload-preview img");
               $(".file").change(function(event){
+                $(".upload-preview").fadeIn('fast');
                 var input = $(event.currentTarget);
                 var avatar = input[0].files[0];
                 var reader = new FileReader();
@@ -44,49 +49,48 @@
                   preview.attr("src", image_base64);
                 };
                 reader.readAsDataURL(avatar);
+                $('#old-avatar').fadeOut('fast');
               });
             </script>
 
             <%= f.label :email, class:"form-label" %><br />
-            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            <%= f.email_field :email, class: "form-control" %>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <%= f.label :password, class:"form-label" %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.label :password, class:"form-label" %>
+            <p style="display: inline-block;font-style: italic;margin: 0">
+              <% if @minimum_password_length %>
+                (<%= @minimum_password_length %> characters minimum)
+              <% end %>
+            </p><br />
+            <p style="margin-top: -10px">* Leave blank if you don't want to change it</p>
             <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-            <% if @minimum_password_length %>
-              <br />
-              <em><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
 
             <%= f.label :password_confirmation, class:"form-label" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
 
-            <%= f.label :current_password, class:"form-label" %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.label :current_password, class:"form-label" %>
+            <p style="margin: -10px 0">
+              (we need your current password to confirm your changes)
+            </p><br />
             <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
 
             <div class="actions text-center col-sm-12">
               <div class="col-sm-6"> <%= f.submit "Update", class:"btn btn-success" %></div>
-              <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
+              <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-default" %></div>
             </div>
             <% end %>
-            <h3>Cancel my account</h3>
-            <p>Unhappy?
-              <%= button_to "Cancel my account", registration_path(resource_name),
-                data: { confirm: "Are you sure?" }, method: :delete, class:"delete" %>
-            </p>
-            <%= link_to "Back", :back %>
+            <h3 class="col-xs-12">Cancel my account</h3>
+            <h4 class="col-xs-12">Unhappy? We're sorry for having troubled you.</h4><br />
+            <%= button_to "Cancel my account", registration_path(resource_name),
+              data: { confirm: "Are you sure?" }, method: :delete, class:"delete" %><br />
+            <%= link_to "Back", :back, class:"back-edit" %>
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
-<style type="text/css">
-  img {
-    width: 150px;
-    height: 150px;
-  }
-</style>

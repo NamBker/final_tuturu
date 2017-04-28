@@ -137,7 +137,7 @@ fieldset {
   margin-bottom: 120px;
   h1 {
     text-transform: uppercase;
-    font-size: 3.1vw !important;
+    font-size: 32px !important;
     font-weight: 600;
     text-align: center;
     margin-bottom: 30px;
@@ -161,8 +161,7 @@ fieldset {
   outline: none;
   box-shadow: 0 0 1px 1px #1abc9c;
 }
-.formholder input[type="submit"],
-.formholder input[type="reset"] {
+.formholder input[type="submit"] {
   background: #4670bc;
   padding: 10px;
   font-size: 20px;
@@ -173,14 +172,17 @@ fieldset {
   width: 96%;
 }
 .formholder input[type="reset"] {
-  background: #bc120e;
+  background: green;
   padding: 10px;
   font-size: 20px;
   display: block;
+  color: white;
   border: none;
-  color: #fff;
   border-radius: 5px;
   width: 96%;
+  &:hover {
+    background: #16ff46;
+  }
 }
 .formholder input[type="submit"]:hover {
   background: #8185c6;
@@ -602,7 +604,7 @@ img.inactived {
 }
 
 .form-label {
-  font-size: 20px !important;
+  font-size: 24px !important;
   font-family: Serif;
   font-variant: small-caps;
   color: $white;
@@ -878,9 +880,10 @@ footer {
 }
 ._jveic {
   align-items: center;
-  border-top: 1px solid #efefef;
+  border: 1px solid #efefef;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 10px;
 }
 ._ixow7, ._jveic {
   flex-shrink: 0;
@@ -1060,7 +1063,6 @@ footer {
 .uk-block {
   background: #f4f4f4;
   box-sizing: border-box;
-  margin-top: -150px;
   position: relative;
   //padding-top: 40px;
   //padding-bottom: 40px;
@@ -1303,8 +1305,8 @@ footer {
 }
 .view {
   background: white;
-  margin-bottom: 20px;
-  margin-top: 80px;
+  margin-bottom: 10px;
+  margin-top: 57px;
 }
 .view a {
   width: 20%;
@@ -1312,7 +1314,7 @@ footer {
 }
 .view i {
   color: red;
-  font-size: 3vw !important;
+  font-size: 36px !important;
   padding-top: 10px;
 }
 
@@ -1323,8 +1325,8 @@ footer {
   display: block;
   overflow: hidden;
   position: relative;
-  height: 35px;
-  width: 35px;
+  height: 45px;
+  width: 45px;
 }
 
 .upload-preview img {
@@ -1333,7 +1335,7 @@ footer {
 }
 
 .user-show {
-  background: #36465D;
+  background: lightgray;
   color: white;
   font-size: 18px;
   min-height: 100vh;
@@ -1537,7 +1539,7 @@ footer {
 
 .popover-btn2 i {
   position: absolute;
-  margin-top: 8%;
+  margin-top: 40%;
   right: 15%;
   color: red !important;
   font-size: 1.6em;
@@ -1577,6 +1579,7 @@ footer {
 .social-share-button {
   .ssb-icon {
     background-size: 32px 32px !important;
+    border-radius: 50%;
     &:hover {
       filter: brightness(200%);
     }
@@ -1816,7 +1819,7 @@ footer {
   height: auto;
 }
 .navbar-nav > li > a {
-  font-size: 1.2vw !important;
+  font-size: 16px !important;
 }
 .social-share-button a {
   display: inline;
@@ -1908,7 +1911,302 @@ div.image-wrapper {
   font-weight: 500;
 }
 .comment-item {
+  margin: 0 0 -10px -27px;
   p {
     display: inline-block;
+  }
+  .edit, .remove {
+    font-size: 18px !important;
+    color: cornflowerblue;
+    margin-left: 10px;
+  }
+  .edit {
+    margin-left: 50px;
+  }
+}
+
+.edit-user {
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  h3 {
+    margin-left: -15px;
+    font-weight: 600;
+    color: #fffb00;
+  }
+  h4 {
+    margin: 5px -15px 10px;
+  }
+  p {
+    font-size: 12px !important;
+  }
+  .delete {
+    width: 100% !important;
+  }
+  .back-edit {
+    margin-top: 10px;
+    color: yellow !important;
+    font-size: 16px !important;
+    font-weight: 500;
+  }
+}
+
+// show food
+.summary-background {
+  background: white;
+  margin-bottom: 50px;
+}
+.hero-photo {
+  width: 57%;
+  float: right;
+}
+.hero-photo {
+  position: relative;
+  float: left;
+  text-align: center;
+}
+.hero-photo--downsized .favorite {
+  top: .6rem;
+  width: 75px;
+  height: 75px;
+  background-position: 0 .45rem;
+  background-size: 100%;
+  right: .6rem;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  background-image: url(http://images.media-allrecipes.com/ar-images/sprites/heart-icons.svg),none;
+  background-repeat: no-repeat;
+}
+.hero-photo--downsized .hero-photo__image {
+  position: relative;
+  max-width: 720px;
+}
+.hero-photo--downsized .hero-photo__image img {
+  max-width: 600px;
+  border-radius: 5px;
+}
+img.rec-photo {
+  min-height: 200px;
+  width: 100%;
+}
+.recipe-summary {
+  width: 43%;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+.recipe-summary .rating-stars {
+  display: flex;
+  cursor: pointer;
+  margin-right: .25rem;
+}
+.recipe-summary .rating-stars img {
+  font-size: 25px;
+  line-height: 25px;
+  width: 25px;
+  height: 25px;
+  margin-right: .25rem;
+}
+.recipe-summary .summary-stats-box {
+  min-height: 32px;
+}
+.recipe-summary .total-made-it span {
+  color: #ff7e1a;
+}
+
+.photo-info {
+  float: left;
+  margin-left: 80px;
+  width: 514px;
+  position: relative;
+  h3 {
+    color: lightgray;
+  }
+}
+.photo-info>h2 {
+  padding: 25px 0 15px;
+  font-size: 30px;
+  margin: 0;
+  color: black;
+}
+.photo-info .pt-detail-card {
+  font-size: 16px;
+  padding-bottom: 25px;
+  line-height: 26px;
+}
+.photo-info .pt-detail-card .label {
+  color: #afafb2;
+}
+.photo-info .pt-detail-card .price {
+  color: #ed3554;
+  font-size: 22px;
+  font-weight: 700;
+}
+.photo-info .pt-detail-card .blue-text {
+  color: #4a90e2;
+}
+.profile-card-new.pc-popup-photo {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+.profile-card-new.pc-popup-photo .pc-avatar {
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.profile-card-new.pc-popup-photo .pc-content {
+  padding-left: 52px;
+  margin: 0;
+}
+.profile-card-new.pc-popup-photo .pc-content .pc-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 15px;
+  margin-bottom: 3px;
+}
+.profile-card-new.pc-popup-photo .pc-content .pc-title, .profile-card .pc-content .pc-name {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.profile-card-new.pc-popup-photo .pc-content .pc-meta {
+  color: #9b9b9b;
+  font-size: 12px;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0;
+  position: relative;
+}
+.profile-card-new.pc-popup-photo .pc-content .pc-meta>li {
+  margin: 0 5px 0 0;
+  float: left;
+}
+
+//comment food
+.fd-clearbox {
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+}
+.review-list .review-item {
+  position: relative;
+  padding: 15px 15px 0;
+  margin: 0 0 8px;
+  background: #fff;
+}
+.review-list .review-item .review-user {
+  position: relative;
+  padding: 0 0 5px;
+  border-bottom: #f6f6f6 1px solid;
+  margin-bottom: 5px;
+}
+.review-user .review-avatar {
+  width: 40px;
+  margin-right: 10px;
+  float: left;
+}
+.review-list .review-item .review-user .ru-avatar {
+  display: block;
+  float: left;
+  margin: 3px 5px 5px 0;
+  position: relative;
+}
+.review-list .review-item .review-user .ru-avatar img {
+  width: 40px;
+  height: 40px;
+}
+.review-list .review-item .review-points {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.review-points.green {
+  background: #03ae03;
+}
+.review-points {
+  color: #fff;
+  text-align: center;
+  border-radius: 100px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  line-height: 32px;
+  overflow: hidden;
+}
+.review-list .review-item .review-user .ru-row {
+  overflow: hidden;
+  margin: 3px 0 5px;
+  font-size: 14px;
+}
+.review-list .review-item .review-user .ru-username {
+  font-weight: 700;
+}
+.review-list .review-item .review-user .ru-username {
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+  float: left;
+  padding: 0 3px 0 0;
+  box-sizing: border-box;
+}
+.review-list .review-item .review-user .ru-stats {
+  clear: both;
+  font-size: 11px;
+  color: #666;
+}
+.review-list .review-item .review-des {
+  position: relative;
+}
+.review-list .review-item .review-btns {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.review-list .review-item .review-des .rd-des {
+  margin: 0 0 5px;
+  font-size: 14px;
+  line-height: 1.4em;
+  word-wrap: break-word;
+}
+.review-list .review-item .review-des .rd-des a.view-more {
+  display: none;
+}
+.review-list .review-item .review-options {
+  padding: 5px 0;
+}
+.review-list .review-item .review-not-foody {
+  padding: 5px 0 10px;
+  clear: both;
+  color: #999;
+}
+.fc-toolbar a, .fc-toolbar i {
+  color: #7f7f7f;
+  display: inline;
+  padding: 5px 0 0;
+  font-size: 14px !important;
+}
+
+.opition {
+  display: block;
+  float: left;
+  margin: 0 20px 0 0;
+}
+
+.recipe-summary__stars {
+  img {
+    height: 20px;
+    width: 20px;
   }
 }

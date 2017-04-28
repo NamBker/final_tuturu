@@ -7,6 +7,7 @@ class User < ApplicationRecord
   attr_accessor :login
   acts_as_voter
   acts_as_tagger
+  ratyrate_rater
 
   has_many :foods, dependent: :destroy
   has_many :comments, dependent: :destroy

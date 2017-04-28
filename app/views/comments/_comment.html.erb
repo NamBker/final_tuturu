@@ -1,9 +1,49 @@
-<div id="comment-<%= comment.id %>" class="comment-item">
-  <p><b><%= comment.user.username %>:</b></p>
-  <p id = "this_comment_<%= comment.id %>"><%= comment.content %></p>
-  <% if comment.user == current_user %>
-    <%= link_to "Edit", edit_food_comment_path(@food, comment), remote: true %>
-    <%= link_to "Delete", food_comment_path(@food, comment), remote: true,
-      method: :delete, data: { confirm: "Are you sure?" } %>
-  <% end %>
+<div id="comment-<%= comment.id %>" class="review-list fd-clearbox ng-scope">
+  <div class="review-item fd-clearbox ng-scope">
+    <div class="review-user fd-clearbox ng-scope">
+      <div class="review-avatar">
+        <%= link_to user_path(comment.user), class:"ru-avatar", target:"_blank" do %>
+          <%= image_tag comment.user.avatar, width:"40", height:"40", alt:"",
+            onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+        <% end %>
+      </div>
+      <div style="float:left; width:300px;">
+        <!--<div class="review-points ng-scope green">-->
+          <!--<span class="ng-binding">7.6</span>-->
+        <!--</div>-->
+        <div class="ru-row">
+          <%= link_to user_path(comment.user), class:"ru-username ng-binding", target:"_blank" do %>
+            <%= comment.user.username %>
+          <% end %>
+        </div>
+        <div class="ru-stats">
+          <span class="ru-time ng-binding">
+            Posted at <%= comment.created_at.in_time_zone("Hanoi").strftime("%b %d %Y %H:%M") %>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="review-des fd-clearbox ng-scope">
+      <div class="rd-des">
+        <span class="ng-binding" id = "this_comment_<%= comment.id %>">
+          <%= comment.content %>
+        </span>
+      </div>
+    </div>
+    <div class="fc-toolbar fd-clearbox">
+      <% if comment.user == current_user %>
+        <div class="opition">
+          <%= link_to edit_food_comment_path(@food, comment), remote: true do %>
+            <i class="fa fa-pencil edit" %></i> Edit
+          <% end %>
+        </div>
+        <div class="opition">
+          <%= link_to food_comment_path(@food, comment), remote: true,
+            method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-remove remove" %></i> Delete
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
