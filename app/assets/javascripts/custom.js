@@ -177,7 +177,7 @@ $(document).on('turbolinks:load', function(){
   });
 });
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   $(".container2").hover(function(){
         $(this).find(".overlay").fadeIn();
       }
