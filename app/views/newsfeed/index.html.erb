@@ -1,10 +1,10 @@
 <div class="container">
-<div class="fb-profile" style="margin-top:100px;">
+  <div class="fb-profile" style="margin-top:100px;">
 
-    <table class="table user-list">
+    <table class="table user-list recomend">
       <thead>
         <tr>
-          <th><span>RECOMMENDED FOR YOU</span></th>
+          <th class="recomend_td"><span>RECOMMENDED FOR YOU</span></th>
         </tr>
       </thead>
       <tbody>
@@ -24,37 +24,36 @@
            </span>
          </td>
          <td class="text-center">
-         <button type="submit" class="btn btn-primary follow-button">Follows</button>
-        </td>
-      </tr>
-      <% end %>
+           <button type="submit" class="btn btn-primary follow-button">Follows</button>
+         </td>
+       </tr>
+       <% end %>
 
-    </tbody>
-  </table>
-
-
+     </tbody>
+   </table>
+ </div>
 </div>
-</div>
+
 
 
 <div class="container">
-    <h2>Smart Image Preview :: Limit  Preview Image - Scroll Down Hover - Show Fullscreen</h2>
-    <div class="thread-parent">
-      <p>Proactively whiteboard intermandated intellectual capital via just in time supply chains. Dynamically productize excellent quality vectors rather than distributed data. </p>
-      <img src="http://i.imgur.com/u6NNIP6.jpg">
-      <p>Completely myocardinate multimedia based total linkage for value-added experiences. Conveniently extend standardized scenarios rather than synergistic initiatives. Completely </p>
-      <img src="http://i.imgur.com/6Df0zT4.jpg">
-            <p>Synergistically utilize just in time networks without turnkey vortals. Holisticly simplify sticky models vis-a-vis team building markets. Interactively actualize cinterfaces. Seamlessly target tactical infomediaries whereas value-added e-commerce.</p>
-      <img src="http://i.imgur.com/xNbkboD.jpg">
-      <p>Energistically brand superior experiences whereas scalable supply chains. Assertively restore best-of-breed quality vectors without.</p>
-      <img src="http://i.imgur.com/lOqi4O6.jpg">
-      <p>Compellingly productivate high-quality best practices with 2.0 mindshare. Compellingly cox" thinking.</p>
-    </div>
+  <h2>Smart Image Preview :: Limit  Preview Image - Scroll Down Hover - Show Fullscreen</h2>
+  <div class="thread-parent">
+    <p>Proactively whiteboard intermandated intellectual capital via just in time supply chains. Dynamically productize excellent quality vectors rather than distributed data. </p>
+    <img src="http://i.imgur.com/u6NNIP6.jpg">
+    <p>Completely myocardinate multimedia based total linkage for value-added experiences. Conveniently extend standardized scenarios rather than synergistic initiatives. Completely </p>
+    <img src="http://i.imgur.com/6Df0zT4.jpg">
+    <p>Synergistically utilize just in time networks without turnkey vortals. Holisticly simplify sticky models vis-a-vis team building markets. Interactively actualize cinterfaces. Seamlessly target tactical infomediaries whereas value-added e-commerce.</p>
+    <img src="http://i.imgur.com/xNbkboD.jpg">
+    <p>Energistically brand superior experiences whereas scalable supply chains. Assertively restore best-of-breed quality vectors without.</p>
+    <img src="http://i.imgur.com/lOqi4O6.jpg">
+    <p>Compellingly productivate high-quality best practices with 2.0 mindshare. Compellingly cox" thinking.</p>
+  </div>
 </div>
 
 <style>
   body {
-    background: #fff;
+    background: #fafafa;
     color: #000;
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
@@ -63,31 +62,48 @@
     width: 200px;
     height: 200px;
   }
-  .button-follow{
-    color: #fff;
-    background-color: #1a8bf0;
-    border-radius: 6px;
-    border: 1px solid #1a8bf0;
-    font-family: "Helvetica Neue LT", "Hiragino Kaku Gothic Pro", "Helvetica", "Tahoma", "Arial", sans-serif;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-    height: 40px;
-    width: 80px;
+  .recomend{
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    margin-left: -1px;
+    margin-right: -1px;
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
   }
-  .button-follow:focus{
-    background-color: #64b2f8;
-    border: 1px solid #64b2f8;
-    outline: none;
+  .recomend_td{
+    border-bottom: solid 1px #efefef;
+    height: 60px;
+    padding-bottom: 20px;
+    padding-left: 40px;
   }
+}
+.button-follow{
+  color: #fff;
+  background-color: #1a8bf0;
+  border-radius: 6px;
+  border: 1px solid #1a8bf0;
+  font-family: "Helvetica Neue LT", "Hiragino Kaku Gothic Pro", "Helvetica", "Tahoma", "Arial", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  height: 40px;
+  width: 80px;
+}
+.button-follow:focus{
+  background-color: #64b2f8;
+  border: 1px solid #64b2f8;
+  outline: none;
+}
 
-  @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);
 
 body{
   font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
@@ -110,7 +126,7 @@ body{
   -webkit-transition: max-height .5s;
   -o-transition: max-height .5s;
   -ms-transition: max-height .5s;
-   transition: max-height .5s;
+  transition: max-height .5s;
 }
 .limited-parent-image:hover {
   max-height: 1000px;
@@ -191,12 +207,12 @@ body{
   const max_height = 200; // maximum height of images.
   var limited_image = '<div class="limited-parent-image"></div>';
   var limited_description = '<span class="limited-expand">'+
-                              '<i class="glyphicon glyphicon-resize-full"></i>'+
-                            '</span>';
+  '<i class="glyphicon glyphicon-resize-full"></i>'+
+  '</span>';
   var limited_modal = '<div class="limited-modal">'+
-                      '  <span class="limited-close-modal">×</span>'+
-                      '  <img class="limited-modal-content-image">'+
-                      '</div>';
+  '  <span class="limited-close-modal">×</span>'+
+  '  <img class="limited-modal-content-image">'+
+  '</div>';
   $(selector).each(function(i, block){
     var images = $(block).find('img');
     for (var i = 0; i < images.length; i++) {
@@ -204,20 +220,20 @@ body{
       image.addClass('limited-origin-image');
 
       if ((image.height() > max_height) ||
-          (image.get(0).height > max_height) ||
-          (image.get(0).naturalHeight > max_height)) {
+        (image.get(0).height > max_height) ||
+        (image.get(0).naturalHeight > max_height)) {
         image.wrap(limited_image);
-        image.closest('.limited-parent-image').append(limited_description);
-        image.closest('.limited-parent-image').after(limited_modal);
+      image.closest('.limited-parent-image').append(limited_description);
+      image.closest('.limited-parent-image').after(limited_modal);
       }else { // this condition if image isn't loaded with complete
-        image.load(function(){
-          if(this.height > max_height) {
-            image.wrap(limited_image);
-            image.closest('.limited-parent-image').append(limited_description);
-            image.closest('.limited-parent-image').after(limited_modal);
-          }
-        });
-      }
+      image.load(function(){
+        if(this.height > max_height) {
+          image.wrap(limited_image);
+          image.closest('.limited-parent-image').append(limited_description);
+          image.closest('.limited-parent-image').after(limited_modal);
+        }
+      });
+    }
     }//end for
   });
 };
