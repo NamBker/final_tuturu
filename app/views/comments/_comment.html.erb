@@ -1,0 +1,9 @@
+<div id="comment-<%= comment.id %>" class="comment-item">
+  <p><b><%= comment.user.username %>:</b></p>
+  <p id = "this_comment_<%= comment.id %>"><%= comment.content %></p>
+  <% if comment.user == current_user %>
+    <%= link_to "Edit", edit_food_comment_path(@food, comment), remote: true %>
+    <%= link_to "Delete", food_comment_path(@food, comment), remote: true,
+      method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>

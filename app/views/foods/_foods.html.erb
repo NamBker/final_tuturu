@@ -1,0 +1,97 @@
+<div id="pagination" class="apple-pagination">
+  <%= paginate @foods, remote: true %>
+</div>
+<% @foods.each do |food| %>
+  <div class="item2 col-sm-3 item3">
+    <div class="container2">
+      <%= link_to food_path(food) do %>
+          <%= image_tag food.file,
+                        onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+      <% end %>
+      <div class="overlay">
+        <div class="popover-wrapper2">
+          <button class="popover-btn popover-btn2 nostyle">
+            <% if user_signed_in? %>
+                <% if current_user.voted_up_on? food %>
+                    <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <%= link_to user_session_path do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+          </button>
+        </div>
+        <div class="popover-wrapper">
+          <button class="popover-btn nostyle">
+            <i class="fa fa-share-alt fa-lg"></i>
+          </button>
+          <div class="popover-content">
+            <ul class="social-networks">
+              <%= social_share_button_tag food.name, desc: food.description,
+                                          via: "AwesomeVn", image: food.file %>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 info-food">
+        <span class="col-xs-3">
+          <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
+        </span>
+          <span class="col-xs-9 text-right">
+          <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+        </span>
+        </div>
+      </div>
+    </div>
+    <div class="block-content">
+      <%= link_to food_path(food), title: food.name do %>
+          <h4 class="block-name"><%= food.name %></h4>
+      <% end %>
+      <h6 class="block-address" title="address">
+        Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
+      </h6>
+      <div class="block-meta">
+        <div class="block-counts">
+          <i class="lz fa fa-heart"></i><%= food.score %>
+        </div>
+      </div>
+      <div class="block-activity">
+        <div class="profile-card">
+          <div class="pc-image">
+            <%= image_tag food.user.avatar, class: "img", title:food.user.username,
+                          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+          </div>
+          <div class="pc-content">
+            <h4 class="col-sm-12 pc-name">
+              <span style="color: gray;font-size: 0.9vw">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
+            </h4>
+            <div class="col-sm-12 cook-details">
+              <div class="col-sm-4 cook-details__followers followers-count cook1">
+                <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
+                  <i class="fa fa-users"></i>
+                </li>
+                <li></li>
+              </div>
+              <div class="col-sm-4 cook cook-details__favorites favorites-count">
+                <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
+                  <i class="fa fa-heart"></i>
+                </li>
+                <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+              </div>
+              <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
+                <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera" aria-hidden="true"></i></li>
+                <li><%= food.user.foods.count %></li>
+              </div>
+            </div>
+          </div><br>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
