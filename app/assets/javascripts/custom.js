@@ -318,7 +318,7 @@ $(document).on('click', '#btn-submit-order',function(e){
 });
 $(document).ready(function(){
   $('.carousel').owlCarousel({
-    // autoPlay: 3000,
+    autoPlay: 3000,
     stopOnHover: true,
     touchDrag: true,
     rewindNav: true,

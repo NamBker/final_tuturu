@@ -38,13 +38,15 @@
         </div>
         <h2><strong><%= food.name %></strong></h2>
         <!--rating stars-->
-        <div class="recipe-summary__stars">
-            <%= rating_for food, "price", star: 5, half_show: true, disable_after_rate: false,
-              enable_half: true, target: '#hintDiv' %>
-            <div id="hintDiv"></div>
+        <div class="recipe-summary__stars" id="rate_scope">
           <span class="rate_score">
             Original score: <%= number_with_precision(food.avg_rating_dimension_price(food), precision: 1) %>
           </span>
+          <div style="min-height: 60px">
+            <%= rating_for food, "price", star: 5, half_show: true, disable_after_rate: false,
+              enable_half: true, target: '#hintDiv' %>
+            <div id="hintDiv"></div>
+          </div>
           <!--<div class="rating-stars">-->
             <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
             <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
@@ -112,8 +114,8 @@
 
 <% if user_signed_in? %>
 	<% if current_user.id == food.user.id %>
-    <%=  link_to "Edit", edit_food_path(food) %>
-    <%= link_to "Delete", food_path(food),
+    <%= link_to "Edit post", edit_food_path(food) %>&nbsp;&nbsp;&nbsp;
+    <%= link_to "Delete post", food_path(food),
       method: :delete, data: { confirm: "Are you sure?" } %><br>
   <% else %>
   <% end %>
@@ -139,7 +141,7 @@
 </section>
 
 <div id="comments_<%= food.id %>">
-  <% if food.comments %>
+  <% if food.comments.order("created_at desc") %>
     <%= render food.comments %>
   <% end %>
 </div>

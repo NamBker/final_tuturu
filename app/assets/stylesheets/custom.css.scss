@@ -1302,6 +1302,7 @@ footer {
 
 .view {
   font-size: 18px;
+  padding-bottom: 30px;
 }
 .view {
   background: white;
@@ -2154,7 +2155,6 @@ img.rec-photo {
   overflow: hidden;
   display: block;
   white-space: nowrap;
-  text-transform: capitalize;
   text-overflow: ellipsis;
   float: left;
   padding: 0 3px 0 0;
