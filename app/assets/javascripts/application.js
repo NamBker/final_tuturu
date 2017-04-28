@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require bootstrap
 //= require social-share-button
@@ -20,3 +19,5 @@
 //= require jquery-ui
 //= require chosen
 //= require autocomplete-rails
+//= require jquery.raty
+//= require ratyrate

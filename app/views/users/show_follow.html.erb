@@ -6,14 +6,13 @@
     <div class="fb-profile-text">
       <div class="info-user">
         <h1><%= @user.username %></h1>
-        <p>Girls just wanna go fun.</p>
+        <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
       </div>
       <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
        <%= render 'shared/stats' %>
-       foods:</b> <%= @user.foods.count %>
         <% if @user.id == current_user.id%>
-          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-default" %>
-          <% else %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
+        <% else %>
           <% if current_user != @user %>
             <div id="follow_form" style="margin-top: 20px;">
               <% if current_user.following?(@user) %>
@@ -37,12 +36,48 @@
     <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-          <br></br>
-            <%= link_to gravatar_for(user, size: 30), user %>
-            <%= user.username %>
+          <br>
+            <%= image_tag user.avatar,
+              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <%= link_to user.username, user_path(user) %>
           <% end %>
         </div>
       <% end %>
   </div>
 </div>
 </div>
+<style>
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .img2 {
+    width: 200px;
+    height: 200px;
+  }
+  .button-follow{
+    color: #fff;
+    background-color: #1a8bf0;
+    border-radius: 6px;
+    border: 1px solid #1a8bf0;
+    font-family: "Helvetica Neue LT", "Hiragino Kaku Gothic Pro", "Helvetica", "Tahoma", "Arial", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    height: 40px;
+    width: 80px;
+  }
+  .button-follow:focus{
+    background-color: #64b2f8;
+    border: 1px solid #64b2f8;
+    outline: none;
+  }
+</style>

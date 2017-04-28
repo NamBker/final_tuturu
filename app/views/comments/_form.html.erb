@@ -1,0 +1,4 @@
+<%= form_for [@food, @comment], remote: true, class:"_k3t69" do |f| %>
+  <%= f.text_field :content, placeholder: 'Add a comment...', class:"_7uiwk _qy55y",
+    id: "comment_content_#{@food.id}"%>
+<% end %>

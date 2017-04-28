@@ -2,29 +2,58 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_food
 
+  def index
+    @comments = @food.comment.all
+  end
+
+  def edit
+    @comment = @food.comments.find_by id: params[:id]
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @comment = @food.comments.find_by id: params[:id]
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.html {redirect_to food_path(@food)}
+        format.js
+      end
+    else
+      flash[:alert] = "Something worng, try again"
+      render :back
+    end
+  end
+
   def create
     @comment = @food.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to :back
+      respond_to do |format|
+        format.html { redirect_to food_path(@food) }
+        format.js
+      end
     else
+      flash[:alert] = "Something went wrong."
       render food_path(@food)
-    end
-    respond_to do |format|
-      format.html
-      format.js
     end
   end
 
   def destroy
     @comment = @food.comments.find_by id: params[:id]
     @comment.destroy
-    redirect_to food_path(@food)
+    respond_to do |format|
+      format.html do
+        redirect_to @food
+      end
+      format.js
+    end
   end
 
   private
   def comment_params
-    params.require(:comment).permit :content
+    params.require(:comment).permit :content, :image
   end
 
   def set_food
