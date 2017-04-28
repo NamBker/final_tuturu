@@ -6,13 +6,13 @@
     <div class="fb-profile-text">
       <div class="info-user">
         <h1><%= @user.username %></h1>
-        <p>Girls just wanna go fun.</p>
+        <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
       </div>
       <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
        <%= render 'shared/stats' %>
         <% if @user.id == current_user.id%>
-          <%= link_to "プロフィールを編集", edit_user_registration_path, class: "btn btn-default" %>
-          <% else %>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
+        <% else %>
           <% if current_user != @user %>
             <div id="follow_form" style="margin-top: 20px;">
               <% if current_user.following?(@user) %>

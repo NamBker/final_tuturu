@@ -5,26 +5,26 @@
   <div class="item2 col-sm-3 item3">
     <div class="container2">
       <%= link_to food_path(food) do %>
-          <%= image_tag food.file,
-                        onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+        <%= image_tag food.file,
+          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
       <% end %>
       <div class="overlay">
         <div class="popover-wrapper2">
           <button class="popover-btn popover-btn2 nostyle">
             <% if user_signed_in? %>
-                <% if current_user.voted_up_on? food %>
-                    <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                    <% end %>
-                <% else %>
-                    <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <% end %>
+              <% if current_user.voted_up_on? food %>
+                <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                  <i class="fa fa-heart" aria-hidden="true"></i>
                 <% end %>
+              <% else %>
+                <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
             <% else %>
-                <%= link_to user_session_path do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                <% end %>
+              <%= link_to user_session_path do %>
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <% end %>
             <% end %>
           </button>
         </div>
@@ -35,7 +35,7 @@
           <div class="popover-content">
             <ul class="social-networks">
               <%= social_share_button_tag food.name, desc: food.description,
-                                          via: "AwesomeVn", image: food.file %>
+                via: "AwesomeVn", image: food.file %>
             </ul>
           </div>
         </div>

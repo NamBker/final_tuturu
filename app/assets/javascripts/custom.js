@@ -316,9 +316,9 @@ $(document).on('click', '#btn-submit-order',function(e){
     location.replace(d.path1);
   });
 });
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   $('.carousel').owlCarousel({
-    // autoPlay: 3000,
+    autoPlay: 3000,
     stopOnHover: true,
     touchDrag: true,
     rewindNav: true,
@@ -334,7 +334,7 @@ $(document).on('turbolinks:load', function(){
   });
 })
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   $('.carousel2').owlCarousel({
     stopOnHover: true,
     touchDrag: true,
@@ -351,7 +351,7 @@ $(document).on('turbolinks:load', function(){
   });
 })
 
-$(document).on('turbolinks:load',function(){
+$(document).ready(function(){
   var preview = $(".upload-preview img");
 
   $(".file").change(function(event){

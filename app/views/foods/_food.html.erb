@@ -1,41 +1,131 @@
-<%= image_tag food.user.avatar, class:"avatar",
-  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
-<%= link_to food.user.username, food.user %><br>
-<strong><%= food.name %></strong> at <%= food.created_at.in_time_zone("Hanoi") %><br>
-<%= image_tag food.file, style:"margin-bottom: 10px",
-  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
-<%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVn",
-  image: food.file %>
-Description: <%= food.description %><br>
-Address: <%= food.address %><br>
-Price: <%= food.price %><br>
-Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><br>
-Review: <%= food.review %><br>
-<% if food.score > 1 %><b><%= food.score %></b> likes
-<% elsif food.score == 1 %><b><%= food.score %></b> like
-<% else %>
-<% end %><br><br>
+<div class="summary-background">
+  <div class="summaryGroup clearfix">
+    <section class="hero-photo hero-photo--downsized">
+      <!--<a title="Save this recipe" class="favorite ng-isolate-scope">-->
+        <!--<span class="ng-binding"></span>-->
+      <!--</a>-->
+      <span class="hero-photo__image">
+        <%= image_tag food.file, class:"rec-photo",
+          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
+      </span>
+    </section>
+    <section class="recipe-summary clearfix">
+      <div class="photo-info">
+        <div class="ppc-owner">
+          <div class="profile-card-new pc-popup-photo">
+            <%= image_tag food.user.avatar, class:"img avatar pc-avatar",
+              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <div class="pc-content">
+              <h3 class="pc-title">
+                <%= link_to user_path(food.user) do %>
+                  <span style="font-size: 16px"><%= food.user.username %></span>
+                  <span><%= food.user.name %></span>
+                <% end %>
+              </h3>
+              <ul class="pc-meta">
+                <li>
+                  <% time = ((Time.now.in_time_zone("Hanoi") - food.created_at)/1.minute).round %>
+                  <% if time > 60 %>
+                    <% if time/60 > 24 %><%= time/1440 %>d
+                    <% else %><%= time/60 %>hr
+                    <% end %>
+                  <% else %><%= time %>min
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h2><strong><%= food.name %></strong></h2>
+        <!--rating stars-->
+        <div class="recipe-summary__stars" id="rate_scope">
+          <span class="rate_score">
+            Original score: <%= number_with_precision(food.avg_rating_dimension_price(food), precision: 1) %>
+          </span>
+          <div style="min-height: 60px">
+            <%= rating_for food, "price", star: 5, half_show: true, disable_after_rate: false,
+              enable_half: true, target: '#hintDiv' %>
+            <div id="hintDiv"></div>
+          </div>
+          <!--<div class="rating-stars">-->
+            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
+            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
+            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
+            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
+            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/half-star-2015.svg">-->
+          <!--</div>-->
+        </div>
+        <!-- total made it count & read review link -->
+        <div class="summary-stats-box">
+          <div class="total-made-it">
+            <div class="read--reviews">
+              <span>
+                <% if food.score > 1 %><%= food.score %> likes
+                <% else %><%= food.score %> like
+                <% end %>
+              </span>
+              <span>&nbsp;</span>
+              <span>&nbsp;|&nbsp;</span>
+              <span class="picture-count-link"><%= food.unique_impression_count %> views</span>
+            </div>
+          </div>
+        </div>
+        <div class="photo-caption">"<%= food.review %>"</div>
+        <div class="pt-detail-card">
+          <div>
+            <span class="label">
+              <span>Price: </span>
+            </span>
+            <span class="price">
+              <span>
+                <% if food.price %><%= food.price %>
+                <% else %>0
+                <% end %>
+              </span>
+              <span style="font-size:16px;">$</span>
+            </span>
+          </div>
+          <div>
+            <span class="label">
+              <span>Address: </span>
+            </span>
+            <a class="blue-text" href="#"></a>
+          </div>
+          <div>
+            <span class="label">
+              <span>Description: </span>
+            </span>
+            <span><%= food.description %></span>
+          </div>
+          <div>
+            <span class="label">
+              <span>Tags: </span>
+            </span>
+            <%= raw food.tags.map(&:name).map {|t| link_to t, tag_path(t), class:"blue-text"}.join(', ') %>
+          </div>
+        </div>
+        <h3 class="heading__h2--gutters share">Share</h3><hr style="margin: 10px 0">
+        <%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVn",
+          image: food.file %>
+      </div>
+    </section>
+  </div>
+</div>
+
 <% if user_signed_in? %>
-  <% if current_user.id == food.user.id %>
-    <%=  link_to "Edit", edit_food_path(food) %>
-    <%= link_to "Delete", food_path(food),
-      method: :delete, data: { confirm: "Are you sure?" } %>
-  <% else %>Comments:
+	<% if current_user.id == food.user.id %>
+    <%= link_to "Edit post", edit_food_path(food) %>&nbsp;&nbsp;&nbsp;
+    <%= link_to "Delete post", food_path(food),
+      method: :delete, data: { confirm: "Are you sure?" } %><br>
+  <% else %>
   <% end %>
 <% else %>
-  Login or
-  <%= link_to "Register", new_user_registration_path %> or
-  <%= link_to "Login", user_session_path %>
+  <%= link_to "Login", user_session_path %> or
+  <%= link_to "Register", new_user_registration_path %>
   to comment.
 <% end %><br>
 
-<div id="comments_<%= food.id %>">
-  <% if food.comments %>
-    <%= render food.comments %>
-  <% end %>
-</div>
-
-<section class="_jveic _dsvln">
+<section class="_jveic _dsvln col-sm-12">
   <% if user_signed_in? %>
     <% if current_user.voted_up_on? food %>
       <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
@@ -49,4 +139,9 @@ Review: <%= food.review %><br>
     <%= render "comments/form" %>
   <% end %>
 </section>
-<br>
+
+<div id="comments_<%= food.id %>">
+  <% if food.comments.order("created_at desc") %>
+    <%= render food.comments %>
+  <% end %>
+</div>

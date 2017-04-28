@@ -11,7 +11,9 @@
 
               <div class="field">
                 <%= f.label :username, class:"form-label" %>
-                <span style="font-size: 0.8vm !important; font-style: italic"> (6 to12 characters)</span>
+                <span style="font-size: 12px !important; font-style: italic;display: inline-block">
+                  (6 to12 characters)
+                </span>
                 <%= f.text_field :username, autofocus: true, class: "form-control", min: 6, max: 12 %>
               </div>
 

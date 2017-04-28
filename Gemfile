@@ -36,6 +36,7 @@ gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "omniauth-instagram"
 gem "impressionist"
+gem "ratyrate"
 
 group :development, :test do
   gem "byebug", platform: :mri

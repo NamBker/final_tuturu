@@ -4,7 +4,7 @@ class CreateFoods < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :name
       t.string :address
-      t.integer :price
+      t.integer :price, default: 0
       t.text :description
       t.text :review
       t.string :file

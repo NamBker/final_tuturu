@@ -1,4 +1,3 @@
-
 puts "Create 5 User of TEAM"
 User.create!(username: "admin111",
  email: "admin@gmail.com",
@@ -8,11 +7,11 @@ User.create!(username:  "namnguyen",
  email: "nam@gmail.com",
  password:              "123456",
  password_confirmation: "123456")
-User.create!(username:  "hiennguyen",
+User.create!(username:  "hienvu",
  email: "hien@gmail.com",
  password:              "123456",
  password_confirmation: "123456")
-User.create!(username:  "ducnguyen",
+User.create!(username:  "ducdoanh",
  email: "duc@gmail.com",
  password:              "123456",
  password_confirmation: "123456")
@@ -21,7 +20,6 @@ User.create!(username:  "longtran",
  email: "long@gmail.com",
  password:              "123456",
  password_confirmation: "123456")
-
 
 puts "Faker 50 Food"
 users = User.order(:created_at).take(6)
