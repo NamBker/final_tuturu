@@ -33,7 +33,9 @@
           <div class="blog-sub-nav-item">
             <a href="#" class="blog-sub-nav-item-link">
               <div class="blog-sub-nav-item-label">Followers</div>
-              <div class="blog-sub-nav-item-data">0</div>
+              <div class="blog-sub-nav-item-data">
+                <%= current_user.followers.count %>
+              </div>
             </a>
           </div>
           <div class="blog-sub-nav-item">
