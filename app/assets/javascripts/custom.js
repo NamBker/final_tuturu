@@ -108,7 +108,7 @@ $.fn.backgroundCycle = function (e) {
 var slideshow = function() {
   $('#top').backgroundCycle({
     imageUrls: [
-      "https://drive.google.com/uc?id=0B9VYzD5V43juM052S3RlZU1OY2c",
+      "http://blog.asurion.com/wp-content/uploads/2016/11/iStock_83585783_MEDIUM-670x447.jpg",
       "http://i.imgur.com/wB1w726.jpg",
       "http://i.imgur.com/ySkkJN0.jpg",
       "http://i.imgur.com/VrlU4g4.jpg",
@@ -134,7 +134,7 @@ $(document).ready(setTimeout(function(){
   $('.alert, .success, .error, .notice, .info').fadeOut(1000);
 }, 4000));
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   var showChar = 120;
   var ellipsestext = "...";
   var moretext = "Show more";
@@ -177,7 +177,7 @@ $(document).on('turbolinks:load', function(){
   });
 });
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   $(".container2").hover(function(){
         $(this).find(".overlay").fadeIn();
       }
@@ -355,6 +355,7 @@ $(document).ready(function(){
   var preview = $(".upload-preview img");
 
   $(".file").change(function(event){
+    $(".upload-preview").fadeIn('fast');
     var input = $(event.currentTarget);
     var file = input[0].files[0];
     var reader = new FileReader();
@@ -363,5 +364,6 @@ $(document).ready(function(){
       preview.attr("src", image_base64);
     };
     reader.readAsDataURL(file);
+    $('.old-img').fadeOut('fast');
   });
 });
