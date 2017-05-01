@@ -1,0 +1,8 @@
+<div class="section">
+  <br><br><br>
+  <% current_user.following.each do |followed| %>
+      <% followed.foods.each do |food| %>
+         <%= food.name %><br>
+      <% end %>
+  <% end %>
+</div>

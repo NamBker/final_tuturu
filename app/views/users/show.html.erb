@@ -23,7 +23,6 @@
             </div>
           <% end %>
         <% end %>
-       
       </div>
     </div>
   </div>
@@ -38,13 +37,13 @@
           <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
           <span class="overlay">
             <i class="glyphicon glyphicon-fullscreen"></i>
-            <%= food.name %>
+            <h3 style="color: yellow;font-weight: 600"><%= food.name %></h3>
           </span>
           <% end %>
         </div>
         <input type="checkbox" id="toggle-1" class="panel-image-toggle">
         <div class="panel-body">
-          <h4><%= link_to food.name, food_path(food) %></h4>
+          <h3><%= link_to food.name, food_path(food) %></h3>
           <p> <%= link_to "View", food_path(food) %></p>
         </div>
         <div class="panel-footer text-center">

@@ -1,4 +1,7 @@
 <ul class="nav navbar-nav navbar-right" data-wow-delay="0.1s">
+<!--   <li>
+    <= render "notifications/notification_dropdown" %>
+  </li> -->
   <li><%= link_to "Upload", new_food_path %></li>
   <li class="dpdwn">
     <%= link_to user_path(current_user), method: :get do %>
@@ -24,7 +27,7 @@
           <hr class="horizon">
           <div class="blog-sub-nav-item">
             <%= link_to user_path(current_user), class:"blog-sub-nav-item-link" do %>
-              <div class="blog-sub-nav-item-label">Photo</div>
+              <div class="blog-sub-nav-item-label">Photos</div>
               <div class="blog-sub-nav-item-data">
                 <%= current_user.foods.count %>
               </div>
