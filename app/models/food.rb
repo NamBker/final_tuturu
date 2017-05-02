@@ -1,10 +1,11 @@
 class Food < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  # has_many :notices, dependent: :destroy
   has_many :impressions, as: :impressionable
 
   validates :name, presence: true
-  # validates :price, numericality: {greater_than: 0}
+  validates_length_of :name, maximum: 25
 
   mount_uploader :file, AvatarUploader
   acts_as_votable

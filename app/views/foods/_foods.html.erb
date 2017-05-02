@@ -1,8 +1,5 @@
-<div id="pagination" class="apple-pagination">
-  <%= paginate @foods, remote: true %>
-</div>
 <% @foods.each do |food| %>
-  <div class="item2 col-sm-3 item3">
+  <div class="item2 col-sm-4 item3">
     <div class="container2">
       <%= link_to food_path(food) do %>
         <%= image_tag food.file,
@@ -51,8 +48,15 @@
     </div>
     <div class="block-content">
       <%= link_to food_path(food), title: food.name do %>
-          <h4 class="block-name"><%= food.name %></h4>
+        <h4 class="block-name"><%= food.name %></h4>
       <% end %>
+      <h6 class="block-description">
+        <% if food.review.present? %>
+          <%= truncate food.review, length: 50 %>
+          <%= link_to 'read more', food %>
+        <% else %>No review
+        <% end %>
+      </h6>
       <h6 class="block-address" title="address">
         Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
       </h6>
@@ -65,7 +69,7 @@
         <div class="profile-card">
           <div class="pc-image">
             <%= image_tag food.user.avatar, class: "img", title:food.user.username,
-                          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
           </div>
           <div class="pc-content">
             <h4 class="col-sm-12 pc-name">
@@ -73,20 +77,22 @@
             </h4>
             <div class="col-sm-12 cook-details">
               <div class="col-sm-4 cook-details__followers followers-count cook1">
-                <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
+                <div class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
                   <i class="fa fa-users"></i>
-                </li>
-                <li></li>
+                </div>
+                <div><%= food.user.followers.count %></div>
               </div>
               <div class="col-sm-4 cook cook-details__favorites favorites-count">
-                <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
+                <div class="icon--cook-card-favorite" title="Likes" style="color: orange">
                   <i class="fa fa-heart"></i>
-                </li>
-                <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+                </div>
+                <div><%= food.user.foods.sum(:cached_votes_up) %></div>
               </div>
               <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
-                <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera" aria-hidden="true"></i></li>
-                <li><%= food.user.foods.count %></li>
+                <div class="icon--cook-card-made" title="Photo">
+                  <i class="fa fa-camera" aria-hidden="true"></i>
+                </div>
+                <div><%= food.user.foods.count %></div>
               </div>
             </div>
           </div><br>

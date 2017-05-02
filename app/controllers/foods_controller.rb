@@ -6,8 +6,9 @@ class FoodsController < ApplicationController
   autocomplete :tag, :name, class_name: 'ActsAsTaggableOn::Tag'
 
   def index
-    @search = Food.ransack params[:q]
-    @foods = @search.result.page(params[:page]).per_page Settings.limit
+    q = params[:q]
+    @foods = Food.ransack(name_or_description_cont: params[:q]).result.page(params[:page]).per_page(4)
+    @users = User.ransack(username_or_name_cont: params[:q]).result.page(params[:page]).per_page(4)
   end
 
   def show

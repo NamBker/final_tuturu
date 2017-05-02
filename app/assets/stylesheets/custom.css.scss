@@ -1176,7 +1176,7 @@ footer {
 
 .uk-overlay {
   background-color: black;
-  height: 100%;
+  height: 98%;
   left: 0;
   opacity: .5;
   position: absolute;
@@ -1538,9 +1538,9 @@ footer {
   font-size: 1.6em;
 }
 
-.popover-btn2 i {
+.popover-wrapper2 .popover-btn2 i {
   position: absolute;
-  margin-top: 40%;
+  transform: translateY(-40%);
   right: 15%;
   color: red !important;
   font-size: 1.6em;
@@ -1558,29 +1558,25 @@ footer {
 .social-networks {
   width: 200px;
   box-shadow: 0 0 100px #666;
-}
-.social-networks {
   background: transparent;
   display: inline-block;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.social-networks a {
-  overflow: hidden;
-  display: block;
-  width: 32px !important;
-  height: 32px !important;
-  text-align: center;
-  line-height: 32px;
-  cursor: pointer;
+  a {
+    overflow: hidden;
+    display: block;
+    width: 32px !important;
+    height: 32px !important;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+  }
 }
 
 .social-share-button {
   .ssb-icon {
     background-size: 32px 32px !important;
-    border-radius: 50%;
     &:hover {
       filter: brightness(200%);
     }
@@ -1610,9 +1606,10 @@ footer {
 }
 .block-content h4.block-name {
   font-family: 'Nunito';
-  font-size: 1.8vw;
+  font-size: 24px;
   font-weight: bolder;
   margin: 0;
+  max-width: 85%;
   min-height: 80px;
 }
 .block-content .block-address {
@@ -1657,7 +1654,7 @@ footer {
   max-width: 100%;
 }
 .profile-card .pc-content {
-  margin-left: 35px;
+  margin-left: 50px;
 }
 .pc-name {
   font-size: 1.2vw;
@@ -1672,7 +1669,7 @@ footer {
 
 .block-meta {
   position: absolute;
-  top: 28px;
+  top: 5px;
   right: 20px;
   display: inline-block;
   align-items: flex-start;
@@ -1685,6 +1682,11 @@ footer {
 .block-meta .block-counts {
   font-size: 2vw;
   vertical-align: top;
+}
+.block-description {
+  font-size: 18px;
+  margin-top: -45px;
+  min-height: 40px;
 }
 .lz {
   line-height: inherit;
@@ -1704,7 +1706,7 @@ footer {
   border-bottom: 1px solid #d7d7d7;
   margin-left: 10px;
   padding: 0;
-  width: 23%;
+  width: 32%;
 }
 .item3 {
   margin-top: 20px;
@@ -1819,7 +1821,7 @@ footer {
 }
 
 .old-img {
-  width: 30vw;
+  width: 600px;
   height: auto;
 }
 .navbar-nav > li > a {
@@ -2025,8 +2027,8 @@ img.rec-photo {
 
 .photo-info {
   float: left;
-  margin-left: 80px;
-  width: 514px;
+  margin-left: 60px;
+  width: 85%;
   position: relative;
   h3 {
     color: lightgray;
@@ -2381,4 +2383,27 @@ img.rec-photo {
     margin-left: 0;
   }
 
+}
+
+.share {
+  .social-share-button .ssb-icon {
+    border-radius: 50% !important;
+  }
+}
+
+a.morelink {
+  text-decoration:none;
+  outline: none;
+}
+.morecontent span {
+  display: none;
+}
+.review {
+  font-size: 14px;
+}
+.notification-dropdown {
+  margin-top: 10px;
+  button {
+    border: none;
+  }
 }

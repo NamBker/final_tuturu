@@ -3,8 +3,8 @@
   <div class="upload-preview">
     <img />
   </div>
-  <%= f.input :file, class:"file" %>
-  <%= f.input :name %>
+  <%= f.input :file, class:"file" %><br>
+  <%= f.input :name, max: 25 %><h6>* Food name must be less than 25 characters</h6>
   <%= f.input :description %>
   <%= f.input :address %>
   <%= f.input :price, min: 0 %>
