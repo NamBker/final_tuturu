@@ -1,7 +1,7 @@
 class Food < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
-  # has_many :notices, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :impressions, as: :impressionable
 
   validates :name, presence: true

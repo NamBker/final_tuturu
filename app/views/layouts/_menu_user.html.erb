@@ -1,7 +1,4 @@
-<ul class="nav navbar-nav navbar-right" data-wow-delay="0.1s">
-<!--   <li>
-    <= render "notifications/notification_dropdown" %>
-  </li> -->
+<ul class="nav navbar-nav navbar-right">
   <li><%= link_to "Upload", new_food_path %></li>
   <li class="dpdwn">
     <%= link_to user_path(current_user), method: :get do %>
@@ -63,9 +60,12 @@
       </ul>
     </div>
   </li>
+  <li>
+    <%= render "notifications/notification_dropdown" %>
+  </li>
 </ul>
 <style>
-  ul > li:last-child ul{
+  ul > li ul{
     right: 4px;
     left: auto;
   }

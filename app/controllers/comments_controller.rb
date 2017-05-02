@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     @comment = @food.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      # create_notification @food, @comment
+      create_notification @food, @comment
       respond_to do |format|
         format.html { redirect_to food_path(@food) }
         format.js
@@ -61,12 +61,12 @@ class CommentsController < ApplicationController
     @food = Food.find_by id: params[:food_id]
   end
 
-  def create_notification(food, comment)  
+  def create_notification(food, comment)
     return if food.user.id == current_user.id 
-    Notification.create(user_id: food.user.id,
+    Notification.create!(user_id: food.user.id,
                         notified_by_id: current_user.id,
                         food_id: food.id,
                         comment_id: comment.id,
-                        notice_type: 'comment')
+                        notice_type: 'commente')
    end  
 end

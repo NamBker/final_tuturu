@@ -7,7 +7,7 @@ class FoodsController < ApplicationController
 
   def index
     q = params[:q]
-    @foods = Food.ransack(name_or_description_cont: params[:q]).result.page(params[:page]).per_page(4)
+    @foods = Food.ransack(name_or_description_or_review_cont: params[:q]).result.page(params[:page]).per_page(4)
     @users = User.ransack(username_or_name_cont: params[:q]).result.page(params[:page]).per_page(4)
   end
 
@@ -56,6 +56,7 @@ class FoodsController < ApplicationController
 
   def upvote
     @food.upvote_by current_user
+    create_notification @food
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
@@ -110,4 +111,12 @@ class FoodsController < ApplicationController
     @food = Food.find_by id: params[:id]
     @food.impressions.create(ip_address: request.remote_ip)
   end
+
+  def create_notification(food)
+    return if food.user.id == current_user.id 
+    Notification.create!(user_id: food.user.id,
+                        notified_by_id: current_user.id,
+                        food_id: food.id,
+                        notice_type: 'like')
+   end  
 end

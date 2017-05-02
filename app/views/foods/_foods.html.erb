@@ -10,17 +10,17 @@
           <button class="popover-btn popover-btn2 nostyle">
             <% if user_signed_in? %>
               <% if current_user.voted_up_on? food %>
-                <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
+                <%= link_to dislike_food_path(food), method: :put do %>
+                  <i class="fa fa-heart"></i>
                 <% end %>
               <% else %>
-                <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <%= link_to like_food_path(food), method: :put do %>
+                  <i class="fa fa-heart-o"></i>
                 <% end %>
               <% end %>
             <% else %>
               <%= link_to user_session_path do %>
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <i class="fa fa-heart-o"></i>
               <% end %>
             <% end %>
           </button>
@@ -78,21 +78,18 @@
             <div class="col-sm-12 cook-details">
               <div class="col-sm-4 cook-details__followers followers-count cook1">
                 <div class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
-                  <i class="fa fa-users"></i>
+                  <i class="fa fa-users"></i> <%= food.user.followers.count %>
                 </div>
-                <div><%= food.user.followers.count %></div>
               </div>
               <div class="col-sm-4 cook cook-details__favorites favorites-count">
                 <div class="icon--cook-card-favorite" title="Likes" style="color: orange">
-                  <i class="fa fa-heart"></i>
+                  <i class="fa fa-heart"></i> <%= food.user.foods.sum(:cached_votes_up) %>
                 </div>
-                <div><%= food.user.foods.sum(:cached_votes_up) %></div>
               </div>
               <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
                 <div class="icon--cook-card-made" title="Photo">
-                  <i class="fa fa-camera" aria-hidden="true"></i>
+                  <i class="fa fa-camera"></i> <%= food.user.foods.count %>
                 </div>
-                <div><%= food.user.foods.count %></div>
               </div>
             </div>
           </div><br>
