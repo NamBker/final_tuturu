@@ -21,18 +21,18 @@ User.create!(username:  "longtran",
  password:              "123456",
  password_confirmation: "123456")
 
-puts "Faker 50 Food"
-users = User.order(:created_at).take(6)
-50.times do
-  content = Faker::Lorem.sentence(5)
-  users.each { |user| user.foods.create!(
-  	description: content,
-  	name:Faker::Name.name ,
-  	address: Faker::Address.street_address,
-  	price: Faker::Number.decimal(2, 3),
-  	file:Faker::Avatar.image("my-own-slug", "50x50"),
-  	) }
-end
+# puts "Faker 50 Food"
+# users = User.order(:created_at).take(6)
+# 50.times do
+#   content = Faker::Lorem.sentence(5)
+#   users.each { |user| user.foods.create!(
+#   	description: content,
+#   	name:Faker::Name.name ,
+#   	address: Faker::Address.street_address,
+#   	price: Faker::Number.decimal(2, 3),
+#   	file:Faker::Avatar.image("my-own-slug", "50x50"),
+#   	) }
+# end
 
 # puts "create 20 user "
 # 20.times do |n|
@@ -50,8 +50,8 @@ end
 # Following relationships
 users = User.all
 user  = users.first
-following = users[2..10]
-followers = users[3..15]
+following = users[2..5]
+followers = users[3..5]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
