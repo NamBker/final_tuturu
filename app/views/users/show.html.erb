@@ -5,7 +5,7 @@
     onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
     <div class="fb-profile-text">
       <div class="info-user">
-        <h1><%= @user.username %></h1>
+        <h1><%= link_to @user.username,@user_path, class:"username_class"%></h1>
         <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
       </div>
       <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
@@ -87,6 +87,9 @@
     color: #000;
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
+  }
+  .username_class{
+    color:#000;
   }
   img {
     height: auto;

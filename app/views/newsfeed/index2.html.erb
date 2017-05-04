@@ -1,0 +1,97 @@
+<div class="container">
+<div class="fb-profile" style="margin-top:100px;">
+
+    <table class="table user-list">
+      <thead>
+        <tr>
+          <th><span>RECOMMENDED FOR YOU</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+         <td>
+           <% if user.avatar.present? %>
+           <%= image_tag user.avatar %>
+           <% else %>
+           <img src="http://bootdey.com/img/Content/user_3.jpg" alt="">
+           <% end %>                  
+           <%= link_to user.username, user_path(user), class:"user-link" %>
+           <span class="user-subhead">
+             <% if user.gender %>Female
+             <% else %>Male
+             <% end %>
+           </span>
+         </td>
+         <td class="text-center">
+         <button type="submit" class="btn btn-primary follow-button">Follows</button>
+        </td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <h2>Smart Image Preview :: Limit  Preview Image - Scroll Down Hover - Show Fullscreen</h2>
+  <div class="thread-parent">
+    <p>Proactively whiteboard intermandated intellectual capital via just in time supply chains. Dynamically productize excellent quality vectors rather than distributed data. </p>
+    <img src="http://i.imgur.com/u6NNIP6.jpg">
+    <p>Completely myocardinate multimedia based total linkage for value-added experiences. Conveniently extend standardized scenarios rather than synergistic initiatives. Completely </p>
+    <img src="http://i.imgur.com/6Df0zT4.jpg">
+    <p>Synergistically utilize just in time networks without turnkey vortals. Holisticly simplify sticky models vis-a-vis team building markets. Interactively actualize cinterfaces. Seamlessly target tactical infomediaries whereas value-added e-commerce.</p>
+    <img src="http://i.imgur.com/xNbkboD.jpg">
+    <p>Energistically brand superior experiences whereas scalable supply chains. Assertively restore best-of-breed quality vectors without.</p>
+    <img src="http://i.imgur.com/lOqi4O6.jpg">
+    <p>Compellingly productivate high-quality best practices with 2.0 mindshare. Compellingly cox" thinking.</p>
+  </div>
+</div>
+<style>
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  img {
+    height: auto;
+    width: 500px
+  }
+  .img2 {
+    width: 200px;
+    height: 200px;
+  }
+  .button-follow{
+    color: #fff;
+    background-color: #1a8bf0;
+    border-radius: 6px;
+    border: 1px solid #1a8bf0;
+    font-family: "Helvetica Neue LT", "Hiragino Kaku Gothic Pro", "Helvetica", "Tahoma", "Arial", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    height: 40px;
+    width: 80px;
+  }
+  .button-follow:focus{
+    background-color: #64b2f8;
+    border: 1px solid #64b2f8;
+    outline: none;
+  }
+</style>

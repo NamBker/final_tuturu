@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "foods#index"
-  get "static_pages/help"
+  get"help" => "static_pages#help" 
   devise_for :users, controllers: { registrations: :registrations }
   get "foods/newest" => "foods#newest", as: :foods_newest
   get "foods/liked" => "foods#liked", as: :foods_liked
@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   resources :streams, only: :index
   get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get 'notifications', to: 'notifications#index'
+  resources :relationships, only: [:create, :destroy]
+  resources :newsfeed,only: [:index]
 end

@@ -1,17 +1,36 @@
+<div class="container" style="padding-top:50px;">
+  <div class="fb-profile">
+    <img align="left" class="fb-image-lg" src="http://i.imgur.com/kfhjpXw.jpg" alt="Profile image example"/>
+    <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail", align: "left",
+    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
+    <div class="fb-profile-text">
+      <div class="info-user">
+        <h1><%= @user.username %></h1>
+        <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
+      </div>
+      <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
+       <%= render 'shared/stats' %>
+        <% if @user.id == current_user.id%>
+          <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
+        <% else %>
+          <% if current_user != @user %>
+            <div id="follow_form" style="margin-top: 20px;">
+              <% if current_user.following?(@user) %>
+              <%= render 'unfollow' %>
+              <% else %>
+              <%= render 'follow' %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+       
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container userss" style="min-height: 95vh">                 
 <% provide(:title, @title) %>
 <div class="row">
-  <!--<aside class="col-md-4">-->
-    <!--<section class="user_info">-->
-      <!--<= image_tag @user.avatar %>-->
-      <!--<h1><= @user.name %></h1>-->
-      <!--<span><= link_to "view my profile", @user %></span>-->
-      <!--<span><b>foods:</b> <= @user.foods.count %></span>-->
-    <!--</section>-->
-    <!--<section class="stats">-->
-      <!--<= render 'shared/stats' %>-->
-    <!--</section>-->
-  <!--</aside>-->
   <div class="col-md-8">
     <h3><%= @title %></h3>
     <% if @users.any? %>
@@ -28,8 +47,38 @@
 </div>
 </div>
 <style>
-  img {
-    width: 50px;
-    height: 50px;
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .img2 {
+    width: 200px;
+    height: 200px;
+  }
+  .button-follow{
+    color: #fff;
+    background-color: #1a8bf0;
+    border-radius: 6px;
+    border: 1px solid #1a8bf0;
+    font-family: "Helvetica Neue LT", "Hiragino Kaku Gothic Pro", "Helvetica", "Tahoma", "Arial", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    height: 40px;
+    width: 80px;
+  }
+  .button-follow:focus{
+    background-color: #64b2f8;
+    border: 1px solid #64b2f8;
+    outline: none;
   }
 </style>

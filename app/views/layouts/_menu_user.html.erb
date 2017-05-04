@@ -1,4 +1,5 @@
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right" data-wow-delay="0.1s">
+  <li><%= link_to "Newsfeed", newsfeed_index_path %></li>
   <li><%= link_to "Upload", new_food_path %></li>
   <li class="dpdwn">
     <%= link_to user_path(current_user), method: :get do %>
