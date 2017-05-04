@@ -27,7 +27,7 @@ users = User.order(:created_at).take(6)
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.foods.create!(
   	description: content,
-  	name:Faker::Name.title,
+  	name:Faker::Name.name ,
   	address: Faker::Address.street_address,
   	price: Faker::Number.decimal(2, 3),
   	file:Faker::Avatar.image("my-own-slug", "50x50"),
