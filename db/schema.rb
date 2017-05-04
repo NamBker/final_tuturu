@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430165835) do
+ActiveRecord::Schema.define(version: 20170501040154) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 20170430165835) do
     t.boolean  "read",           default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "comment_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["food_id"], name: "index_notifications_on_food_id"
     t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"

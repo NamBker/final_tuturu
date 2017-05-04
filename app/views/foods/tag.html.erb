@@ -1,12 +1,16 @@
 <div class="section user-site">
   <br><br><br>
-  <div id="pagination" class="apple-pagination">
+  <% flash.each do |key, value| %>
+    <div class="flash-message <%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
+  <h2 style="color: #d80707">All foods in "<%= params[:tag] %>"</h2>
+  <div id="pagination" class="apple-pagination" style="margin: -20px 0">
     <%= paginate @foods, remote: true %>
   </div>
-  <h2 style="color: saddlebrown">All foods in "<%= params[:tag] %>"</h2>
   <div id="foods col-xs-12">
     <%= render "foods" %>
   </div>
   <br>
 </div>
-s
