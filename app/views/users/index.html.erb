@@ -36,7 +36,7 @@
                remote: true) do |f| %>
                <%= f.submit "Unfollow", class: "btn unfollow-button" %>
                <% end %>
-              
+               
 
                <% else %>
                <%= form_for(user.active_relationships.build, remote: true) do |f| %>

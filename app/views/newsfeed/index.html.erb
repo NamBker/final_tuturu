@@ -34,24 +34,90 @@
  </div>
 </div>
 
+<div class="container" style="margin-top:100px;">
+  <div class="row form-group" id="posts">
+    <% @foods.each do |food| %>
+    <div class="col-xs-12 col-md-12" >
+      <div class="panel panel-default">
+        <div class="panel-image">
+          <%= link_to(food_path(food),:class => "zoom") do %>
+          <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+          <span class="overlay">
+            <i class="glyphicon glyphicon-fullscreen"></i>
+            <%= food.name %>
+          </span>
+          <% end %>
+        </div>
+        <input type="checkbox" id="toggle-1" class="panel-image-toggle">
+        <div class="panel-body">
+          <h4><%= link_to food.name, food_path(food) %></h4>
+          <p> <%= link_to "View", food_path(food) %></p>
+        </div>
+        <div class="panel-footer text-center">
+          <% if @user == current_user %>
+          <%= link_to "Edit", edit_food_path(food) %>
+          <%= link_to "Delete", food_path(food),
+          method: :delete, data: { confirm: "Are you sure?" } %>
+          <% else %>
+          <% end %>
+          <!--<a href="#download"><span class="glyphicon glyphicon-download"></span></a>-->
+          <!--<a href="#facebook"><span class="fa fa-facebook"></span></a>-->
+          <!--<a href="#twitter"><span class="fa fa-twitter"></span></a>-->
+          <!--<a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>-->
+          <div class="social-share-button" data-title="sushi" data-img="/uploads/food/file/1/sushi-trung-ca-hoi.JPG" data-url="" data-desc="brtnyumi" data-via="AwesomeVn">
+            <a rel="nofollow " data-site="twitter" class="fa fa-twitter" onclick="return SocialShareButton.share(this);" title="Share to Twitter" href="#"></a>
+            <a rel="nofollow " data-site="facebook" class="fa fa-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#"></a>
+            <a rel="nofollow " data-site="google_plus" class="fa fa-google-plus" onclick="return SocialShareButton.share(this);" title="Share to Google+" href="#"></a>
+            <a rel="nofollow " data-site="tumblr" class="fa fa-tumblr" onclick="return SocialShareButton.share(this);" title="Share to Tumblr" href="#"></a>
+            <a rel="nofollow " data-site="pinterest" class="fa fa-pinterest" onclick="return SocialShareButton.share(this);" title="Share to Pinterest" href="#"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
 
-
-<div class="container">
-  <h2>Smart Image Preview :: Limit  Preview Image - Scroll Down Hover - Show Fullscreen</h2>
-  <div class="thread-parent">
-    <p>Proactively whiteboard intermandated intellectual capital via just in time supply chains. Dynamically productize excellent quality vectors rather than distributed data. </p>
-    <img src="http://i.imgur.com/u6NNIP6.jpg">
-    <p>Completely myocardinate multimedia based total linkage for value-added experiences. Conveniently extend standardized scenarios rather than synergistic initiatives. Completely </p>
-    <img src="http://i.imgur.com/6Df0zT4.jpg">
-    <p>Synergistically utilize just in time networks without turnkey vortals. Holisticly simplify sticky models vis-a-vis team building markets. Interactively actualize cinterfaces. Seamlessly target tactical infomediaries whereas value-added e-commerce.</p>
-    <img src="http://i.imgur.com/xNbkboD.jpg">
-    <p>Energistically brand superior experiences whereas scalable supply chains. Assertively restore best-of-breed quality vectors without.</p>
-    <img src="http://i.imgur.com/lOqi4O6.jpg">
-    <p>Compellingly productivate high-quality best practices with 2.0 mindshare. Compellingly cox" thinking.</p>
+    <%= link_to_next_page @foods, 'LOAD MORE', remote: true, id: 'load_more' %>
   </div>
 </div>
 
 <style>
+  /*// button reload*/
+  .paginator {
+    color: #4090DB;
+    height: 120px;
+    width: 120px;
+    margin: 60px auto 40px;
+    position: relative;
+    display: table;
+    border: 2px solid #4090DB;
+    border-radius: 50%;
+    :hover {
+      border: 1px solid #2D6DA8;
+      border-radius: 50%;
+    }
+  }
+
+  #load_more {
+    color: #4090DB;
+    height: 120px;
+    width: 120px;
+    margin: 60px auto 40px;
+    position: relative;
+    display: table;
+    border: 2px solid #4090DB;
+    border-radius: 50%;
+    display: table-cell;
+    font-size: 12px;
+    padding: 0px 9px;
+    height: 120px;
+    width: 120px;
+    vertical-align: middle;
+    text-decoration: none;
+    text-align: center;
+    a :hover {
+      color: #2D6DA8;
+    }
+  }
   body {
     background: #fafafa;
     color: #000;
@@ -59,8 +125,8 @@
     font-family: 'Open Sans', sans-serif;
   } 
   .img2 {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
   }
   .recomend{
     background-color: #fff;
