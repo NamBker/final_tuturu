@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20170501040154) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "image"
     t.index ["food_id"], name: "index_comments_on_food_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -36,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170501040154) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "address"
-    t.integer  "price"
+    t.integer  "price",           default: 0
     t.text     "description"
     t.text     "review"
     t.string   "file"
@@ -72,23 +71,11 @@ ActiveRecord::Schema.define(version: 20170501040154) do
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
-  create_table "notices", force: :cascade do |t|
-    t.integer  "food_id"
-    t.integer  "comment_id"
-    t.integer  "user_id"
-    t.boolean  "read"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_notices_on_comment_id"
-    t.index ["food_id"], name: "index_notices_on_food_id"
-    t.index ["user_id"], name: "index_notices_on_user_id"
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "notified_by_id"
     t.integer  "food_id"
-    t.integer  "identifier"
+    t.integer  "identifier",     default: 0
     t.string   "notice_type"
     t.boolean  "read",           default: false
     t.datetime "created_at",                     null: false
