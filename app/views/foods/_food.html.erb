@@ -7,7 +7,14 @@
       <span class="hero-photo__image">
         <%= image_tag food.file, class:"rec-photo",
           onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
-      </span>
+      </span><br>
+      <% if user_signed_in? %>
+        <% if current_user.id == food.user.id %>
+          <%= link_to "Edit", edit_food_path(food) %>&nbsp;
+          <%= link_to "Delete", food_path(food),
+            method: :delete, data: { confirm: "Are you sure?" } %><br>
+        <% end %>
+      <% end %>
     </section>
     <section class="recipe-summary clearfix">
       <div class="photo-info">
@@ -40,9 +47,9 @@
         <!--rating stars-->
         <div class="recipe-summary__stars" id="rate_scope">
           <span class="rate_score">
-            Original score: <%= number_with_precision(food.avg_rating_dimension_price(food), precision: 1) %>
+            Average score: <%= number_with_precision(food.avg_rating_dimension_price(food), precision: 1) %>
           </span>
-          <div style="min-height: 60px">
+          <div style="min-height: 50px">
             <%= rating_for food, "price", star: 5, half_show: true, disable_after_rate: false,
               enable_half: true, target: '#hintDiv' %>
             <div id="hintDiv"></div>
@@ -66,11 +73,17 @@
               </span>
               <span>&nbsp;</span>
               <span>&nbsp;|&nbsp;</span>
-              <span class="picture-count-link"><%= food.unique_impression_count %> views</span>
+              <span class="picture-count-link">
+                <% if food.unique_impression_count > 1 %>
+                  <%= food.unique_impression_count %> views
+                <% else %>
+                  <%= food.unique_impression_count %> view
+                <% end %>
+              </span>
             </div>
           </div>
         </div>
-        <div class="photo-caption">"<%= food.review %>"</div>
+        <div class="review more">"<%= food.review %>"</div>
         <div class="pt-detail-card">
           <div>
             <span class="label">
@@ -82,14 +95,14 @@
                 <% else %>0
                 <% end %>
               </span>
-              <span style="font-size:16px;">$</span>
+              <span style="font-size:16px;">vnd</span>
             </span>
           </div>
           <div>
             <span class="label">
               <span>Address: </span>
             </span>
-            <a class="blue-text" href="#"></a>
+            <span><%= food.address %></span>
           </div>
           <div>
             <span class="label">
@@ -105,28 +118,17 @@
           </div>
         </div>
         <h3 class="heading__h2--gutters share">Share</h3><hr style="margin: 10px 0">
-        <%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVn",
-          image: food.file %>
+        <div class="share">
+          <%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVN",
+            image: food.file %>
+        </div>
       </div>
     </section>
   </div>
 </div>
 
 <% if user_signed_in? %>
-	<% if current_user.id == food.user.id %>
-    <%= link_to "Edit post", edit_food_path(food) %>&nbsp;&nbsp;&nbsp;
-    <%= link_to "Delete post", food_path(food),
-      method: :delete, data: { confirm: "Are you sure?" } %><br>
-  <% else %>
-  <% end %>
-<% else %>
-  <%= link_to "Login", user_session_path %> or
-  <%= link_to "Register", new_user_registration_path %>
-  to comment.
-<% end %><br>
-
-<section class="_jveic _dsvln col-sm-12">
-  <% if user_signed_in? %>
+  <section class="_jveic _dsvln col-sm-12">
     <% if current_user.voted_up_on? food %>
       <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -137,8 +139,12 @@
       <% end %>
     <% end %>
     <%= render "comments/form" %>
-  <% end %>
-</section>
+  </section>
+<% else %>Please 
+  <%= link_to "Login", user_session_path %> or
+  <%= link_to "Register", new_user_registration_path %>
+  to comment.
+<% end %><br>
 
 <div id="comments_<%= food.id %>">
   <% if food.comments.order("created_at desc") %>

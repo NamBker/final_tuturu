@@ -1,0 +1,83 @@
+<div class="table-responsive" style="background: white">
+  <table class="table user-list">
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="user_info" style="width: 25%">
+            <% if user.avatar.present? %>
+              <%= image_tag user.avatar %>
+            <% else %>
+              <img src="http://i.imgur.com/qBkFZxB.jpg" alt="">
+            <% end %>
+            <%= link_to user.username, user_path(user), class:"user-link" %>
+            <span class="user-subhead" style="color: lightgrey;font-size: 12px;padding-bottom: 20px">
+              Joined <%= user.created_at.in_time_zone("Hanoi").strftime("%d %b %Y") %>
+            </span><br>
+            <span class="user-subhead">
+              Photos: <%= user.foods.count %>
+            </span><br>
+            <span class="user-subhead">
+              <% if user.id == current_user.id%>
+                <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default",
+                  style:"font-style: normal;font-size:14px !important;margin-top: 10px !important" %>
+              <% else %>
+                <% if current_user != user %>
+                  <div id="follow_form" style="margin-top: 10px;margin-left: 0;font-style: normal;">
+                    <% if current_user.following?(user) %>
+                      <%= form_for(current_user.active_relationships.find_by(followed_id: user.id),
+                                   html: { method: :delete } ) do |f| %>
+                        <%= f.submit "Unfollow", class: "btn unfollow-button",
+                          style:"margin-left:0;font-size: 13px" %>
+                      <% end %>
+                    <% else %>
+                      <%= form_for(current_user.active_relationships.build) do |f| %>
+                        <div><%= hidden_field_tag :followed_id, user.id %></div>
+                        <%= f.submit "Follow", class: "btn btn-primary follow-button",
+                          style:"margin-left:0;font-size: 13px" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </span>
+          </td>
+          <td>
+            <ul class="images">
+              <% user.foods.limit(5).each do |food| %>
+                <li class="action-open-thumbnail">
+                  <%= link_to foods_path(food), target:"_blank", class:"ui-scroll-view  _work", title:food.name do %>
+                    <%= image_tag food.file, id:"food-img" %>
+                    <div id="fullsize"></div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<style type="text/css">
+  .user_info img {
+    max-width: 100px !important;
+  }
+  .images {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  li {
+    display: inline-block;
+  }
+  .images img {
+    display: inline-block;
+    position: relative;
+    width: 128px;
+    height: 128px;
+    vertical-align: top;
+  }
+  ._work {
+      display: inline-block !important;
+      margin-bottom: 7px;
+  }
+</style>

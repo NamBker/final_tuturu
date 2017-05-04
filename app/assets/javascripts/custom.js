@@ -108,7 +108,7 @@ $.fn.backgroundCycle = function (e) {
 var slideshow = function() {
   $('#top').backgroundCycle({
     imageUrls: [
-      "https://drive.google.com/uc?id=0B9VYzD5V43juM052S3RlZU1OY2c",
+      "http://blog.asurion.com/wp-content/uploads/2016/11/iStock_83585783_MEDIUM-670x447.jpg",
       "http://i.imgur.com/wB1w726.jpg",
       "http://i.imgur.com/ySkkJN0.jpg",
       "http://i.imgur.com/VrlU4g4.jpg",
@@ -134,19 +134,19 @@ $(document).ready(setTimeout(function(){
   $('.alert, .success, .error, .notice, .info').fadeOut(1000);
 }, 4000));
 
-$(document).on('turbolinks:load', function(){
-  var showChar = 120;
+$(document).ready(function(){
+  var showChar = 50;
   var ellipsestext = "...";
-  var moretext = "Show more";
-  var lesstext = "Show less";
+  var moretext = "more";
+  var lesstext = "less";
   $('.more').each(function() {
     var content = $(this).html();
     if(content.length > showChar) {
       var c = content.substr(0, showChar);
       var h = content.substr(showChar, content.length - showChar);
       var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span>' +
-          '<span class="morecontent"><span>' + h +
-          '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+        '<span class="morecontent"><span>' + h +
+        '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
       $(this).html(html);
     }
   });
@@ -156,7 +156,7 @@ $(document).on('turbolinks:load', function(){
       $(this).html(moretext);
     } else {
       $(this).addClass("less");
-      $(this).html(lesstext);
+      $(this).html(lesstext );
     }
     $(this).parent().prev().toggle();
     $(this).prev().toggle();
@@ -326,9 +326,9 @@ $(document).ready(function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 4,
-    itemsDesktop: [1119, 4],
-    itemsDesktopSmall: [979, 3],
+    items: 3,
+    itemsDesktop: [1119, 3],
+    itemsDesktopSmall: [979, 2],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
   });
@@ -343,9 +343,9 @@ $(document).ready(function(){
     pagination: false,
     navigation: true,
     navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
-    items: 4,
-    itemsDesktop: [1119,4],
-    itemsDesktopSmall: [979, 3],
+    items: 3,
+    itemsDesktop: [1119,3],
+    itemsDesktopSmall: [979, 2],
     itemsTablet: [768,2],
     itemsMobile: [479,1]
   });
@@ -355,6 +355,7 @@ $(document).ready(function(){
   var preview = $(".upload-preview img");
 
   $(".file").change(function(event){
+    $(".upload-preview").fadeIn('fast');
     var input = $(event.currentTarget);
     var file = input[0].files[0];
     var reader = new FileReader();
@@ -363,5 +364,6 @@ $(document).ready(function(){
       preview.attr("src", image_base64);
     };
     reader.readAsDataURL(file);
+    $('.old-img').fadeOut('fast');
   });
 });

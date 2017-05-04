@@ -1,5 +1,14 @@
 <div class="section user-site">
   <br><br><br>
+  <% flash.each do |key, value| %>
+    <div class="flash-message <%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
+  <h2 style="color: #d80707">Newest images</h2>
+  <div id="pagination" class="apple-pagination" style="margin: -20px 0">
+    <%= paginate @foods, remote: true %>
+  </div>
   <div id="foods">
     <%= render "foods" %>
   </div>

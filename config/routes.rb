@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   post "/rate" => "rater#create", :as => "rate"
+  resources :streams, only: :index
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
+  get 'notifications', to: 'notifications#index'
   resources :relationships, only: [:create, :destroy]
   resources :newsfeed,only: [:index]
 end

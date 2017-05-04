@@ -1,40 +1,55 @@
 <body class="user-site">
-<div class="section">
-  <section id="top" class="parallax-section">
-    <div id="top2">
-      <div class="uk-overlay"></div>
-      <div class="uk-container">
-        <h1 class="uk-module-title-alt">AwesomeVN</h1><br><br>
-        <div id="test" class="fancy_title">
-          <canvas width=750 height=200></canvas>
-        </div>
-        <div id="mk-button-15" class="mk-button-container">
-          <%= link_to new_user_registration_path, target:"_self",
-            class:"mk-button mk-button--dimension-outline text-center" do %>
-            <span class="mk-button--text">Join us!</span>
-          <% end %>
-        </div>
-      </div>
+<br><br>
+<% if params[:q] %>
+  <% flash.each do |key, value| %>
+    <div class="flash-message <%= key %>">
+      <%= value %>
     </div>
-  </section>
-</div>
-<% flash.each do |key, value| %>
-  <div class="flash-message <%= key %>">
-    <%= value %>
-  </div>
-<% end %>
-<br><% if params[:q] %>
+  <% end %>
   <div class="section">
-    <h2>Search Results</h2>
-    <%= render "food" %>
+    <h2 style="color:firebrick">Search results:</h2>
+    <div class="col-xs-12" id="food-result">
+      <h3>Foods</h3>
+      <%= render "foods" %>
+    </div>
+    <div class="col-sm-12" id="user-result">
+      <h3>Users</h3>
+      <div id="pagination" class="apple-pagination">
+        <%= paginate @users %>
+      </div>
+      <%= render "users/users" %>
+    </div>
   </div>
 <% else %>
+  <div class="section">
+    <section id="top" class="parallax-section">
+      <div id="top2">
+        <div class="uk-overlay"></div>
+        <div class="uk-container">
+          <h1 class="uk-module-title-alt">AwesomeVN</h1><br><br>
+          <div id="test" class="fancy_title">
+            <canvas width=750 height=200></canvas>
+          </div>
+          <div id="mk-button-15" class="mk-button-container">
+            <%= link_to new_user_registration_path, target:"_self",
+              class:"mk-button mk-button--dimension-outline text-center" do %>
+              <span class="mk-button--text">Join us!</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <% flash.each do |key, value| %>
+    <div class="flash-message <%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
   <div id="tag_cloud">
     <% tag_cloud Food.tag_counts, %w{s m l} do |tag, css_class| %>
-        <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
     <% end %>
   </div><br><br>
-
   <div class="tm-block-top-a uk-block uk-block-default">
     <h2 class="home-list-title trailers">
       <span class="star"></span>
@@ -51,102 +66,109 @@
     </h2><br>
     <div class="carousel">
       <% Food.order("created_at desc").limit(10).each do |food| %>
-          <div class="item">
-            <div class="container2">
-              <%= link_to food_path(food) do %>
-                  <%= image_tag food.file,
-                                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
-              <% end %>
-              <div class="overlay">
-                <div class="popover-wrapper2">
-                  <button class="popover-btn popover-btn2 nostyle">
-                    <% if user_signed_in? %>
-                        <% if current_user.voted_up_on? food %>
-                            <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                                <i class="fa fa-heart" aria-hidden="true"></i>
-                            <% end %>
-                        <% else %>
-                            <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <% end %>
-                        <% end %>
+        <div class="item">
+          <div class="container2">
+            <%= link_to food_path(food) do %>
+              <%= image_tag food.file,
+                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <% end %>
+            <div class="overlay">
+              <div class="popover-wrapper2">
+                <button class="popover-btn popover-btn2 nostyle">
+                  <% if user_signed_in? %>
+                    <% if current_user.voted_up_on? food %>
+                      <%= link_to dislike_food_path(food), method: :put do %>
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      <% end %>
                     <% else %>
-                        <%= link_to user_session_path do %>
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <% end %>
+                      <%= link_to like_food_path(food), method: :put do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <% end %>
                     <% end %>
-                  </button>
-                </div>
-                <div class="popover-wrapper">
-                  <button class="popover-btn nostyle">
-                    <i class="fa fa-share-alt"></i>
-                  </button>
-                  <div class="popover-content">
-                    <ul class="social-networks">
-                      <%= social_share_button_tag food.name, desc: food.description,
-                                                  via: "AwesomeVn", image: food.file %>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-xs-12 info-food">
-              <span class="col-xs-3">
-                <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
-              </span>
-                  <span class="col-xs-9 text-right">
-                <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-              </span>
+                  <% else %>
+                    <%= link_to user_session_path do %>
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </button>
+              </div>
+              <div class="popover-wrapper">
+                <button class="popover-btn nostyle">
+                  <i class="fa fa-share-alt"></i>
+                </button>
+                <div class="popover-content">
+                  <ul class="social-networks">
+                    <%= social_share_button_tag food.name, desc: food.description,
+                      via: "AwesomeVN", image: food.file %>
+                  </ul>
                 </div>
               </div>
-            </div>
-            <div class="block-content">
-              <%= link_to food_path(food), title: food.name do %>
-                  <h4 class="block-name"><%= food.name %></h4>
-              <% end %>
-              <h6 class="block-address" title="address">
-                Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
-              </h6>
-              <div class="block-meta">
-                <div class="block-counts">
-                  <i class="lz fa fa-heart"></i><%= food.score %>
-                </div>
-              </div>
-              <div class="block-activity">
-                <div class="profile-card">
-                  <div class="pc-image">
-                    <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                                  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
-                  </div>
-                  <div class="pc-content">
-                    <h4 class="col-sm-12 pc-name">
-                      <span style="color: gray;font-size: 0.9vw">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
-                    </h4>
-                    <div class="col-sm-12 cook-details">
-                      <div class="col-sm-4 cook-details__followers followers-count cook1">
-                        <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
-                          <i class="fa fa-users"></i>
-                        </li>
-                        <li></li>
-                      </div>
-                      <div class="col-sm-4 cook cook-details__favorites favorites-count">
-                        <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
-                          <i class="fa fa-heart"></i>
-                        </li>
-                        <li><%= food.user.foods.sum(:cached_votes_up) %></li>
-                      </div>
-                      <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
-                        <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera"></i></li>
-                        <li><%= food.user.foods.count %></li>
-                      </div>
-                    </div>
-                  </div><br>
-                </div>
+              <div class="col-xs-12 info-food">
+                <span class="col-xs-3">
+                  <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
+                </span>
+                <span class="col-xs-9 text-right">
+                  <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                </span>
               </div>
             </div>
           </div>
+          <div class="block-content">
+            <%= link_to food_path(food), title: food.name do %>
+              <h4 class="block-name"><%= food.name %></h4>
+            <% end %>
+            <h6 class="block-description">
+              <% if food.review.present? %>
+                <%= truncate food.review, length: 50 %>
+                <%= link_to 'read more', food %>
+              <% else %>No review
+              <% end %>
+            </h6>
+            <h6 class="block-address">
+              Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
+            </h6>
+            <div class="block-meta">
+              <div class="block-counts">
+                <i class="lz fa fa-heart"></i><%= food.score %>
+              </div>
+            </div>
+            <div class="block-activity">
+              <div class="profile-card">
+                <div class="pc-image">
+                  <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
+                    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                </div>
+                <div class="pc-content">
+                  <h4 class="col-sm-12 pc-name">
+                    <span style="color: gray;font-size: 0.9vw">Posted by</span> <%= link_to food.user.username, user_path(food.user) %>
+                  </h4>
+                  <div class="col-sm-12 cook-details">
+                    <div class="col-sm-4 cook-details__followers followers-count cook1">
+                      <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
+                        <i class="fa fa-users"></i>
+                      </li>
+                      <li><%= food.user.followers.count %></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__favorites favorites-count">
+                      <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
+                        <i class="fa fa-heart"></i>
+                      </li>
+                      <li><%= food.user.foods.sum(:cached_votes_up) %></li>
+                    </div>
+                    <div class="col-sm-4 cook cook-details__recipes-made recipes-made-count">
+                      <li class="icon--cook-card-made" title="Photo"><i class="fa fa-camera"></i></li>
+                      <li><%= food.user.foods.count %></li>
+                    </div>
+                  </div>
+                </div><br>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div><br>
     <div class="text-center" style="padding-bottom: 30px;">
-      <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
+      <%= link_to "View more", foods_newest_path, class:"home-film-list-view-more" %>
     </div>
   </div>
   <div class="tm-block-top-a uk-block uk-block-default">
@@ -176,11 +198,11 @@
                 <button class="popover-btn popover-btn2 nostyle">
                   <% if user_signed_in? %>
                     <% if current_user.voted_up_on? food %>
-                      <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <%= link_to dislike_food_path(food), method: :put do %>
                         <i class="fa fa-heart" aria-hidden="true"></i>
                       <% end %>
                     <% else %>
-                      <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
+                      <%= link_to like_food_path(food), method: :put do %>
                         <i class="fa fa-heart-o" aria-hidden="true"></i>
                       <% end %>
                     <% end %>
@@ -198,7 +220,7 @@
                 <div class="popover-content">
                   <ul class="social-networks">
                     <%= social_share_button_tag food.name, desc: food.description,
-                      via: "AwesomeVn", image: food.file %>
+                      via: "AwesomeVN", image: food.file %>
                   </ul>
                 </div>
               </div>
@@ -214,8 +236,15 @@
           </div>
           <div class="block-content">
             <%= link_to food_path(food), title: food.name do %>
-                <h4 class="block-name"><%= food.name %></h4>
+              <h4 class="block-name"><%= food.name %></h4>
             <% end %>
+            <h6 class="block-description">
+              <% if food.review.present? %>
+                <%= truncate food.review, length: 50 %>
+                <%= link_to 'read more', food %>
+              <% else %>No review
+              <% end %>
+            </h6>
             <h6 class="block-address" title="address">
               Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
             </h6>
@@ -239,7 +268,7 @@
                       <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
                         <i class="fa fa-users"></i>
                       </li>
-                      <li></li>
+                      <li><%= food.user.followers.count %></li>
                     </div>
                     <div class="col-sm-4 cook cook-details__favorites favorites-count">
                       <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
@@ -270,38 +299,40 @@
       <span class="star"></span>
       <span class="star"></span>
       <span class="star last"></span>
-      <span class="uk-text-center">Most viewed images</span>
+      <span class="uk-text-center">Following's images</span>
       <span class="star first"></span>
       <span class="star"></span>
       <span class="star"></span>
       <span class="star"></span>
       <span class="star"></span>
     </h2><br>
-    <div class="carousel2">
-      <% Food.where("created_at = ?", Time.now.in_time_zone("Hanoi").to_date).each do |food| %>
+    <% if user_signed_in? %>
+      <div class="carousel2">
+        <% current_user.following.each do |followed| %>
+          <% followed.foods.order("created_at desc").limit(10).each do |food| %>
           <div class="item">
             <div class="container2">
               <%= link_to food_path(food) do %>
-                  <%= image_tag food.file,
-                                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                <%= image_tag food.file,
+                  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
               <% end %>
               <div class="overlay">
                 <div class="popover-wrapper2">
                   <button class="popover-btn popover-btn2 nostyle">
                     <% if user_signed_in? %>
-                        <% if current_user.voted_up_on? food %>
-                            <%= link_to dislike_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                                <i class="fa fa-heart" aria-hidden="true"></i>
-                            <% end %>
-                        <% else %>
-                            <%= link_to like_food_path(food), method: :put, class:"_ebwb5 _1tv0k" do %>
-                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            <% end %>
+                      <% if current_user.voted_up_on? food %>
+                        <%= link_to dislike_food_path(food), method: :put do %>
+                          <i class="fa fa-heart" aria-hidden="true"></i>
                         <% end %>
+                      <% else %>
+                        <%= link_to like_food_path(food), method: :put do %>
+                          <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <% end %>
+                      <% end %>
                     <% else %>
-                        <%= link_to user_session_path do %>
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <% end %>
+                      <%= link_to user_session_path do %>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <% end %>
                     <% end %>
                   </button>
                 </div>
@@ -312,24 +343,31 @@
                   <div class="popover-content">
                     <ul class="social-networks">
                       <%= social_share_button_tag food.name, desc: food.description,
-                                                  via: "AwesomeVn", image: food.file %>
+                        via: "AwesomeVN", image: food.file %>
                     </ul>
                   </div>
                 </div>
                 <div class="col-xs-12 info-food">
-            <span class="col-xs-3">
-              <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
-            </span>
+                  <span class="col-xs-3">
+                    <i class="fa fa-eye"></i> <%= food.unique_impression_count %>
+                  </span>
                   <span class="col-xs-9 text-right">
-              <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
-            </span>
+                    <%= food.created_at.in_time_zone.strftime("%B %d, %Y") %>
+                  </span>
                 </div>
               </div>
             </div>
             <div class="block-content">
               <%= link_to food_path(food), title: food.name do %>
-                  <h4 class="block-name"><%= food.name %></h4>
+                <h4 class="block-name"><%= food.name %></h4>
               <% end %>
+              <h6 class="block-description">
+                <% if food.review.present? %>
+                  <%= truncate food.review, length: 50 %>
+                  <%= link_to 'read more', food %>
+                <% else %>No review
+                <% end %>
+              </h6>
               <h6 class="block-address" title="address">
                 Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
               </h6>
@@ -342,7 +380,7 @@
                 <div class="profile-card">
                   <div class="pc-image">
                     <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                                  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
                   </div>
                   <div class="pc-content">
                     <h4 class="col-sm-12 pc-name">
@@ -353,7 +391,7 @@
                         <li class="icon--cook-card-follower" title="Followers" style="color: cornflowerblue">
                           <i class="fa fa-users"></i>
                         </li>
-                        <li></li>
+                        <li><%= food.user.followers.count %></li>
                       </div>
                       <div class="col-sm-4 cook cook-details__favorites favorites-count">
                         <li class="icon--cook-card-favorite" title="Likes" style="color: orange">
@@ -371,11 +409,20 @@
               </div>
             </div>
           </div>
-      <% end %>
-    </div><br>
-    <div class="text-center" style="padding-bottom: 30px;">
-      <%= link_to "View more", foods_liked_path, class:"home-film-list-view-more" %>
-    </div>
+          <% end %>
+        <% end %>
+      </div><br>
+      <div class="text-center" style="padding-bottom: 30px;">
+        <%= link_to "View more", streams_path, class:"home-film-list-view-more" %>
+      </div>
+    <% else %>
+      <div class="text-center">
+        <h3>
+          Please <%= link_to "Log in", user_session_path %> or
+          <%= link_to "Register", new_user_registration_path %> to following users.
+        </h3>
+      </div>
+    <% end %>
   </div>
 <% end %>
 </body>

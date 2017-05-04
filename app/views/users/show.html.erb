@@ -8,9 +8,9 @@
         <h1><%= link_to @user.username,@user_path, class:"username_class"%></h1>
         <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
       </div>
-      <div class="info-user" style="padding-top: 20px; margin-bottom: 40px;">
-       <%= render 'shared/stats' %>
-       <br>
+      <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
+        <%= render 'shared/stats' %>
+        <% if user_signed_in? %>
         <% if @user.id == current_user.id%>
           <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
         <% else %>
@@ -24,11 +24,20 @@
             </div>
           <% end %>
         <% end %>
-       
+        <% else %>
+        Plesae <%= link_to "Login", user_session_path %> or
+        <%= link_to "Register", new_user_registration_path %>
+        to following <%= @user.username %>.
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+<% flash.each do |key, value| %>
+  <div class="flash-message <%= key %>">
+    <%= value %>
+  </div>
+<% end %>
 <div class="container" style="margin-top:100px;">
   <div class="row form-group">
     <% @user.foods.each do |food| %>
@@ -39,13 +48,13 @@
           <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
           <span class="overlay">
             <i class="glyphicon glyphicon-fullscreen"></i>
-            <%= food.name %>
+            <h3 style="color: yellow;font-weight: 600"><%= food.name %></h3>
           </span>
           <% end %>
         </div>
         <input type="checkbox" id="toggle-1" class="panel-image-toggle">
         <div class="panel-body">
-          <h4><%= link_to food.name, food_path(food) %></h4>
+          <h3><%= link_to food.name, food_path(food) %></h3>
           <p> <%= link_to "View", food_path(food) %></p>
         </div>
         <div class="panel-footer text-center">
