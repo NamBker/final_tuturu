@@ -37,7 +37,8 @@
 <div class="container" style="margin-top:100px;">
   <div class="row form-group" >
     <% @foods.each do |food| %>
-    <div class="col-xs-12 col-md-12" id="foods" >
+    <div class="col-md-2"></div>
+    <div class="col-xs-12 col-md-8" id="foods" >
       <div class="panel panel-default">
         <div class="panel-image">
           <%= link_to(food_path(food),:class => "zoom") do %>
@@ -60,10 +61,7 @@
           method: :delete, data: { confirm: "Are you sure?" } %>
           <% else %>
           <% end %>
-          <!--<a href="#download"><span class="glyphicon glyphicon-download"></span></a>-->
-          <!--<a href="#facebook"><span class="fa fa-facebook"></span></a>-->
-          <!--<a href="#twitter"><span class="fa fa-twitter"></span></a>-->
-          <!--<a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>-->
+          
           <div class="social-share-button" data-title="sushi" data-img="/uploads/food/file/1/sushi-trung-ca-hoi.JPG" data-url="" data-desc="brtnyumi" data-via="AwesomeVn">
             <a rel="nofollow " data-site="twitter" class="fa fa-twitter" onclick="return SocialShareButton.share(this);" title="Share to Twitter" href="#"></a>
             <a rel="nofollow " data-site="facebook" class="fa fa-facebook" onclick="return SocialShareButton.share(this);" title="Share to Facebook" href="#"></a>
@@ -74,6 +72,7 @@
         </div>
       </div>
     </div>
+    <div class="col-md-2"></div>
     <% end %>
     
   </div>
@@ -169,15 +168,6 @@
   outline: none;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin);
-
-body{
-  font-family:Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-  font-size:14px;
-  line-height:1.4285em;
-  color: rgba(0,0,0,.87);
-}
-
 .thread-parent img {
   max-width: 100%;
 }
@@ -268,58 +258,3 @@ body{
   }
 }
 </style>
-<script>
-  var limitImagesPreview = function(selector) {
-  const max_height = 200; // maximum height of images.
-  var limited_image = '<div class="limited-parent-image"></div>';
-  var limited_description = '<span class="limited-expand">'+
-  '<i class="glyphicon glyphicon-resize-full"></i>'+
-  '</span>';
-  var limited_modal = '<div class="limited-modal">'+
-  '  <span class="limited-close-modal">×</span>'+
-  '  <img class="limited-modal-content-image">'+
-  '</div>';
-  $(selector).each(function(i, block){
-    var images = $(block).find('img');
-    for (var i = 0; i < images.length; i++) {
-      var image = $(images[i]);
-      image.addClass('limited-origin-image');
-
-      if ((image.height() > max_height) ||
-        (image.get(0).height > max_height) ||
-        (image.get(0).naturalHeight > max_height)) {
-        image.wrap(limited_image);
-      image.closest('.limited-parent-image').append(limited_description);
-      image.closest('.limited-parent-image').after(limited_modal);
-      }else { // this condition if image isn't loaded with complete
-      image.load(function(){
-        if(this.height > max_height) {
-          image.wrap(limited_image);
-          image.closest('.limited-parent-image').append(limited_description);
-          image.closest('.limited-parent-image').after(limited_modal);
-        }
-      });
-    }
-    }//end for
-  });
-};
-
-// Click to Expand the image.
-$(document).on('click', '.limited-parent-image', function() {
-  var nextElement = $(this).next().attr({'style':'display:block'});
-  nextElement.find('.limited-modal-content-image').attr({
-    'src': $(this).find('.limited-origin-image').attr('src'),
-    'alt': $(this).find('.limited-origin-image').attr('alt')
-  });
-});
-$(document).on('click', '.limited-close-modal', function() {
-  $(this).closest('.limited-modal').attr({'style':'display:none'});
-});
-$(document).on('click', '.limited-modal', function() {
-  $(this).get(0).style.display = 'none';
-});
-// EOF
-
-// Set parent div element
-limitImagesPreview('.thread-parent');
-</script>
