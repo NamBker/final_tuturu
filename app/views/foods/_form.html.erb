@@ -1,9 +1,24 @@
 <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
-  <%= image_tag @food.file, class: "old-img" %>
-  <div class="upload-preview">
-    <img />
+  <label>Images</label>
+  <div class="old-img">
+    <% @food.food_photos.each do |photo| %>
+      <!-- <div class="image-container"> -->
+        <%= image_tag photo.photo_url,
+          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+<!--         < if @food.food_photos.count - 3 > 0 %>
+          <div class="after">
+            <p>+<=@food.food_photos.count - 3 %></p>
+          </div>
+        < end %>
+      </div> -->
+    <% end%>
   </div>
-  <%= f.input :file, class:"file" %><br>
+  <!--<= f.input :file, class:"file" %><br>-->
+  <div id="preview"></div>
+  <%= f.simple_fields_for :food_photos do |photo| %>
+    <%= photo.file_field :photo, name: "food_photos[photo][]", multiple: true,
+      class: "upload-image", style:"display: none" %>
+  <% end %><br>
   <%= f.input :name, max: 25 %><h6>* Food name must be less than 25 characters</h6>
   <%= f.input :description %>
   <%= f.input :address %>
@@ -17,3 +32,8 @@
     <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
   </div><br><br>
 <% end %>
+<style>
+  #food_food_photos_attributes_0_photo {
+    display: block !important;
+  }
+</style>

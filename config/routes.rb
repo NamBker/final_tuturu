@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   get 'notifications', to: 'notifications#index'
   resources :relationships, only: [:create, :destroy]
   resources :newsfeed,only: [:index]
+  resources :food_photos
 end

@@ -7,10 +7,12 @@
           <h1>Let's introduct your food!</h1>
           <div class="randompad">
             <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
-              <div class="upload-preview">
-                <img />
-              </div>
-              <%= f.input :file, class:"file" %>
+              <!--<= f.input :file, class:"file" %>-->
+              <label>Images</label>
+              <div id="preview"></div>
+              <%= f.simple_fields_for :food_photos do |photo| %>
+                <%= photo.file_field :photo, name: "food_photos[photo][]", multiple: true, class: "upload-image" %>
+              <% end %><br>
               <%= f.input :name, max: 25 %><h6>* Food name must be less than 25 characters</h6>
               <%= f.input :description %>
               <%= f.input :address %>
