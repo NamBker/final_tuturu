@@ -367,3 +367,62 @@ $(document).ready(function(){
     $('.old-img').fadeOut('fast');
   });
 });
+
+$(document).ready(function(){
+  var preview = $(".preview-comment img");
+
+  $(".file").change(function(event){
+    $('.old-cmt').fadeOut('fast');
+    $(".preview-comment").fadeIn('fast');
+    var input = $(event.currentTarget);
+    var file = input[0].files[0];
+    var reader = new FileReader();
+    reader.onload = function(e){
+      image_base64 = e.target.result;
+      preview.attr("src", image_base64);
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+$(document).ready(function(){
+  $('.slide-show').owlCarousel({
+    stopOnHover: true,
+    touchDrag: true,
+    rewindNav: true,
+    rewindSpeed: 600,
+    pagination: true,
+    navigation: true,
+    navigationText: ["<img src='http://dynarules.com/Images/arrleft.png'>","<img src='http://www.freeiconspng.com/uploads/right-arrow-icon-27.png'>"],
+    items: 1,
+    itemsDesktop: [1119,1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768,1],
+    itemsMobile: [479,1]
+  });
+})
+
+$(function(){
+  $(".upload-image").on("change", function(){
+    var preview = document.querySelector('#preview');
+    var files   = document.querySelector('input[type=file]').files;
+
+    function readAndPreview(file) {
+      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+          var image = new Image();
+          image.height = 150;
+          image.width = 150;
+          image.title = file.name;
+          image.src = this.result;
+          preview.appendChild( image );
+        }, false);
+        reader.readAsDataURL(file);
+      }
+    }
+    if (files) {
+      [].forEach.call(files, readAndPreview);
+    }
+  })
+})

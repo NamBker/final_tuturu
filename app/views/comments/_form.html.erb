@@ -1,4 +1,14 @@
 <%= form_for [@food, @comment], remote: true, class:"_k3t69" do |f| %>
   <%= f.text_field :content, placeholder: 'Add a comment...', class:"_7uiwk _qy55y",
     id: "comment_content_#{@food.id}"%>
+  <% if @comment.image.present? %>
+    <%= image_tag @comment.image, class: "old-cmt",
+      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+  <% end %>
+  <div id="camera">
+    <%= f.file_field :image, class:"file" %>
+  </div>
+  <div class="preview-comment">
+    <img />
+  </div>
 <% end %>

@@ -43,7 +43,7 @@
   <% flash.each do |key, value| %>
     <div class="flash-message <%= key %>">
       <%= value %>
-    </div>
+    </div><br>
   <% end %>
   <div id="tag_cloud">
     <% tag_cloud Food.tag_counts, %w{s m l} do |tag, css_class| %>
@@ -68,9 +68,13 @@
       <% Food.order("created_at desc").limit(10).each do |food| %>
         <div class="item">
           <div class="container2">
-            <%= link_to food_path(food) do %>
+            <% if food.food_photos.count == 0 %>
               <%= image_tag food.file,
                 onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <% else %>
+              <% food.food_photos.limit(1).each do |p| %>
+                <%= image_tag p.photo_url %>
+              <% end %>
             <% end %>
             <div class="overlay">
               <div class="popover-wrapper2">
@@ -135,8 +139,8 @@
             <div class="block-activity">
               <div class="profile-card">
                 <div class="pc-image">
-                  <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                    <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
+                      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
                 </div>
                 <div class="pc-content">
                   <h4 class="col-sm-12 pc-name">
@@ -189,9 +193,13 @@
       <% Food.order(cached_votes_up: :desc).limit(10).each do |food| %>
         <div class="item">
           <div class="container2">
-            <%= link_to food_path(food) do %>
+            <% if food.food_photos.count == 0 %>
               <%= image_tag food.file,
                 onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <% else %>
+              <% food.food_photos.limit(1).each do |p| %>
+                <%= image_tag p.photo_url %>
+              <% end %>
             <% end %>
             <div class="overlay">
               <div class="popover-wrapper2">
@@ -312,9 +320,13 @@
           <% followed.foods.order("created_at desc").limit(10).each do |food| %>
           <div class="item">
             <div class="container2">
-              <%= link_to food_path(food) do %>
+              <% if food.food_photos.count == 0 %>
                 <%= image_tag food.file,
                   onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+              <% else %>
+                <% food.food_photos.limit(1).each do |p| %>
+                  <%= image_tag p.photo_url %>
+                <% end %>
               <% end %>
               <div class="overlay">
                 <div class="popover-wrapper2">

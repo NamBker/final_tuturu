@@ -3,6 +3,8 @@ class Food < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :impressions, as: :impressionable
+  has_many :food_photos
+  accepts_nested_attributes_for :food_photos
 
   validates :name, presence: true
   validates_length_of :name, maximum: 25

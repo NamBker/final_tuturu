@@ -5,14 +5,33 @@
         <!--<span class="ng-binding"></span>-->
       <!--</a>-->
       <span class="hero-photo__image">
-        <%= image_tag food.file, class:"rec-photo",
-          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
+        <div class="slide-show" style="color: black !important">
+          <% @food_photos.each do |p| %>
+          <div class="multiple">
+            <%= image_tag p.photo_url,
+              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
+            <% if user_signed_in? %>
+              <% if current_user.id == food.user.id %>
+                <%= link_to food_photo_path(p), method: :delete,
+                  data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-remove" style="font-size: 18px !important;color: #007bff"> Delete</i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
       </span><br>
       <% if user_signed_in? %>
         <% if current_user.id == food.user.id %>
-          <%= link_to "Edit", edit_food_path(food) %>&nbsp;
-          <%= link_to "Delete", food_path(food),
-            method: :delete, data: { confirm: "Are you sure?" } %><br>
+          <%= link_to edit_food_path(food) do %>
+            <i class="fa fa-pencil" style="font-size: 18px !important;color: #007bff"> Edit post</i>
+          <% end %>
+          &nbsp;
+          <%= link_to food_path(food), method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-remove" style="font-size: 18px !important;color: #007bff"> Delete post</i>
+          <% end %><br>
         <% end %>
       <% end %>
     </section>
@@ -56,11 +75,6 @@
           </div>
           <!--<div class="rating-stars">-->
             <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
-            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
-            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
-            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/full-star-2015.svg">-->
-            <!--<img height="20" width="20" src="http://images.media-allrecipes.com/ar-images/icons/rating-stars/half-star-2015.svg">-->
-          <!--</div>-->
         </div>
         <!-- total made it count & read review link -->
         <div class="summary-stats-box">
@@ -126,7 +140,6 @@
     </section>
   </div>
 </div>
-
 <% if user_signed_in? %>
   <section class="_jveic _dsvln col-sm-12">
     <% if current_user.voted_up_on? food %>
@@ -151,3 +164,25 @@
     <%= render food.comments %>
   <% end %>
 </div>
+
+<style>
+  .owl-carousel .owl-wrapper-outer {
+    max-width: 95%;
+  }
+  .owl-theme .owl-controls .owl-buttons div {
+    color: black;
+  }
+  .owl-theme .owl-controls .owl-buttons .owl-prev {
+    float: left;
+    margin-top: -50%;;
+    margin-left: -35px;
+  }
+  .owl-theme i {
+    color: gray !important;
+  }
+  .owl-theme .owl-controls .owl-buttons .owl-next {
+    float: right;
+    margin-top: -50%;
+    margin-right: 25px;
+  }
+</style>

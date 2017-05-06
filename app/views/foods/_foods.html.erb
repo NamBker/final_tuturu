@@ -58,7 +58,7 @@
         <% end %>
       </h6>
       <h6 class="block-address" title="address">
-        Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
+        Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(' #') %><br>
       </h6>
       <div class="block-meta">
         <div class="block-counts">

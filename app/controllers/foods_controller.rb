@@ -13,19 +13,27 @@ class FoodsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @food_photos = @food.food_photos.all
   end
 
   def new
     @food = Food.new
+    @food_photo = @food.food_photos.build
   end
 
   def edit
+    p params[:food_photos]
   end
 
   def create
     @food = Food.new food_params
     @food.user_id = current_user.id
     if @food.save
+      if params[:food_photos]
+        params[:food_photos]['photo'].each do |photo|
+          @food_photo = @food.food_photos.create!(photo: photo, food_id: @food.id)
+        end
+      end
       flash[:success] = "Upload success"
       redirect_to food_path @food
     else
@@ -35,6 +43,11 @@ class FoodsController < ApplicationController
 
   def update
     if @food.update_attributes food_params
+      if params[:food_photos]
+        params[:food_photos]['photo'].each do |photo|
+          @food_photo = @food.food_photos.create!(photo: photo, food_id: @food.id)
+        end
+      end
       flash[:success] = "Update success"
       redirect_to food_path @food
     else
@@ -49,7 +62,7 @@ class FoodsController < ApplicationController
       flash[:danger] = "Something wrong"
     end
     respond_to do |format|
-      format.html {redirect_to :back}
+      format.html {redirect_to root_path}
       format.json {head :no_content}
     end
   end
@@ -98,7 +111,8 @@ class FoodsController < ApplicationController
     end
 
     def food_params
-      params.require(:food).permit :name, :address, :price, :description, :review, :file, :tag_list
+      params.require(:food).permit :name, :address, :price, :description, :review, :file, :tag_list,
+        {food_photos_attributes: [:id, :food_id, :photo]}
     end
 
   def require_permission

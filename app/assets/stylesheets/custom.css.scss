@@ -304,12 +304,12 @@ a:hover {
 }
 
 #top2 {
-  height:100vh;
+  height: 100vh;
   position: absolute;
   width: 100%;
   display: block;
   color: rgb(255, 255, 255);
-  //background: rgba(181, 167, 152, 0.82);
+  /*background: rgba(181, 167, 152, 0.82);*/
   z-index: 2;
   overflow-y: auto;
 }
@@ -596,8 +596,8 @@ img.inactived {
 
 .section {
   color: $black;
-  min-height: 95vh;
-  overflow-y: auto;
+  min-height: 100vh;
+  /*overflow-y: auto;*/
 
   h1 {
     font-size: 30px;
@@ -640,7 +640,7 @@ $primary: #2196F3;
 }
 
 .edit-food {
-  background: url(http://i.imgur.com/vt9U1XZ.jpg) top center;
+  background: url(http://i.imgur.com/vt9U1XZ.jpg) top center fixed;
   background-size: cover;
   height: 100vh;
 }
@@ -1821,8 +1821,10 @@ footer {
 }
 
 .old-img {
-  width: 600px;
-  height: auto;
+  img {
+    width: 150px;
+    height: 150px;
+  }
 }
 .navbar-nav > li > a {
   font-size: 16px !important;
@@ -1964,8 +1966,9 @@ div.image-wrapper {
   margin-bottom: 50px;
 }
 .hero-photo {
-  width: 57%;
+  width: 55%;
   float: right;
+  margin-left: 10px;
 }
 .hero-photo {
   position: relative;
@@ -2225,7 +2228,7 @@ img.rec-photo {
   font: bold 16px sans-serif;
 
   padding: 55px 50px;
-  margin-top: 80px;
+  /*margin-top: 80px;*/
 }
 
 .footer-distributed .footer-left,
@@ -2517,4 +2520,64 @@ a.morelink {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.image-comment {
+  height: auto;
+  width: 300px;
+}
+
+.preview-comment img, .old-cmt {
+  width: 150px;
+  height: auto;
+}
+
+._46-h {
+    overflow: hidden;
+    position: relative;
+}
+._52d9 {
+    background-color: rgba(0, 0, 0, .4);
+    bottom: 0;
+    color: #fff;
+    font-size: 35px;
+    font-weight: normal;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+._52da {
+    display: table;
+    /*height: 100%;*/
+    /*width: 100%;*/
+}
+._52db {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.image-container {
+    position: relative;
+    width: 150px;
+    display: inline-block;
+}
+.image-container .after {
+    background: rgba(0, 0, 0, .4);
+    color: #FFF;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    p {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 44px;
+      margin-top: 30%;
+    }
+}
+#preview img {
+  margin-right: 5px;
 }
