@@ -70,7 +70,7 @@
           <div class="container2">
             <% if food.food_photos.count == 0 %>
               <%= image_tag food.file,
-                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
             <% else %>
               <% food.food_photos.limit(1).each do |p| %>
                 <%= image_tag p.photo_url %>
@@ -103,7 +103,7 @@
                 <div class="popover-content">
                   <ul class="social-networks">
                     <%= social_share_button_tag food.name, desc: food.description,
-                      via: "AwesomeVN", image: food.file %>
+                      via: "AwesomeVN" %>
                   </ul>
                 </div>
               </div>
@@ -140,7 +140,7 @@
               <div class="profile-card">
                 <div class="pc-image">
                     <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                      onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
                 </div>
                 <div class="pc-content">
                   <h4 class="col-sm-12 pc-name">
@@ -195,7 +195,7 @@
           <div class="container2">
             <% if food.food_photos.count == 0 %>
               <%= image_tag food.file,
-                onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
             <% else %>
               <% food.food_photos.limit(1).each do |p| %>
                 <%= image_tag p.photo_url %>
@@ -228,7 +228,7 @@
                 <div class="popover-content">
                   <ul class="social-networks">
                     <%= social_share_button_tag food.name, desc: food.description,
-                      via: "AwesomeVN", image: food.file %>
+                      via: "AwesomeVN" %>
                   </ul>
                 </div>
               </div>
@@ -265,7 +265,7 @@
               <div class="profile-card">
                 <div class="pc-image">
                   <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                    onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
                 </div>
                 <div class="pc-content">
                   <h4 class="col-sm-12 pc-name">
@@ -322,7 +322,7 @@
             <div class="container2">
               <% if food.food_photos.count == 0 %>
                 <%= image_tag food.file,
-                  onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                  onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
               <% else %>
                 <% food.food_photos.limit(1).each do |p| %>
                   <%= image_tag p.photo_url %>
@@ -355,7 +355,7 @@
                   <div class="popover-content">
                     <ul class="social-networks">
                       <%= social_share_button_tag food.name, desc: food.description,
-                        via: "AwesomeVN", image: food.file %>
+                        via: "AwesomeVN" %>
                     </ul>
                   </div>
                 </div>
@@ -392,7 +392,7 @@
                 <div class="profile-card">
                   <div class="pc-image">
                     <%= image_tag food.user.avatar, class: "img", alt:"img", title:food.user.username,
-                      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+                      onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
                   </div>
                   <div class="pc-content">
                     <h4 class="col-sm-12 pc-name">

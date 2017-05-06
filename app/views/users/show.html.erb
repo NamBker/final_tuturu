@@ -2,28 +2,40 @@
   <div class="fb-profile">
     <img align="left" class="fb-image-lg" src="http://i.imgur.com/kfhjpXw.jpg" alt="Profile image example"/>
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail", align: "left",
-    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
+    onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';"%>
     <div class="fb-profile-text">
       <div class="info-user">
-        <h1><%= link_to @user.username,@user_path, class:"username_class"%></h1>
-        <p>Joined <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %></p>
+        <h1 style="display: inline-block;"><%= link_to @user.username,@user_path, class:"username_class"%></h1>
+        <% if @user.name.present? %>
+          <h2 style="display: inline-block;color: #aaa;padding: 0 10px">(<%= @user.name %>)</h2>
+        <% end %>
+        <% if @user.birth.present? %>
+          <p class="info-u">
+            <i class="fa fa-birthday-cake"></i> Birthday: 
+            <%= @user.birth.strftime("%b %d %Y") %>
+          </p>
+        <% end %>
+        <p class="info-u">
+          <i class="fa fa-user-circle-o"></i> Joined: 
+          <%= @user.created_at.in_time_zone("Hanoi").strftime("%b %d %Y") %>  
+        </p>
       </div>
       <div class="info-user" style="padding-top: 20px; margin-bottom: 20px;">
         <%= render 'shared/stats' %>
         <% if user_signed_in? %>
-        <% if @user.id == current_user.id%>
-          <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
-        <% else %>
-          <% if current_user != @user %>
-            <div id="follow_form" style="margin-top: 20px;">
-              <% if current_user.following?(@user) %>
-              <%= render 'unfollow' %>
-              <% else %>
-              <%= render 'follow' %>
-              <% end %>
-            </div>
+          <% if @user.id == current_user.id%>
+            <%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-default" %>
+          <% else %>
+            <% if current_user != @user %>
+              <div id="follow_form" style="margin-top: 20px;">
+                <% if current_user.following?(@user) %>
+                <%= render 'unfollow' %>
+                <% else %>
+                <%= render 'follow' %>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
         <% else %>
         Plesae <%= link_to "Login", user_session_path %> or
         <%= link_to "Register", new_user_registration_path %>
@@ -45,7 +57,15 @@
       <div class="panel panel-default">
         <div class="panel-image">
           <%= link_to(food_path(food),:class => "zoom") do %>
-          <%= image_tag food.file, class: "panel-image-preview",onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            <% if food.food_photos.count == 0 %>
+              <%= image_tag food.file, class: "panel-image-preview",
+                onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
+            <% else %>
+              <% food.food_photos.limit(1).each do |p| %>
+                <%= image_tag p.photo_url, class: "panel-image-preview",
+                  onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
+              <% end %>
+            <% end %>
           <span class="overlay">
             <i class="glyphicon glyphicon-fullscreen"></i>
             <h3 style="color: yellow;font-weight: 600"><%= food.name %></h3>

@@ -1,9 +1,14 @@
 <% @foods.each do |food| %>
   <div class="item2 col-sm-4 item3">
     <div class="container2">
-      <%= link_to food_path(food) do %>
+      <% if food.food_photos.count == 0 %>
         <%= image_tag food.file,
-          onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+          onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
+      <% else %>
+        <% food.food_photos.limit(1).each do |p| %>
+          <%= image_tag p.photo_url,
+            onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
+        <% end %>
       <% end %>
       <div class="overlay">
         <div class="popover-wrapper2">
@@ -32,7 +37,7 @@
           <div class="popover-content">
             <ul class="social-networks">
               <%= social_share_button_tag food.name, desc: food.description,
-                via: "AwesomeVN", image: food.file %>
+                via: "AwesomeVN" %>
             </ul>
           </div>
         </div>
@@ -58,7 +63,7 @@
         <% end %>
       </h6>
       <h6 class="block-address" title="address">
-        Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(' #') %><br>
+        Tags: <%= raw food.tags.map(&:name).map { |t| link_to t, tag_path(t), class:"tags" }.join(', ') %><br>
       </h6>
       <div class="block-meta">
         <div class="block-counts">
@@ -69,7 +74,7 @@
         <div class="profile-card">
           <div class="pc-image">
             <%= image_tag food.user.avatar, class: "img", title:food.user.username,
-              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+              onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
           </div>
           <div class="pc-content">
             <h4 class="col-sm-12 pc-name">

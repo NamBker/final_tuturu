@@ -5,11 +5,15 @@
         <!--<span class="ng-binding"></span>-->
       <!--</a>-->
       <span class="hero-photo__image">
+        <% if @food.file.present? %>
+          <%= image_tag @food.file,
+            onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';"  %><br>
+        <% end %>
         <div class="slide-show" style="color: black !important">
           <% @food_photos.each do |p| %>
           <div class="multiple">
             <%= image_tag p.photo_url,
-              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %><br>
+              onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %><br>
             <% if user_signed_in? %>
               <% if current_user.id == food.user.id %>
                 <%= link_to food_photo_path(p), method: :delete,
@@ -40,7 +44,7 @@
         <div class="ppc-owner">
           <div class="profile-card-new pc-popup-photo">
             <%= image_tag food.user.avatar, class:"img avatar pc-avatar",
-              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+              onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
             <div class="pc-content">
               <h3 class="pc-title">
                 <%= link_to user_path(food.user) do %>
@@ -133,8 +137,7 @@
         </div>
         <h3 class="heading__h2--gutters share">Share</h3><hr style="margin: 10px 0">
         <div class="share">
-          <%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVN",
-            image: food.file %>
+          <%= social_share_button_tag food.name, desc: food.description, via: "AwesomeVN" %>
         </div>
       </div>
     </section>

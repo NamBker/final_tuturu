@@ -108,12 +108,12 @@ $.fn.backgroundCycle = function (e) {
 var slideshow = function() {
   $('#top').backgroundCycle({
     imageUrls: [
-      "http://blog.asurion.com/wp-content/uploads/2016/11/iStock_83585783_MEDIUM-670x447.jpg",
-      "http://i.imgur.com/wB1w726.jpg",
-      "http://i.imgur.com/ySkkJN0.jpg",
-      "http://i.imgur.com/VrlU4g4.jpg",
-      "http://i.imgur.com/JfHLglv.jpg",
-      "http://i.imgur.com/ESfVKAj.jpg"
+      "https://secure.static.tumblr.com/0a7b880747e4c5616c39a780be74c148/bdtvv79/m8Vn32bn8/tumblr_static_vietnam_food.jpg",
+      "http://www.foodstylistvn.com/wp-content/uploads/2014/08/ga-ran-vietnam-food-stylist-1280.jpg",
+      "http://i.imgur.com/eLhVPoI.jpg",
+      "http://i.imgur.com/tj9zapM.jpg", //bo nuong
+      "http://i.imgur.com/l7L0acN.jpg", //bun bo
+      "http://i.imgur.com/eYbWi7C.jpg" //ca kho
     ],
     fadeSpeed: 1200,
     duration: 2500,
@@ -426,3 +426,8 @@ $(function(){
     }
   })
 })
+
+$(document).ready(function ($) {
+    var options = { $AutoPlay: 1 };
+    var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+});

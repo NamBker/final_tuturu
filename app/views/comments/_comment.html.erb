@@ -4,7 +4,7 @@
       <div class="review-avatar">
         <%= link_to user_path(comment.user), class:"ru-avatar", target:"_blank" do %>
           <%= image_tag comment.user.avatar, width:"40", height:"40", alt:"",
-            onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+            onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
         <% end %>
       </div>
       <div style="float:left; width:300px;">
@@ -26,7 +26,7 @@
     <div class="review-des fd-clearbox ng-scope">
       <div class="rd-des">
         <span class="ng-binding" id = "this_comment_<%= comment.id %>">
-          <%= comment.content %>
+          <%= comment.content %><br>
           <%= image_tag comment.image, class:"image-comment" %>
         </span>
       </div>
