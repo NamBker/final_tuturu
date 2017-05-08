@@ -2,7 +2,7 @@
   <div class="fb-profile">
     <img align="left" class="fb-image-lg" src="http://i.imgur.com/kfhjpXw.jpg" alt="Profile image example"/>
     <%= image_tag @user.avatar, class:"img2 fb-image-profile thumbnail", align: "left",
-    onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';"%>
+    onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';"%>
     <div class="fb-profile-text">
       <div class="info-user">
         <h1><%= @user.username %></h1>
@@ -38,7 +38,7 @@
           <% @users.each do |user| %>
           <br>
             <%= image_tag user.avatar,
-              onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+              onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
             <%= link_to user.username, user_path(user) %>
           <% end %>
         </div>

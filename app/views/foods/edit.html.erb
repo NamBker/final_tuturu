@@ -1,16 +1,21 @@
 <div class="section">
-  <section class="edit-food">
-    <div id="top2">
-      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
-        <br><br>
-        <div class="formholder upload col-sm-12 ">
-          <h1>Edit your food!</h1>
-          <div class="randompad">
-            <%= render 'form', food: @food %>
-          </div>
-        </div>
+  <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+    <br><br>
+    <div class="formholder upload col-sm-12 ">
+      <h1>Edit your food!</h1>
+      <div class="randompad">
+        <%= render 'form', food: @food %>
       </div>
-      <%= link_to 'Back', foods_path %>
     </div>
-  </section>
+  </div>
+  <%= link_to 'Back', foods_path %>
 </div>
+<style>
+  body {
+    background: url(http://i.imgur.com/vt9U1XZ.jpg) rgb(50,50,50) no-repeat fixed center top;
+    background-size: cover;
+  }
+  h1, h6, p {
+    color: white !important;
+  }
+</style>

@@ -3,11 +3,11 @@
     id: "comment_content_#{@food.id}"%>
   <% if @comment.image.present? %>
     <%= image_tag @comment.image, class: "old-cmt",
-      onerror: "this.src='http://i.imgur.com/qBkFZxB.jpg';" %>
+      onerror: "this.src='http://i.imgur.com/3cg67mg.jpg';" %>
   <% end %>
-  <div id="camera">
+  <!-- <div id="camera"> -->
     <%= f.file_field :image, class:"file" %>
-  </div>
+  <!-- </div> -->
   <div class="preview-comment">
     <img />
   </div>

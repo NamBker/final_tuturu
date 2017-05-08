@@ -133,7 +133,7 @@ fieldset {
 }
 
 .formholder {
-  background: rgba(9, 94, 115, 0.5);
+  background: rgba(0, 0, 0, 0.76);
   border-radius: 5px;
   padding-top: 5px;
   margin-top:120px;
@@ -175,7 +175,7 @@ fieldset {
   width: 96%;
 }
 .formholder input[type="reset"] {
-  background: green;
+  background: rgb(185, 202, 185);
   padding: 10px;
   font-size: 20px;
   display: block;
@@ -184,7 +184,7 @@ fieldset {
   border-radius: 5px;
   width: 96%;
   &:hover {
-    background: #16ff46;
+    background: #999;
   }
 }
 .formholder input[type="submit"]:hover {
@@ -597,7 +597,7 @@ img.inactived {
 .section {
   color: $black;
   min-height: 100vh;
-  /*overflow-y: auto;*/
+  overflow-y: auto;
 
   h1 {
     font-size: 30px;
@@ -2220,7 +2220,7 @@ img.rec-photo {
 }
 
 .footer-distributed{
-  background-color: #292c2f;
+  background-color: rgba(41, 44, 47, 0.84);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
@@ -2580,4 +2580,8 @@ a.morelink {
 }
 #preview img {
   margin-right: 5px;
+}
+
+.info-u {
+  font-size: 14px !important;
 }

@@ -1,34 +1,40 @@
 <div class="section">
-  <section id="top" class="parallax-section">
-    <div id="top2">
-      <div class="col-sm-8 col-sm-offset-2 col-xs-12">
-        <br><br>
-        <div class="formholder upload col-sm-12 ">
-          <h1>Let's introduct your food!</h1>
-          <div class="randompad">
-            <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
-              <!--<= f.input :file, class:"file" %>-->
-              <label>Images</label>
-              <div id="preview"></div>
-              <%= f.simple_fields_for :food_photos do |photo| %>
-                <%= photo.file_field :photo, name: "food_photos[photo][]", multiple: true, class: "upload-image" %>
-              <% end %><br>
-              <%= f.input :name, max: 25 %><h6>* Food name must be less than 25 characters</h6>
-              <%= f.input :description %>
-              <%= f.input :address %>
-              <%= f.input :price, min: 0 %>
-              <%= f.input :tag_list, :url => autocomplete_tag_name_foods_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}} %>
-              <p style="font-size: 12px">* Tags separated by commas</p>
-              <%= f.input :review %>
-              <div class="actions text-center col-sm-12">
-                <div class="col-sm-6"><%= f.button :submit %></div>
-                <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
-              </div><br><br>
-            <% end %>
-          </div>
-        </div>
+  <div class="overlay"></div>
+  <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+    <br><br>
+    <div class="formholder upload col-sm-12 ">
+      <h1>Let's introduct your food!</h1>
+      <div class="randompad">
+        <%= simple_form_for @food, multipart: true, class:"form-control" do |f| %>
+          <!--<= f.input :file, class:"file" %>-->
+          <label>Images</label>
+          <div id="preview"></div>
+          <%= f.simple_fields_for :food_photos do |photo| %>
+            <%= photo.file_field :photo, name: "food_photos[photo][]", multiple: true, class: "upload-image" %>
+          <% end %><br>
+          <%= f.input :name, max: 25 %><h5>* Food name must be less than 25 characters</h5>
+          <%= f.input :description %>
+          <%= f.input :address %>
+          <%= f.input :price, min: 0 %>
+          <%= f.input :tag_list, :url => autocomplete_tag_name_foods_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}} %>
+          <p style="font-size: 14px">* Tags separated by commas</p>
+          <%= f.input :review %>
+          <div class="actions text-center col-sm-12">
+            <div class="col-sm-6"><%= f.button :submit %></div>
+            <div class="col-sm-6"><%= f.submit "Clear form", type: :reset, class: "btn btn-danger" %></div>
+          </div><br><br>
+        <% end %>
       </div>
-      <%= link_to 'Back', foods_path %>
     </div>
-  </section>
+  </div>
+  <%= link_to 'Back', foods_path %>
 </div>
+<style>
+  body {
+    background: url(https://st2.depositphotos.com/1592314/10316/i/950/depositphotos_103164196-stock-photo-asian-japanese-food-background.jpg) rgb(50,50,50) no-repeat fixed center top;
+    background-size: cover;
+  }
+  h1, h5, p, [type=file] {
+    color: white !important;
+  }
+</style>
